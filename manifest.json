@@ -8,6 +8,9 @@
     "default_icon": "bookmarker.png",
     "default_title": "书签展示器"
   },
+  "chrome_url_overrides": {
+    "newtab": "index.html"
+  },
   "background": {
     "scripts": ["js/background.js"],
     "persistent": false

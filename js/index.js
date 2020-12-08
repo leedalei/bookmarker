@@ -3,6 +3,7 @@ chrome.runtime.sendMessage({}, function (response) {
   render(JSON.parse(response))
 })
 
+
 //注册监听器
 function initEvenListener() {
   Array.from(document.querySelectorAll(".bookmark-header")).forEach((e) => {
@@ -11,6 +12,16 @@ function initEvenListener() {
   Array.from(document.querySelectorAll(".bookmark-li")).forEach((e) => {
     e.addEventListener("click", handleJump)
   })
+  document.querySelector('input').onkeypress = (e)=>{
+    search(e)
+  }
+}
+// 搜索
+function search(e){
+  if(event.which === 13) { 
+    const value = e.target.value
+    window.open(`https://www.google.com/search?q=${value}`,'_blank')
+  }
 }
 // 跳转
 function handleJump(e) {
