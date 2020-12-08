@@ -3,9 +3,8 @@
   "description": "display all the bookmarks in your home page",
   "manifest_version": 2,
   "version": "1.0",
-  "permissions": ["bookmarks"],
+  "permissions": ["bookmarks", "tabs"],
   "browser_action": {
-    "default_popup": "index.html",
     "default_icon": "bookmarker.png",
     "default_title": "书签展示器"
   },
