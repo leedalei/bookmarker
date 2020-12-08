@@ -8,6 +8,8 @@ function getBookmarks() {
     data = res
   })
 }
+
+// 点击icon进入新的页面
 chrome.browserAction.onClicked.addListener(function (tab) {
   chrome.tabs.create({ url: chrome.runtime.getURL("/index.html") })
 })
