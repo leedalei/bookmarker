@@ -8,13 +8,6 @@
     "default_icon": "bookmarker.png",
     "default_title": "书签展示器"
   },
-  "content_scripts": [
-    {
-      "matches": ["*://www.google.com/", "*://www.baidu.com/"],
-      "js": ["js/index.js"],
-      "css": ["css/index.css"]
-    }
-  ],
   "background": {
     "scripts": ["js/background.js"],
     "persistent": false

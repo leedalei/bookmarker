@@ -32,8 +32,9 @@ function handleJump(e) {
 function handleCollapse(e) {
   let curFolder = e.target.parentNode.parentNode
   let curUl = curFolder.querySelector("ul")
-  curUl.style.display = curUl.style.display == "none" ? "flex" : "none"
-  e.target.innerText = e.target.innerText == "展开" ? "折叠" : "展开"
+  curUl.classList.toggle("btn-collapse--act")
+  console.log("toggle")
+  // e.target.innerText = e.target.innerText == "展开" ? "折叠" : "展开"
 }
 
 // 渲染
@@ -63,10 +64,9 @@ function backTrack(data) {
   }
   let html = `<div class="bookmark-folder">
   <div class="bookmark-header">
+    <span class="btn-collapse"></span>
     <h3 class="bookmark-title">${data.title}</h3>
-    <p class="btn-collapse-leelei">
-      折叠
-    </p>
+    
   </div>
   <ul class="bookmark-ul">`
   //先把无children的处理完
