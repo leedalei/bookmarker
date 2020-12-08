@@ -49,8 +49,7 @@
 }
 .bookmark-header {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
+  align-items: center;
 }
 .btn-collapse {
   color: #999;
