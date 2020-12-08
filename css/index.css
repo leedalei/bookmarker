@@ -20,12 +20,12 @@
   width: 0;
   height: 0;
   border: 6px solid transparent;
-  border-left: 6px solid #73ce71;
+  border-top: 6px solid #73ce71;
   margin-right: 10px;
   transition: all ease 0.3s;
 }
 .btn-collapse--act {
-  transform: rotate(90deg);
+  transform: rotate(-90deg);
 }
 .bookmark-ul {
   list-style: none;

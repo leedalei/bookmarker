@@ -5,7 +5,7 @@ chrome.runtime.sendMessage({}, function (response) {
 
 //注册监听器
 function initEvenListener() {
-  Array.from(document.querySelectorAll(".btn-collapse-leelei")).forEach((e) => {
+  Array.from(document.querySelectorAll(".bookmark-header")).forEach((e) => {
     e.addEventListener("click", handleCollapse)
   })
   Array.from(document.querySelectorAll(".bookmark-li")).forEach((e) => {
@@ -21,9 +21,8 @@ function handleJump(e) {
 function handleCollapse(e) {
   let curFolder = e.target.parentNode.parentNode
   let curUl = curFolder.querySelector("ul")
-  curUl.classList.toggle("btn-collapse--act")
-  console.log("toggle")
-  // e.target.innerText = e.target.innerText == "展开" ? "折叠" : "展开"
+  curUl.style.display = curUl.style.display == "none" ? "flex" : "none"
+  e.target.classList.toggle("btn-collapse--act")
 }
 
 // 渲染
@@ -55,7 +54,6 @@ function backTrack(data) {
   <div class="bookmark-header">
     <span class="btn-collapse"></span>
     <h3 class="bookmark-title">${data.title}</h3>
-    
   </div>
   <ul class="bookmark-ul">`
   //先把无children的处理完
