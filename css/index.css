@@ -38,7 +38,7 @@
   flex: 1;
 }
 
-#bookmark {
+#bookmark,#collect {
   padding: 10px;
   background-color: #fff;
   width: 80%;
@@ -83,11 +83,19 @@
   cursor: pointer;
   margin-right: 20px;
   margin-bottom: 20px;
+  position: relative;
 }
 .bookmark-item:hover {
   transform: scale(1.05);
   border-color: #ddd;
   box-shadow: 0 0 10px 0 #c9c9c9;
+  
+}
+.bookmark-item:hover .collect-icon{
+  display: inline-block;
+}
+.bookmark-item:hover .del-icon{
+  display: inline-block;
 }
 .bookmark-item-title {
   display: flex;
@@ -98,7 +106,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.bookmark-item-title img {
+.bookmark-item-title img{
   width: 16px;
   height: 16px;
   border-radius: 100%;
@@ -106,4 +114,19 @@
 }
 .bookmark-item-url {
   color: #999;
+}
+
+.bookmark-item .icon {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  right: 10px;
+  top: 10px;
+  display: none;
+}
+
+.search-select{
+  height: 100%;
+  border: none;
+  outline: none;
 }
