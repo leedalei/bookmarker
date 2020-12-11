@@ -1,12 +1,12 @@
 {
   "name": "bookmarker",
-  "description": "display all the bookmarks in your home page",
+  "description": "bookmarks viewer",
   "manifest_version": 2,
   "version": "1.0",
   "permissions": ["bookmarks", "tabs", "storage"],
   "browser_action": {
     "default_icon": "bookmarker.png",
-    "default_title": "书签展示器"
+    "default_title": "书签浏览器"
   },
   "chrome_url_overrides": {
     "newtab": "index.html"
