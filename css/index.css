@@ -102,9 +102,9 @@
   position: relative;
 }
 .bookmark-item:hover {
-  transform: scale(1.05);
-  border-color: #ddd;
-  box-shadow: 0 0 10px 0 #c9c9c9;
+  transform: scale(1.03);
+  border-color: transparent;
+  box-shadow: 0 0 10px 0 #d2d2d2;
 }
 .bookmark-item:hover .collect-icon{
   display: inline-block;
