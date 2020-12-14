@@ -107,10 +107,7 @@
   box-shadow: 0 0 10px 0 #c9c9c9;
   
 }
-.bookmark-item:hover .collect-icon{
-  display: inline-block;
-}
-.bookmark-item:hover .del-icon{
+.bookmark-item:hover .icon{
   display: inline-block;
 }
 .bookmark-item-title {
