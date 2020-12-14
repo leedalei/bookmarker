@@ -91,7 +91,7 @@ function handleJump(e) {
 function handleCollapse(e) {
   let curFolder = e.target.parentNode
   let curUl = curFolder.querySelector("ul")
-  curUl.style.display = curUl.style.display == "none" ? "flex" : "none"
+  curUl.style.display = curUl.style.display == "none" ? "grid" : "none"
   let icon = e.target.querySelector(".btn-collapse")
   icon.classList.toggle("btn-collapse--act")
 }
@@ -116,7 +116,6 @@ function backTrack(data) {
       html += `<svg t="1607915327546" class="icon collect-icon" data-url="${data.url}" data-title="${data.title}" viewBox="0 0 1065 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3797" width="200" height="200"><path d="M964.340451 303.311757l-209.677811-30.424833a32.072845 32.072845 0 0 1-24.086326-17.62105l-93.683133-190.155209a116.755298 116.755298 0 0 0-209.424271 0l-93.683133 190.155209a32.199615 32.199615 0 0 1-24.213096 17.494279L100.02164 303.311757a116.755298 116.755298 0 0 0-64.652771 199.155889l152.124167 147.813983a31.946075 31.946075 0 0 1 9.25422 28.396511L160.364226 887.7221A116.501758 116.501758 0 0 0 329.602363 1010.435595l187.619806-98.500398a32.072845 32.072845 0 0 1 29.917753 0l187.366266 98.500398a115.994678 115.994678 0 0 0 122.967036-8.87391 115.994678 115.994678 0 0 0 46.397871-114.093125l-35.74918-208.79042a31.946075 31.946075 0 0 1 9.25422-28.396511l152.124168-147.813983a116.755298 116.755298 0 0 0-64.652771-199.155889z" fill="#ea9518" p-id="3798"></path></svg>`
     } else {
       html += `<svg t="1607916584109" class="icon" viewBox="0 0 1065 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3801" width="200" height="200"><path d="M816.966007 1021.6621a85.98275 85.98275 0 0 1-36.367326-9.351598l-249.116185-124.687975-250.934551 125.467275a76.111618 76.111618 0 0 1-80.267884-5.974632 77.929985 77.929985 0 0 1-30.652461-77.150685l51.953323-268.338914-197.682394-183.914764a84.42415 84.42415 0 0 1-21.041096-80.267885 77.929985 77.929985 0 0 1 63.383054-53.771689l273.794013-49.87519 122.609843-248.856418a77.929985 77.929985 0 0 1 68.838153-44.939625 76.111618 76.111618 0 0 1 69.09792 44.160325l122.609843 248.856418 273.794013 48.056824a73.773719 73.773719 0 0 1 61.304921 53.511923 77.929985 77.929985 0 0 1-19.222729 80.527651l-197.162862 185.73313 49.87519 269.118214a77.929985 77.929985 0 0 1-30.65246 76.371385 69.09792 69.09792 0 0 1-44.160325 15.32623z" p-id="3802" fill="#515151"></path></svg>`
-      
     }
     html += `
       <div class="bookmark-item-title">
@@ -143,7 +142,10 @@ function backTrack(data) {
       }
     }
   } else {
-    html += `<li>暂无数据</li>`
+    html += `<li class="no-data">
+      <img src="./img/empty.svg">
+      <p>暂无数据嗷，铁汁</p>
+    </li>`
   }
   html += `</ul></div>`
   for (let item of data.children) {
@@ -177,7 +179,10 @@ function renderCollect(data){
       </li>`
     }
   } else {
-    html += `<li>暂无数据</li>`
+    html += `<li class="no-data">
+      <img src="./img/empty.svg">
+      <p>暂无数据嗷，铁汁</p>
+    </li>`
   }
   html += `</ul></div>`
   let collectEl = document.getElementById('collect')
