@@ -1,3 +1,7 @@
+.banner{
+  text-align: center;
+}
+
 .input-box {
   display: flex;
   justify-content: center;
@@ -8,7 +12,7 @@
   border-radius: 24px;
   z-index: 3;
   height: 44px;
-  margin: 100px auto 50px auto;
+  margin: 10px auto 50px auto;
   padding: 0 16px;
   width: 482px;
 }
@@ -50,19 +54,31 @@
 .bookmark-header {
   display: flex;
   align-items: center;
+  cursor: pointer;
+  transition: all ease .3s;
+  padding: 0 10px;
+}
+.bookmark-header:hover{
+  background-color: #f3fbf3;
+}
+.bookmark-title{
+  user-select: none;
+  pointer-events: none;
 }
 .btn-collapse {
   color: #999;
-  cursor: pointer;
   width: 0;
   height: 0;
   border: 6px solid transparent;
   border-top: 6px solid #73ce71;
   margin-right: 10px;
   transition: all ease 0.3s;
+  transform: translateY(3px);
+  user-select: none;
+  pointer-events: none;
 }
 .btn-collapse--act {
-  transform: rotate(-90deg);
+  transform: rotate(-90deg) translateY(3px);
 }
 .bookmark-ul {
   list-style: none;

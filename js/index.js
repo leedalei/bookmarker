@@ -5,7 +5,7 @@ chrome.runtime.sendMessage({}, function (response) {
 
 //注册监听器
 function initEvenListener() {
-  Array.from(document.querySelectorAll(".btn-collapse")).forEach((e) => {
+  Array.from(document.querySelectorAll(".bookmark-header")).forEach((e) => {
     e.addEventListener("click", handleCollapse)
   })
   Array.from(document.querySelectorAll(".bookmark-li")).forEach((e) => {
@@ -78,10 +78,11 @@ function handleJump(e) {
 }
 // 折叠
 function handleCollapse(e) {
-  let curFolder = e.target.parentNode.parentNode
+  let curFolder = e.target.parentNode
   let curUl = curFolder.querySelector("ul")
   curUl.style.display = curUl.style.display == "none" ? "flex" : "none"
-  e.target.classList.toggle("btn-collapse--act")
+  let icon = e.target.querySelector(".btn-collapse")
+  icon.classList.toggle("btn-collapse--act")
 }
 
 // 渲染
