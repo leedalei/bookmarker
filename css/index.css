@@ -114,7 +114,7 @@
 .bookmark-item .icon{
   transition: all ease .5s;
 }
-.bookmark-item .icon:hover{
+.bookmark-item .collect-icon:hover{
   transform: rotate(144deg);
 }
 @keyframes fadeIn{
@@ -136,6 +136,8 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  margin-right: 10px;
+  flex: 1;
 }
 .bookmark-item-title img{
   width: 16px;
@@ -149,6 +151,10 @@
 }
 
 .bookmark-item .icon {
+  width: 15px;
+  height: 15px;
+}
+.bookmark-item .del-icon {
   position: absolute;
   width: 15px;
   height: 15px;
