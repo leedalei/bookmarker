@@ -117,16 +117,23 @@ function render(data) {
 function backTrack(data) {
   let html = ''
   if (!data.children) {
-    html += `<li class="bookmark-item bookmark-li" data-url="${data.url}" data-title="${data.title}">`
+    html += `<li class="bookmark-li" data-url="${data.url}" data-title="${data.title}">`
     html += `
-      <div class="bookmark-item-title">
-          <img src="https://www.google.com/s2/favicons?domain=${data.url}" alt="" />
-          <p class="ellipsis">${data.title}</p>
-          <img class="icon ${storageData.search(data.url) === -1 ?'collect-icon':''}" data-url="${data.url}" data-title="${data.title}" src="${storageData.search(data.url) === -1 ?'./img/collect.svg':'./img/collected.svg'}" />
+      <div class="bookmark-item">
+        <img class="iconTop" data-url="${data.url}" data-title="${data.title}" src="${storageData.search(data.url) === -1 ?'./img/collect2.svg':'./img/collected2.svg'}" />
+        <!-- <img class="menu" src="./img/menu.svg" /> -->
+        <div class="bookmark-item-title">
+            <img src="https://www.google.com/s2/favicons?domain=${data.url}" alt="" />
+            <p class="ellipsis">${data.title}</p>
+          </div>
+          <p class="bookmark-item-url ellipsis">
+            ${data.url}
+          </p>
+          <div class="bookmark-info">
+            <p>${storageData.search(data.url) === -1 ?'未收藏':'已收藏'}</p>
+            <img class="icon ${storageData.search(data.url) === -1 ?'collect-icon':''}" data-url="${data.url}" data-title="${data.title}" src="${storageData.search(data.url) === -1 ?'./img/collect.svg':'./img/collected.svg'}" />
+          </div>
         </div>
-        <p class="bookmark-item-url ellipsis">
-          ${data.url}
-        </p>
       </li>`
     return html
   }
@@ -135,7 +142,7 @@ function backTrack(data) {
     <span class="btn-collapse"></span>
     <h3 class="bookmark-title">${data.title}</h3>
   </div>
-  <ul class="bookmark-ul">`
+  <ul class="bookmark-ul ${data.children.length ?'':'no-data'}">`
   //先把无children的处理完
   if (data.children.length) {
     for (let item of data.children) {
@@ -144,7 +151,8 @@ function backTrack(data) {
       }
     }
   } else {
-    html += `<li class="no-data">
+    html += `
+    <li>
       <img src="./img/empty.svg">
       <p>暂无数据嗷，铁汁</p>
     </li>`
@@ -165,23 +173,31 @@ function renderCollect(data){
     <span class="btn-collapse"></span>
     <h3 class="bookmark-title">收藏夹</h3>
   </div>
-  <ul class="bookmark-ul">`
+  <ul class="bookmark-ul ${data.length > 0 ?'':'no-data'}">`
   if(data.length>0){
     for (let item of data) {
       html += `
-      <li class="bookmark-item bookmark-li" data-url="${item.url}">
-        <img class="icon del-icon" data-url="${item.url}" src="./img/del.svg" />
-        <div class="bookmark-item-title">
-          <img src="https://www.google.com/s2/favicons?domain=${item.url}" alt="" />
-          <p class="ellipsis">${item.title}</p>
+      <li class="bookmark-li" data-url="${item.url}">
+        <div class="bookmark-item">
+          <img class="iconTop" src="./img/collected2.svg" />
+          <!-- <img class="menu" src="./img/menu.svg" /> -->
+          <div class="bookmark-item-title">
+            <img src="https://www.google.com/s2/favicons?domain=${item.url}" alt="" />
+            <p class="ellipsis">${item.title}</p>
+          </div>
+          <p class="bookmark-item-url ellipsis">
+            ${item.url}
+          </p>
+          <div class="bookmark-info">
+            <p>已收藏</p>
+            <img class="icon del-icon" data-url="${item.url}" src="./img/del.svg" />
+          </div>
         </div>
-        <p class="bookmark-item-url ellipsis">
-          ${item.url}
-        </p>
       </li>`
     }
   } else {
-    html += `<li class="no-data">
+    html += `
+    <li>
       <img src="./img/empty.svg">
       <p>暂无数据嗷，铁汁</p>
     </li>`
