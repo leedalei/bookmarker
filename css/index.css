@@ -105,7 +105,6 @@
   transform: scale(1.05);
   border-color: #ddd;
   box-shadow: 0 0 10px 0 #c9c9c9;
-  
 }
 .bookmark-item:hover .collect-icon{
   display: inline-block;
@@ -116,6 +115,7 @@
 .bookmark-item-title {
   display: flex;
   align-items: center;
+  user-select: none;
 }
 .ellipsis {
   white-space: nowrap;
@@ -130,6 +130,7 @@
 }
 .bookmark-item-url {
   color: #999;
+  user-select: none;
 }
 
 .bookmark-item .icon {
