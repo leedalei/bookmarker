@@ -37,7 +37,7 @@ function initEvenListener() {
 }
 // 搜索
 function search(e) {
-  if (event.which === 13) {
+  if (e.which === 13) {
     var obj = document.querySelectorAll('.search-select')[0];
     var index = obj.selectedIndex;
     var value = obj.options[index].value;
