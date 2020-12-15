@@ -1,6 +1,5 @@
 // chrome.storage.sync.remove('collect')
 let storageData = ''
-
 // 获取storage数据
 function getStorageData(){
   chrome.storage.sync.get('collect',(res)=>{
@@ -16,8 +15,7 @@ function getStorageData(){
     }
   })
 }
-
-getStorageData()
+getStorageData();
 
 //注册监听器
 function initEvenListener() {
@@ -66,13 +64,11 @@ function handleCollect(e){
     let data = JSON.parse(JSON.stringify(res.collect))
     data.push({url,title})
     chrome.storage.sync.set({collect:data})
-    // renderCollect(data)
     getStorageData()
   })
   e.stopPropagation()
 }
 // 删除收藏
-
 function handleDelCollect(e){
   const {url} = e.target.dataset
   chrome.storage.sync.get('collect',(res)=>{
@@ -96,7 +92,7 @@ function handleJump(e) {
 }
 // 折叠
 function handleCollapse(e) {
-  let curFolder = e.target.parentNode
+  let curFolder = e.currentTarget.parentNode
   let curUl = curFolder.querySelector("ul")
   curUl.style.display = curUl.style.display == "none" ? "flex" : "none"
   let icon = e.target.querySelector(".btn-collapse")
@@ -143,7 +139,7 @@ function backTrack(data) {
     <span class="btn-collapse btn-collapse--act"></span>
     <h3 class="bookmark-title">${data.title}</h3>
   </div>
-  <ul class="bookmark-ul">`
+  <ul class="bookmark-ul" style="display:none">`
   //先把无children的处理完
   if (data.children.length) {
     for (let item of data.children) {
