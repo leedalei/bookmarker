@@ -89,7 +89,7 @@ function handleDelCollect(e){
 }
 // 跳转
 function handleJump(e) {
-  let url = e.target.parentNode.dataset.url
+  let url = e.currentTarget.dataset.url
   if(url){
     window.open(url, "_blank")
   }
