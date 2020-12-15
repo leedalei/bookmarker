@@ -1,0 +1,42 @@
+.form{
+  margin: 20px;
+}
+.form-item-label{
+  font-size: 16px;
+  margin-right: 10px;
+}
+.switch-tab{
+  position: relative;
+  display: inline-block;
+  border-radius: 6px;
+  padding: 4px;
+  background-color: #d8f0d8;
+}
+.switch-tab-item{
+  position: relative;
+  display: inline-block;
+  font-size: 14px;
+  width: 100px;
+  height: 24px;
+  line-height: 24px;
+  text-align: center;
+  transition: all ease .3s;
+  cursor: pointer;
+  z-index: 2;
+}
+.switch-tab-thumb{
+  position: absolute;
+  left: 4px;
+  top: 4px;
+  width: 100px;
+  height: 24px;
+  border-radius: 6px;
+  background-color: #fff;
+  box-shadow: 0 0 5px 0 rgb(143, 196, 141);
+  z-index: 0;
+  transition: all ease .5s;
+  pointer-events: none;
+}
+/* .switch-tab-item--act:hover{
+  border-radius: 12px;
+} */
