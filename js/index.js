@@ -53,6 +53,9 @@ function search(e) {
       case 'bing':
         url = 'https://www.bing.com/search?q='
         break;
+      case 'sougou':
+        url = 'https://www.sogou.com/web?query='
+        break;
     }
     window.open(`${url}${inputValue}`, "_blank")
   }
