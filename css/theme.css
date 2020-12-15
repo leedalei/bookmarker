@@ -1,4 +1,19 @@
-:root {
+:root, [color-mode=light] {
+  --body-bg: #fff;
+  --input-border: #dfe1e5;
+  --input-bg: #fff;
+  --input-font: #333;
+  --input-icon: #9aa0a6;
+  --search-font: #333;
+  --item-border: #eee;
+  --item-bg: #fff;
+  --header-font: #333;
+  --header-bg-hover: #f3fbf3;
+  --item-title: #333;
+  --item-url: #777;
+  --folder-botton: #eee;
+}
+[color-mode=dark] {
   --body-bg: #323336;
   --input-border: #555;
   --input-bg: rgba(255, 255, 255, 0.04);
@@ -11,51 +26,40 @@
   --header-bg-hover: rgba(34, 34, 34, 0.42);
   --item-title: #dfdfdf;
   --item-url: #d2d2d2;
-  --folder-folder: transparent;
+  --folder-botton: transparent;
 }
 
+/* 如果浏览器支持自动切换黑暗模式特性 */
 @media (prefers-color-scheme: dark) {
   /* 深色模式样式 */
-  body, #bookmark, #collect {
-    background-color: var(--body-bg);
+  :root {
+    --body-bg: #323336;
+    --input-border: #555;
+    --input-bg: rgba(255, 255, 255, 0.04);
+    --input-font: #dfdfdf;
+    --input-icon: rgba(255, 255, 255, 0.88);
+    --search-font: #d2d2d2;
+    --item-border: #555;
+    --item-bg: #222;
+    --header-font: #d2d2d2;
+    --header-bg-hover: rgba(34, 34, 34, 0.42);
+    --item-title: #dfdfdf;
+    --item-url: #d2d2d2;
+    --folder-botton: transparent;
   }
-  .input-box {
-    border-color: var(--input-border);
-    background-color: var(--input-bg);
-  }
-  .input-box input {
-    color: var(--input-font);
-  }
-  .input-box .icon svg {
-    fill: var(--input-icon);
-  }
-  .search-select {
-    color: var(--search-font);
-    background-color: transparent;
-  }
-  .bookmark-item {
-    border-color: var(--item-border);
-  }
-  .bookmark-item-bg {
-    background-color: var(--item-bg);
-  }
-  .bookmark-header {
-    background-color: var(--item-bg);
-    color: var(--header-font);
-  }
-  .bookmark-header:hover {
-    background-color: var(--header-bg-hover);
-  }
-  .bookmark-item-title img {
-    border-color: var(--item-border);
-  }
-  .bookmark-item-title > .ellipsis {
-    color: var(--item-title);
-  }
-  .bookmark-item-url {
-    color: var(--item-url);
-  }
-  .bookmark-folder {
-    border-color: var(--folder-botton);
+  [color-mode=light] {
+    --body-bg: #fff;
+    --input-border: #dfe1e5;
+    --input-bg: #fff;
+    --input-font: #333;
+    --input-icon: #9aa0a6;
+    --search-font: #333;
+    --item-border: #eee;
+    --item-bg: #fff;
+    --header-font: #333;
+    --header-bg-hover: #f3fbf3;
+    --item-title: #333;
+    --item-url: #777;
+    --folder-botton: #eee;
   }
 }
