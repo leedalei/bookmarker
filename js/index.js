@@ -72,6 +72,7 @@ function handleCollect(e){
   e.stopPropagation()
 }
 // 删除收藏
+
 function handleDelCollect(e){
   const {url} = e.target.dataset
   chrome.storage.sync.get('collect',(res)=>{
