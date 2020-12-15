@@ -12,6 +12,8 @@
   --item-title: #333;
   --item-url: #777;
   --folder-botton: #eee;
+  --setting-line: #eee;
+  --setting-icon: #555;
 }
 [color-mode=dark] {
   --body-bg: #323336;
@@ -20,13 +22,15 @@
   --input-font: #dfdfdf;
   --input-icon: rgba(255, 255, 255, 0.88);
   --search-font: #d2d2d2;
-  --item-border: #555;
+  --item-border: #333;
   --item-bg: #222;
   --header-font: #d2d2d2;
   --header-bg-hover: rgba(34, 34, 34, 0.42);
-  --item-title: #dfdfdf;
-  --item-url: #d2d2d2;
+  --item-title: #dedede;
+  --item-url: #dfdfdf;
   --folder-botton: transparent;
+  --setting-line: #555;
+  --setting-icon: #dedede;
 }
 
 /* 如果浏览器支持自动切换黑暗模式特性 */
@@ -39,13 +43,15 @@
     --input-font: #dfdfdf;
     --input-icon: rgba(255, 255, 255, 0.88);
     --search-font: #d2d2d2;
-    --item-border: #555;
+    --item-border: #333;
     --item-bg: #222;
     --header-font: #d2d2d2;
     --header-bg-hover: rgba(34, 34, 34, 0.42);
-    --item-title: #dfdfdf;
-    --item-url: #d2d2d2;
+    --item-title: #dedede;
+    --item-url: #dfdfdf;
     --folder-botton: transparent;
+    --setting-line: #555;
+    --setting-icon: #dedede;
   }
   [color-mode=light] {
     --body-bg: #fff;
@@ -61,5 +67,7 @@
     --item-title: #333;
     --item-url: #777;
     --folder-botton: #eee;
+    --setting-line: #eee;
+    --setting-icon: #555;
   }
 }
