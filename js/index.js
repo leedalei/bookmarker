@@ -120,8 +120,8 @@ function backTrack(data) {
     html += `<li class="bookmark-li" data-url="${data.url}" data-title="${data.title}">`
     html += `
       <div class="bookmark-item">
+        <div class="bookmark-item-bg"></div>
         <img class="iconTop" data-url="${data.url}" data-title="${data.title}" src="${storageData.search(data.url) === -1 ?'./img/collect2.svg':'./img/collected2.svg'}" />
-        <!-- <img class="menu" src="./img/menu.svg" /> -->
         <div class="bookmark-item-title">
             <img src="https://www.google.com/s2/favicons?domain=${data.url}" alt="" />
             <p class="ellipsis">${data.title}</p>
@@ -179,6 +179,7 @@ function renderCollect(data){
       html += `
       <li class="bookmark-li" data-url="${item.url}">
         <div class="bookmark-item">
+          <div class="bookmark-item-bg"></div>
           <img class="iconTop" src="./img/collected2.svg" />
           <!-- <img class="menu" src="./img/menu.svg" /> -->
           <div class="bookmark-item-title">

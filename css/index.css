@@ -148,24 +148,44 @@
   margin-bottom: 15px;
 }
 .bookmark-item {
-  z-index: 10;
+  position: relative;
+  z-index: 1;
   padding: 32px 24px 16px;
   border: 1px solid #eee;
-  overflow: hidden;
-  background-color: #fff;
   border-radius: 14px;
   cursor: pointer;
-  position: relative;
   transition: all .3s ease;
 }
-.bookmark-item:hover {
-  transform: translateY(-16px);
-  border-color: rgba(115, 206, 113, .48);
-  box-shadow: 0px 16px 24px rgba(115, 206, 113, .12), 0px 2px 6px rgba(115, 206, 113, .08), 0px 0px 1px rgba(115, 206, 113, .08);
+.bookmark-item::before{
+  position: absolute;
+  content: '';
+  width: 100%;
+  height: 100%;
+  border-radius: 14px;
+  top: 0;
+  left: 0;
+  background-color: rgba(118, 192, 136, 0.39);
+  filter: blur(0);
+  z-index: -2;
+  transition: all ease .3s;
 }
-.bookmark-item:hover .del-icon{
-  display: inline-block;
-  animation: fadeIn ease 0.5s ;
+.bookmark-item-bg{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 14px;
+  left: 0;
+  top: 0;
+  background-color: #fff;
+  z-index: -1;
+}
+.bookmark-item:hover {
+  transform: translateY(-8px) scale(1.03);
+  border-color: rgba(115, 206, 113, .48);
+}
+.bookmark-item:hover::before{
+  transform: translateY(10px) scaleX(0.8);
+  filter: blur(8px);
 }
 @keyframes fadeIn{
   0%{
@@ -180,7 +200,7 @@
 .bookmark-item .icon{
   transition: all .5s ease;
 }
-.bookmark-item .collect-icon:hover{
+.bookmark-item .icon:hover{
   transform: rotate(144deg);
 }
 .bookmark-item-title {
@@ -230,7 +250,6 @@
 .bookmark-item .del-icon {
   width: 15px;
   height: 15px;
-  display: none;
 }
 
 .bookmark-info {
