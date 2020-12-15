@@ -1,5 +1,6 @@
 // chrome.storage.sync.remove('collect')
 let storageData = ''
+let modeData = ''
 // 获取storage数据
 function getStorageData(){
   chrome.storage.sync.get('collect',(res)=>{
@@ -11,11 +12,25 @@ function getStorageData(){
         render(JSON.parse(response))
       })
     } else {
-      chrome.storage.sync.set({'collect':[]})
+      chrome.storage.sync.set({'collect': []})
     }
   })
 }
 getStorageData();
+
+// 获取颜色模式
+function getModeData() {
+  chrome.storage.sync.get('mode',(res)=>{
+    console.log(res.mode)
+    if(res.mode) {
+      modeData = res.mode
+      document.querySelector('body').setAttribute("color-mode", modeData)
+    } else {
+      chrome.storage.sync.set({'mode': 'auto'})
+    }
+  })
+}
+getModeData();
 
 //注册监听器
 function initEvenListener() {
@@ -100,6 +115,19 @@ function handleCollapse(e) {
   curUl.style.display = curUl.style.display == "none" ? "flex" : "none"
   let icon = e.target.querySelector(".btn-collapse")
   icon.classList.toggle("btn-collapse--act")
+}
+// 切换颜色模式
+function handleMode() {
+  switch (modeData) {
+    case "dark":
+      chrome.storage.sync.set({'mode': 'light'})
+      document.querySelector('body').setAttribute("color-mode", "light")
+      break
+    case "light":
+      chrome.storage.sync.set({'mode': 'dark'})
+      document.querySelector('body').setAttribute("color-mode", "dark")
+      break
+  }
 }
 
 // 渲染
