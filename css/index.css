@@ -59,8 +59,11 @@ body {
 
 #bookmark, #collect {
   background-color: var(--body-bg);
-  width: 1280px;
+  width: 1200px;
   margin: 0 auto;
+}
+#bookmark {
+  margin-bottom: 64px;
 }
 .bookmark-folder {
   border-bottom: 1px solid #eee;
@@ -70,8 +73,7 @@ body {
   display: flex;
   align-items: center;
   cursor: pointer;
-  margin-bottom: 24px;
-  margin-top: 12px;
+  margin: 12px 0;
   border-radius: 8px;
   padding: 18px;
   transition: all .3s ease;
@@ -100,22 +102,23 @@ body {
 .btn-collapse--act {
   transform: rotate(-90deg) translateY(3px);
 }
-.bookmark-li {
-  position: relative;
-}
 
 .bookmark-ul {
   list-style: none;
-  display: grid;
-  grid-template-columns: repeat(auto-fill,minmax(270px,1fr));
-  gap: 24px 20px;
+  display: flex;
+  flex-wrap: wrap;
   padding: 0;
   margin: 0;
   margin-bottom: 15px;
 }
+.bookmark-li {
+  width: 25%;
+  position: relative;
+}
 .bookmark-item {
   position: relative;
   z-index: 1;
+  margin: 12px 10px;
   padding: 32px 24px 16px;
   border: 1px solid #eee;
   border-radius: 14px;
@@ -229,26 +232,44 @@ body {
   color: #999;
 }
 
-ul.no-data > li{
-  grid-column-start: 2;
-  text-align: center;
+.no-data {
   user-select: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 24px;
 }
-ul.no-data > li img{
+.no-data img{
   width: 60px;
   height: 60px;
 }
-ul.no-data > li p{
+.no-data p{
   color: #999;
   font-size: 13px;
-}
-ul.no-data {
-  display: flex;
-  justify-content: center;
 }
 
 @media (max-width: 1280px) {
   #bookmark,#collect {
-    width: 80%;
+    width: 90%;
+  }
+  .bookmark-li {
+    width: 33.33%;
+  }
+}
+@media (max-width: 1024px) {
+  #bookmark,#collect {
+    width: 90%;
+  }
+  .bookmark-li {
+    width: 50%;
+  }
+}
+@media (max-width: 640px) {
+  #bookmark,#collect {
+    width: 90%;
+  }
+  .bookmark-li {
+    width: 100%;
   }
 }

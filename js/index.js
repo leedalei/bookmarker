@@ -98,7 +98,7 @@ function handleJump(e) {
 function handleCollapse(e) {
   let curFolder = e.target.parentNode
   let curUl = curFolder.querySelector("ul")
-  curUl.style.display = curUl.style.display == "none" ? "grid" : "none"
+  curUl.style.display = curUl.style.display == "none" ? "flex" : "none"
   let icon = e.target.querySelector(".btn-collapse")
   icon.classList.toggle("btn-collapse--act")
 }
@@ -143,7 +143,7 @@ function backTrack(data) {
     <span class="btn-collapse btn-collapse--act"></span>
     <h3 class="bookmark-title">${data.title}</h3>
   </div>
-  <ul class="bookmark-ul ${data.children.length ?'':'no-data'}" style="display: none;">`
+  <ul class="bookmark-ul">`
   //先把无children的处理完
   if (data.children.length) {
     for (let item of data.children) {
@@ -153,7 +153,7 @@ function backTrack(data) {
     }
   } else {
     html += `
-    <li>
+    <li class="no-data">
       <img src="./img/empty.svg">
       <p>暂无数据嗷，铁汁</p>
     </li>`
@@ -174,7 +174,7 @@ function renderCollect(data){
     <span class="btn-collapse"></span>
     <h3 class="bookmark-title">收藏夹</h3>
   </div>
-  <ul class="bookmark-ul ${data.length > 0 ?'':'no-data'}" style="display: grid;">`
+  <ul class="bookmark-ul">`
   if(data.length>0){
     for (let item of data) {
       html += `
@@ -199,7 +199,7 @@ function renderCollect(data){
     }
   } else {
     html += `
-    <li>
+    <li class="no-data">
       <img src="./img/empty.svg">
       <p>暂无数据嗷，铁汁</p>
     </li>`
