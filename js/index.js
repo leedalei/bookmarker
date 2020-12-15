@@ -139,10 +139,10 @@ function backTrack(data) {
   }
   html = `<div class="bookmark-folder">
   <div class="bookmark-header">
-    <span class="btn-collapse"></span>
+    <span class="btn-collapse btn-collapse--act"></span>
     <h3 class="bookmark-title">${data.title}</h3>
   </div>
-  <ul class="bookmark-ul ${data.children.length ?'':'no-data'}">`
+  <ul class="bookmark-ul ${data.children.length ?'':'no-data'}" style="display: none;">`
   //先把无children的处理完
   if (data.children.length) {
     for (let item of data.children) {
@@ -173,7 +173,7 @@ function renderCollect(data){
     <span class="btn-collapse"></span>
     <h3 class="bookmark-title">收藏夹</h3>
   </div>
-  <ul class="bookmark-ul ${data.length > 0 ?'':'no-data'}">`
+  <ul class="bookmark-ul ${data.length > 0 ?'':'no-data'}" style="display: grid;">`
   if(data.length>0){
     for (let item of data) {
       html += `

@@ -4,6 +4,7 @@
 }
 .banner{
   text-align: center;
+  margin-top: 72px;
 }
 .search-select{
   height: 100%;
@@ -28,7 +29,6 @@
 
 .input-box:hover {
   box-shadow: 0 2px 12px -4px rgb(115, 206, 113, .64);
-  border-color: rgba(223, 225, 229, 0);
 }
 
 .input-box .icon {
@@ -45,6 +45,7 @@
 }
 
 .input-box input {
+  background-color: transparent;
   padding: 0 12px;
   height: 34px;
   border: none;
@@ -263,5 +264,53 @@ ul.no-data {
 @media (max-width: 1280px) {
   #bookmark,#collect {
     width: 80%;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  /* 浅色模式样式 */
+}
+
+@media (prefers-color-scheme: dark) {
+  /* 深色模式样式 */
+  body, #bookmark, #collect {
+    background-color: #323336;
+  }
+  .input-box {
+    border: 1px solid #555;
+    background-color: rgba(255, 255, 255, 0.04);
+  }
+  .input-box input {
+    color: #dfdfdf;
+  }
+  .input-box .icon svg {
+    fill: rgba(255, 255, 255, 0.88);
+  }
+  .search-select {
+    color: #d2d2d2;
+    background-color: transparent;
+  }
+  .bookmark-item {
+    background-color: #222;
+    border: 1px solid #555;
+  }
+  .bookmark-header {
+    background-color: #222;
+    color: #d2d2d2;
+  }
+  .bookmark-header:hover {
+    background-color: rgba(34, 34, 34, 0.42);
+  }
+  .bookmark-item-title img {
+    border: 1px solid #555;
+  }
+  .bookmark-item-url {
+    color: #d2d2d2;
+  }
+  .bookmark-item-title > .ellipsis {
+    color: #dfdfdf;
+  }
+  .bookmark-folder {
+    border: 1px solid transparent;
   }
 }
