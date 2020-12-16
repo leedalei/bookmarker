@@ -1,0 +1,11 @@
+{
+  "appName": {
+    "message": "Bookmarker"
+  },
+  "appDesc": {
+    "message": "東半球で最高のブックマークプラグイン"
+  },
+  "searchPlaceholder": {
+    "message":"検索してください、バディ"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "appName": {
+    "message": "Bookmarker"
+  },
+  "appDesc": {
+    "message": "동반구 최고의 북마크 플러그인"
+  },
+  "searchPlaceholder": {
+    "message":"검색해주세요 친구"
+  }
+}
