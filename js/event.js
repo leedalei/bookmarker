@@ -7,7 +7,8 @@ function handleCollect(e) {
     data.push({ url, title })
     chrome.storage.sync.set({ collect: data })
     renderFavorite() //重新渲染
-    renderCollect() 
+    renderCollect()
+    initBookmarkListener() //这里增加了dom，需要重新监听
   })
   e.stopPropagation()
 }
@@ -23,7 +24,7 @@ function handleDelCollect(e) {
     })
     chrome.storage.sync.set({ collect: data })
     renderFavorite() //重新渲染
-    renderCollect() 
+    renderCollect()
   })
   e.stopPropagation()
 }
@@ -69,25 +70,25 @@ function search(e) {
   }
 }
 
-function switchTabTo(e){
-  let {value} = e.currentTarget.dataset;
-  switch(value){
-      case 'light':
-        switchMode('light');
-        break;
-      case 'dark':
-        switchMode('dark');
-        break;
-      case 'auto':
-        switchMode('auto');
-        break;
+function switchTabTo(e) {
+  let { value } = e.currentTarget.dataset
+  switch (value) {
+    case "light":
+      switchMode("light")
+      break
+    case "dark":
+      switchMode("dark")
+      break
+    case "auto":
+      switchMode("auto")
+      break
   }
 }
 
 // 切换颜色模式
 function switchMode(modeData) {
-  chrome.storage.sync.set({'mode': modeData})
-  document.querySelector('body').setAttribute("color-mode", modeData)
+  chrome.storage.sync.set({ mode: modeData })
+  document.querySelector("body").setAttribute("color-mode", modeData)
 }
 
 // 注册全局监听器
@@ -118,14 +119,14 @@ export const initSearchListener = function () {
 
 //注册设置相关监听器
 export const initSettingListener = function () {
-  Array.from(document.querySelectorAll('.switch-tab')).forEach(e=>{
-    e.addEventListener('click',switchTabTo)
+  Array.from(document.querySelectorAll(".switch-tab")).forEach((e) => {
+    e.addEventListener("click", switchTabTo)
   })
-  document.querySelector('.form-item').addEventListener('click',(e) => {
-    document.querySelector('.form-item').classList.toggle("mode-open")
+  document.querySelector(".form-item").addEventListener("click", (e) => {
+    document.querySelector(".form-item").classList.toggle("mode-open")
   })
-  Array.from(document.querySelectorAll('.form-item svg')).forEach(e=>{
-    e.addEventListener('click',switchTabTo)
+  Array.from(document.querySelectorAll(".form-item svg")).forEach((e) => {
+    e.addEventListener("click", switchTabTo)
   })
 }
 
