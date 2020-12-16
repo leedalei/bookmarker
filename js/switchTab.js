@@ -12,7 +12,7 @@ function initSwitchTabEventListener(){
 initSwitchTabEventListener()
 
 function switchTabTo(e){
-  let {value} = e.target.dataset;
+  let {value} = e.currentTarget.dataset;
   switch(value){
       case 'light':
         switchMode('light');
