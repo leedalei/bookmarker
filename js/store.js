@@ -20,15 +20,3 @@ export const setStorageData = (data) =>
     )
   )
 
-// 获取storage数据
-// function getStorageData() {
-//   chrome.storage.sync.get("collect", (res) => {
-//     if (res.collect) {
-//       renderFavorite(res.collect)
-//       storageData = JSON.stringify(res.collect)
-     
-//     } else {
-//       chrome.storage.sync.set({ collect: [] })
-//     }
-//   })
-// }
