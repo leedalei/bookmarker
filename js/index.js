@@ -17,19 +17,6 @@ function getStorageData(){
 }
 getStorageData();
 
-// 获取颜色模式
-function getModeData() {
-  chrome.storage.sync.get('mode',(res)=>{
-    if(res.mode) {
-      document.querySelector('body').setAttribute("color-mode", res.mode)
-    } else {
-      chrome.storage.sync.set({'mode': 'auto'})
-      document.querySelector('body').setAttribute("color-mode", 'auto')
-    }
-  })
-}
-getModeData();
-
 //注册监听器
 function initEvenListener() {
   Array.from(document.querySelectorAll(".bookmark-header")).forEach((e) => {
@@ -113,27 +100,6 @@ function handleCollapse(e) {
   curUl.style.display = curUl.style.display == "none" ? "flex" : "none"
   let icon = e.target.querySelector(".btn-collapse")
   icon.classList.toggle("btn-collapse--act")
-}
-// 切换颜色模式
-function switchMode() {
-  const modeData = document.querySelector('body').getAttribute("color-mode")
-  switch (modeData) {
-    case "dark":
-      chrome.storage.sync.set({'mode': 'light'})
-      document.querySelector('body').setAttribute("color-mode", "light")
-      break
-    case "light":
-      chrome.storage.sync.set({'mode': 'dark'})
-      document.querySelector('body').setAttribute("color-mode", "dark")
-      break
-    case "auto":
-      if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        document.querySelector('body').setAttribute("color-mode", "light")
-      } else {
-        document.querySelector('body').setAttribute("color-mode", "dark")
-      }
-      break
-  }
 }
 
 // 渲染
