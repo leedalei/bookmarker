@@ -121,9 +121,7 @@ export const renderFavorite = async () => {
 export const renderCollect = () =>
   new Promise((resolve, reject) => {
     // content-script无权限获取目录，需要和background通信
-    chrome.runtime.sendMessage({}, async function (response) {
-      console.log()
-      let data = JSON.parse(response)
+    chrome.bookmarks.getTree(async (data) => {
       let main = document.getElementById("bookmark")
       main.innerHTML = ""
       let folderList = data[0].children

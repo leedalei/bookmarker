@@ -11,9 +11,5 @@
   },
   "chrome_url_overrides": {
     "newtab": "index.html"
-  },
-  "background": {
-    "scripts": ["js/background.js"],
-    "persistent": false
   }
 }
