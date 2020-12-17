@@ -79,7 +79,7 @@ function handleBookmarkItemClick(e) {
   let classList = Array.from(e.target.classList)
   if (classList.includes("icon-collect")) {
     if (classList.includes("icon-collect--act")) {
-      return
+      return handleDelCollect(e)
     }
     return handleCollect(e)
   }
