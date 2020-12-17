@@ -101,7 +101,7 @@ function createFavorite(data) {
     html += `
     <li class="no-data">
       <img src="./img/empty.svg">
-      <p>暂无数据嗷，铁汁</p>
+      <p>暂无置顶嗷，铁汁</p>
     </li>`
   }
   html += `</ul></div>`
