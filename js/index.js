@@ -5,20 +5,9 @@ import { initAllListener } from "./event"
 function getModeData() {
   chrome.storage.sync.get('mode',(res)=>{
     const {mode} = res
-    console.log(mode)
-    switch (mode) {
-      case 'light':
-        break;
-      case 'dark':
-        break;
-      case 'auto':
-        break;
-      default:
-        break;
-    }
     if(!mode) {
-      chrome.storage.sync.set({'mode': 'auto'})
       mode = 'auto'
+      chrome.storage.sync.set({'mode': mode})
     }
     document.querySelector('body').setAttribute("color-mode", mode)
   })
