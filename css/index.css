@@ -6,6 +6,10 @@ body {
   background-color: var(--body-bg);
 }
 
+.unclick{
+  pointer-events: none;
+}
+
 .banner{
   text-align: center;
   margin-top: 72px;
@@ -86,7 +90,6 @@ body {
 }
 .bookmark-title{
   user-select: none;
-  pointer-events: none;
 }
 .btn-collapse {
   color: #999;
@@ -97,7 +100,6 @@ body {
   margin-right: 8px;
   transform: translateY(3px);
   user-select: none;
-  pointer-events: none;
   transition: all .3s ease;
 }
 .btn-collapse--act {
@@ -205,7 +207,7 @@ body {
   user-select: none;
 }
 
-.bookmark-item >.iconTop {
+.bookmark-item >.icon-top {
   position: absolute;
   top: 0;
   left: 22px;

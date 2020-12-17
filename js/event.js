@@ -1,4 +1,5 @@
-import { renderFavorite, renderCollect } from "./render"
+import { renderFavorite } from "./render"
+import { getStorageData } from './store'
 // 收藏
 function handleCollect(e) {
   const { url, title } = e.target.dataset
@@ -6,11 +7,28 @@ function handleCollect(e) {
     let data = JSON.parse(JSON.stringify(res.collect))
     data.push({ url, title })
     chrome.storage.sync.set({ collect: data })
-    renderFavorite() //重新渲染
-    renderCollect()
-    initBookmarkListener() //这里增加了dom，需要重新监听
+    renderFavorite(url,title)
+    updateCollectStatus(true)
   })
   e.stopPropagation()
+}
+
+async function  updateCollectStatus(isAddCollect){
+  let storageData = await getStorageData("collect")
+  storageData = JSON.stringify(storageData)
+  // 更新icon-top src
+  Array.from(document.querySelectorAll('.icon-top')).forEach(ele=>{
+    ele.src = storageData.search(ele.dataset.url) === -1 ? "./img/collect2.svg": "./img/collected2.svg"
+  })
+  // 更新icon-collect class以及src
+  Array.from(document.querySelectorAll('.icon-collect')).forEach(ele=>{
+    if(isAddCollect){
+      ele.classList.add("icon-collect--act")
+    }else{
+      ele.classList.remove("icon-collect--act")
+    }
+    ele.src = storageData.search(ele.dataset.url) === -1 ? "./img/collect.svg": "./img/collected.svg"
+  })
 }
 // 删除收藏
 function handleDelCollect(e) {
@@ -24,24 +42,44 @@ function handleDelCollect(e) {
     })
     chrome.storage.sync.set({ collect: data })
     renderFavorite() //重新渲染
-    renderCollect()
+    updateCollectStatus(false)
   })
   e.stopPropagation()
 }
 // 跳转
 function handleJump(e) {
-  let url = e.currentTarget.dataset.url
+  let url = e.target.dataset.url
   if (url) {
     window.open(url, "_blank")
   }
 }
 // 折叠
 function handleCollapse(e) {
-  let curFolder = e.currentTarget.parentNode
+  let curFolder = e.target.parentNode
   let curUl = curFolder.querySelector("ul")
   curUl.style.display = curUl.style.display == "none" ? "flex" : "none"
   let icon = e.target.querySelector(".btn-collapse")
   icon.classList.toggle("btn-collapse--act")
+}
+
+//bookmark item点击事件，需要分别处理下面的不同子元素点击
+function handleBookmarkItemClick(e) {
+  let classList = Array.from(e.target.classList)
+  if (classList.includes("icon-collect")) {
+    if(classList.includes("icon-collect--act")){
+      return;
+    }
+    return handleCollect(e)
+  }
+  if (classList.includes("del-icon")) {
+    return handleDelCollect(e)
+  }
+  if (classList.includes("bookmark-header")) {
+    return handleCollapse(e)
+  }
+  if (classList.includes("bookmark-item")) {
+    return handleJump(e)
+  }
 }
 
 // 搜索
@@ -70,6 +108,7 @@ function search(e) {
   }
 }
 
+// 切换颜色模式
 function switchTabTo(e) {
   let { value } = e.currentTarget.dataset
   switch (value) {
@@ -96,17 +135,8 @@ export const initGlobalListener = function () {}
 
 //注册收藏列表相关监听器
 export const initBookmarkListener = function () {
-  Array.from(document.querySelectorAll(".bookmark-header")).forEach((e) => {
-    e.addEventListener("click", handleCollapse)
-  })
-  Array.from(document.querySelectorAll(".bookmark-li")).forEach((e) => {
-    e.addEventListener("click", handleJump)
-  })
-  Array.from(document.querySelectorAll(".collect-icon")).forEach((e) => {
-    e.addEventListener("click", handleCollect)
-  })
-  Array.from(document.querySelectorAll(".del-icon")).forEach((e) => {
-    e.addEventListener("click", handleDelCollect)
+  Array.from(document.querySelectorAll("#bookmark,#collect")).forEach((e) => {
+    e.addEventListener("click", handleBookmarkItemClick)
   })
 }
 
