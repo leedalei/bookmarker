@@ -73,7 +73,7 @@ function createFavorite(data) {
   let html = `<div class="bookmark-folder">
   <div class="bookmark-header">
     <span class="btn-collapse unclick"></span>
-    <h3 class="bookmark-title unclick">收藏夹</h3>
+    <h3 class="bookmark-title unclick">置顶收藏</h3>
   </div>
   <ul class="bookmark-ul">`
   if (data.length > 0) {
