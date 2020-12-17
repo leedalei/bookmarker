@@ -19,6 +19,9 @@
 .form-item.mode-open, .form-item:hover {
   background-color: #eaeaea;
 }
+[color-mode=dark] .form-item.mode-open, [color-mode=dark] .form-item:hover {
+  background-color: #414F5F;
+}
 .form-item > svg {
   cursor: pointer;
   padding: 6px;
