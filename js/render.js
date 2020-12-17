@@ -15,9 +15,7 @@ async function createCollect(data) {
         : "./img/collected2.svg"
     }" />
         <div class="bookmark-item-title unclick">
-            <img src="https://www.google.com/s2/favicons?domain=${
-              data.url
-            }" alt="" />
+            <img src="chrome://favicon/${data.url}" alt="" />
             <p class="ellipsis">${data.title}</p>
           </div>
           <p class="bookmark-item-url ellipsis unclick">
@@ -84,7 +82,7 @@ function createFavorite(data) {
           <div class="bookmark-item-bg unclick"></div>
           <img class="icon-top unclick" src="./img/collected2.svg" />
           <div class="bookmark-item-title unclick">
-            <img src="https://www.google.com/s2/favicons?domain=${item.url}" alt="" />
+            <img src="chrome://favicon/${item.url}" alt="" />
             <p class="ellipsis">${item.title}</p>
           </div>
           <p class="bookmark-item-url ellipsis unclick">
@@ -124,6 +122,7 @@ export const renderCollect = () =>
   new Promise((resolve, reject) => {
     // content-script无权限获取目录，需要和background通信
     chrome.runtime.sendMessage({}, async function (response) {
+      console.log()
       let data = JSON.parse(response)
       let main = document.getElementById("bookmark")
       main.innerHTML = ""
