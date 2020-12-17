@@ -97,6 +97,7 @@
   cursor: pointer;
   width: 24px;
   height: 24px;
+  padding: 10px;
 }
 .setting-icon #svg-icon {
   fill: var(--setting-icon);
