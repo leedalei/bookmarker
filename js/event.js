@@ -1,5 +1,5 @@
 import { renderFavorite } from "./render"
-import { getStorageData } from './store'
+import { getStorageData } from "./store"
 // 收藏
 function handleCollect(e) {
   const { url, title } = e.target.dataset
@@ -7,27 +7,39 @@ function handleCollect(e) {
     let data = JSON.parse(JSON.stringify(res.collect))
     data.push({ url, title })
     chrome.storage.sync.set({ collect: data })
-    renderFavorite(url,title)
+    renderFavorite(url, title)
     updateCollectStatus(true)
   })
   e.stopPropagation()
 }
 
-async function  updateCollectStatus(isAddCollect){
+// 更新收藏的状态
+async function updateCollectStatus(isAddCollect, url) {
   let storageData = await getStorageData("collect")
-  storageData = JSON.stringify(storageData)
-  // 更新icon-top src
-  Array.from(document.querySelectorAll('.icon-top')).forEach(ele=>{
-    ele.src = storageData.search(ele.dataset.url) === -1 ? "./img/collect2.svg": "./img/collected2.svg"
-  })
-  // 更新icon-collect class以及src
-  Array.from(document.querySelectorAll('.icon-collect')).forEach(ele=>{
-    if(isAddCollect){
+  if (!isAddCollect) {
+    document.querySelector(`.icon-top[data-url='${url}']`).src =
+      "./img/collect2.svg"
+    document.querySelector(`.icon-collect[data-url='${url}']`).src =
+      "./img/collect.svg"
+    document
+      .querySelector(`.icon-collect[data-url='${url}']`)
+      .classList.remove("icon-collect--act")
+    return
+  }
+  storageData.collect.forEach((obj) => {
+    // 更新icon-top src
+    Array.from(
+      document.querySelectorAll(`.icon-top[data-url='${obj.url}']`)
+    ).forEach((ele) => {
+      ele.src = "./img/collected2.svg"
+    })
+    // 更新icon-collect class以及src
+    Array.from(
+      document.querySelectorAll(`.icon-collect[data-url='${obj.url}']`)
+    ).forEach((ele) => {
+      ele.src = "./img/collected.svg"
       ele.classList.add("icon-collect--act")
-    }else{
-      ele.classList.remove("icon-collect--act")
-    }
-    ele.src = storageData.search(ele.dataset.url) === -1 ? "./img/collect.svg": "./img/collected.svg"
+    })
   })
 }
 // 删除收藏
@@ -42,7 +54,7 @@ function handleDelCollect(e) {
     })
     chrome.storage.sync.set({ collect: data })
     renderFavorite() //重新渲染
-    updateCollectStatus(false)
+    updateCollectStatus(false, url)
   })
   e.stopPropagation()
 }
@@ -66,8 +78,8 @@ function handleCollapse(e) {
 function handleBookmarkItemClick(e) {
   let classList = Array.from(e.target.classList)
   if (classList.includes("icon-collect")) {
-    if(classList.includes("icon-collect--act")){
-      return;
+    if (classList.includes("icon-collect--act")) {
+      return
     }
     return handleCollect(e)
   }
