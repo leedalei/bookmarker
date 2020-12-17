@@ -4,7 +4,7 @@ import { initAllListener } from "./event"
 // 获取颜色模式
 function getModeData() {
   chrome.storage.sync.get('mode',(res)=>{
-    const {mode} = res
+    let {mode} = res
     if(!mode) {
       mode = 'auto'
       chrome.storage.sync.set({'mode': mode})

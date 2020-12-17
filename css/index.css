@@ -12,8 +12,12 @@ body {
 
 .banner{
   text-align: center;
-  margin-top: 72px;
+  margin-top: 80px;
   margin-bottom: 32px;
+}
+.banner > img {
+  width: auto;
+  height: 54px;
 }
 .search-select{
   height: 100%;
