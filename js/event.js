@@ -1,13 +1,14 @@
 import { renderFavorite } from "./render"
 import { getStorageData } from "./store"
 // 收藏
-function handleCollect(e) {
+function  handleCollect(e) {
   const { url, title, category } = e.target.dataset
-  chrome.storage.sync.get("collect", (res) => {
+  chrome.storage.sync.get("collect", async (res) => {
     let data = JSON.parse(JSON.stringify(res.collect))
     data.push({ url, title, category })
     chrome.storage.sync.set({ collect: data })
-    renderFavorite(url, title, category)
+    await renderFavorite(url, title, category)
+    initMouseLeaveListener() //重新注册监听器
     updateCollectStatus(true)
   })
   e.stopPropagation()
@@ -84,7 +85,7 @@ function handleBookmarkItemBlur(e){
   e.currentTarget.querySelector(".menu-box").classList.remove("menu-open")
 }
 
-//bookmark item点击事件，需要分别处理下面的不同子元素点击
+//bookmark item事件代理
 function handleBookmarkItemClick(e) {
   let classList = Array.from(e.target.classList)
   if (classList.includes("icon-collect")) {
@@ -155,28 +156,11 @@ function switchMode(modeData) {
   document.querySelector("body").setAttribute("color-mode", modeData)
 }
 
-// 注册全局监听器
-export const initGlobalListener = function () {}
-
 //注册收藏列表相关监听器
-export const initBookmarkListener = function () {
+export const initClickListener = function () {
   Array.from(document.querySelectorAll("#bookmark,#collect")).forEach((e) => {
     e.addEventListener("click", handleBookmarkItemClick)
   })
-  Array.from(document.querySelectorAll(".bookmark-item")).forEach((e) => {
-    e.addEventListener("mouseleave", handleBookmarkItemBlur)
-  })
-}
-
-//注册搜索栏相关监听器
-export const initSearchListener = function () {
-  document.querySelector("input").onkeypress = (e) => {
-    search(e)
-  }
-}
-
-//注册设置相关监听器
-export const initSettingListener = function () {
   document.querySelector(".form-item").addEventListener("click", (e) => {
     document.querySelector(".form-item").classList.toggle("mode-open")
   })
@@ -184,11 +168,24 @@ export const initSettingListener = function () {
     e.addEventListener("click", switchTabTo)
   })
 }
+// 注册mouseleave相关监听器
+export const initMouseLeaveListener = ()=>{
+  Array.from(document.querySelectorAll(".bookmark-item")).forEach((e) => {
+    e.addEventListener("mouseleave", handleBookmarkItemBlur)
+  })
+}
+
+//注册键盘相关监听器
+export const initKeyListener = function () {
+  document.querySelector("input").onkeypress = (e) => {
+    search(e)
+  }
+}
+
 
 // 全部一起注册，冚家富贵
 export const initAllListener = function () {
-  initGlobalListener()
-  initBookmarkListener()
-  initSearchListener()
-  initSettingListener()
+  initClickListener()
+  initMouseLeaveListener()
+  initKeyListener()
 }
