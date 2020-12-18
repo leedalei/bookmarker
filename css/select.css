@@ -1,61 +1,45 @@
 .select-container {
-    display: inline-block;
-    position: relative;
-    user-select: none;
+  display: inline-block;
+  position: relative;
+  user-select: none;
 }
 .select-container .select-value {
-    color: var(--header-font);
-    font-size: 14px;
-    cursor: default;
-    display: flex;
-    align-items: center;
+  position: relative;
+  color: var(--header-font);
+  font-size: 14px;
+  cursor: default;
+  display: flex;
+  align-items: center;
 }
-.select-container .select-value::after{
-    content: "";
-    width: 6px;
-    height: 6px;
-    display: inline-block;
-    margin-left: 5px;
-    border-top: none;
-    border-left: none;
-    border-bottom: 2px solid darkgray;
-    border-right: 2px solid darkgray;
-    transform: rotate(45deg);
+.select-container .select-value svg {
+  fill: var(--item-url);
+  margin-top: 2px;
+  transition: all ease 0.5s;
 }
-.select-container .select-value.show::after{
-    content: "";
-    width: 6px;
-    height: 6px;
-    display: inline-block;
-    margin-left: 5px;
-    border-top: 2px solid darkgray;
-    border-left: 2px solid darkgray;
-    border-bottom: none;
-    border-right: none;
-    transform: rotate(45deg) translateY(3px);
+.select-container .select-value.show svg {
+  transform: rotate(180deg);
 }
 .select-container .select-options {
-    position: absolute;
-    display: none;
-    margin-top: 10px;
-    color: var(--input-bg);
-    border-radius: 4px;
-    padding-bottom: 10px;
-    box-shadow: 0 2px 12px -4px rgb(115, 206, 113, .64);
-    z-index: 9;
-    left: 50%;
-    margin-left: -50px;
+  position: absolute;
+  display: none;
+  margin-top: 13px;
+  color: var(--input-bg);
+  border-radius: 4px;
+  box-shadow: 0 2px 12px -4px rgb(115, 206, 113, 0.64);
+  z-index: 9;
+  left: 0;
+  transform: translateX(-25%);
+  background-color: var(--body-bg);
 }
 .select-container .select-options .select-option {
-    color: var(--item-title);
-    font-size: 14px;
-    text-align: center;
-    padding: 5px 10px;
-    margin-top: 5px;
-    cursor: pointer;
-    transition: .2s all;
-    min-width: 100px;
+  color: var(--item-title);
+  font-size: 14px;
+  text-align: center;
+  padding: 8px 5px;
+  cursor: pointer;
+  transition: 0.2s all;
+  min-width: 100px;
 }
-.select-container .select-options .select-option:hover{
-    background-color: var(--header-bg-hover);
+.select-container .select-options .select-option:hover {
+  background-color: var(--header-bg-hover);
 }
