@@ -6,6 +6,10 @@
   --input-icon: #9aa0a6;
   --search-font: #333;
   --item-menu: #9aa0a6;
+  --item-menu-bg: #fff;
+  --item-menu-border: #eee;
+  --item-menu-li: #fff;
+  --item-menu-li-bg: #f6f6f6;
   --item-border: #eee;
   --item-bg: #fff;
   --header-font: #333;
@@ -24,6 +28,10 @@
   --input-icon: rgba(255, 255, 255, 0.88);
   --search-font: #d2d2d2;
   --item-menu: #dedede;
+  --item-menu-bg: #323336;
+  --item-menu-border: #333;
+  --item-menu-li: #dfdfdf;
+  --item-menu-li-bg: #555;
   --item-border: #333;
   --item-bg: #222;
   --header-font: #d2d2d2;
@@ -46,6 +54,10 @@
     --input-icon: rgba(255, 255, 255, 0.88);
     --search-font: #d2d2d2;
     --item-menu: #dedede;
+    --item-menu-bg: #323336;
+    --item-menu-border: #333;
+    --item-menu-li: #dfdfdf;
+    --item-menu-li-bg: #555;
     --item-border: #333;
     --item-bg: #222;
     --header-font: #d2d2d2;
@@ -64,6 +76,10 @@
     --input-icon: #9aa0a6;
     --search-font: #333;
     --item-menu: #9aa0a6;
+    --item-menu-bg: #fff;
+    --item-menu-border: #eee;
+    --item-menu-li: #fff;
+    --item-menu-li-bg: #f6f6f6;
     --item-border: #eee;
     --item-bg: #fff;
     --header-font: #333;

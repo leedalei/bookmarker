@@ -2,12 +2,12 @@ import { renderFavorite } from "./render"
 import { getStorageData } from "./store"
 // 收藏
 function handleCollect(e) {
-  const { url, title } = e.target.dataset
+  const { url, title, category } = e.target.dataset
   chrome.storage.sync.get("collect", (res) => {
     let data = JSON.parse(JSON.stringify(res.collect))
-    data.push({ url, title })
+    data.push({ url, title, category })
     chrome.storage.sync.set({ collect: data })
-    renderFavorite(url, title)
+    renderFavorite(url, title, category)
     updateCollectStatus(true)
   })
   e.stopPropagation()

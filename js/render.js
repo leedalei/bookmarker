@@ -1,6 +1,6 @@
 import { getStorageData } from "./store"
 // 递归构造收藏的列表dom结构
-async function createCollect(data) {
+async function createCollect(data, category) {
   let storageData = await getStorageData("collect")
   storageData = JSON.stringify(storageData)
   let html = ""
@@ -42,7 +42,7 @@ async function createCollect(data) {
             }</p>
             <img class="icon-collect ${
               storageData.search(data.url) === -1 ? "" : "icon-collect--act"
-            }" data-url="${data.url}" data-title="${data.title}" src="${
+            }" data-url="${data.url}" data-title="${data.title}" data-category="${category}" src="${
       storageData.search(data.url) === -1
         ? "./img/collect.svg"
         : "./img/collected.svg"
@@ -62,7 +62,8 @@ async function createCollect(data) {
   if (data.children.length) {
     for (let item of data.children) {
       if (!item.children) {
-        html += await createCollect(item)
+        let category = data.title
+        html += await createCollect(item, category)
       }
     }
   } else {
@@ -119,7 +120,7 @@ function createFavorite(data) {
             ${item.url}
           </p>
           <div class="bookmark-info">
-            <p class="unclick">已收藏</p>
+            <p class="unclick">${item.category}</p>
             <img class="icon del-icon" data-url="${item.url}" src="./img/del.svg" />
           </div>
         </div>
