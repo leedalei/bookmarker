@@ -1,6 +1,6 @@
 import { Render } from "./Render"
 import { debounce } from './util'
-
+import {bookmarkEventDelegation} from './event'
 let renderer = new Render(false)
 export class SearchBar {
   constructor() {
@@ -55,14 +55,16 @@ export class SearchBar {
       document.querySelectorAll("#bookmark,#collect").forEach((ele) => {
         ele.style.display = "none"
       })
-      chrome.bookmarks.search(query, (data) => {
-        renderer.initSearchResult(data)
+      chrome.bookmarks.search(query, async (data) => {
+        await renderer.initSearchResult(data)
+        document.querySelector("#search-result").addEventListener('click',bookmarkEventDelegation)
       })
     } else {
       document.querySelectorAll("#bookmark,#collect").forEach((ele) => {
         ele.style.display = "block"
       })
       document.querySelector("#search-result").style.display = "none"
+      
     }
   }
 }

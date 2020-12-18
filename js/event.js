@@ -3,7 +3,7 @@ import { getStorageData } from "./store"
 
 let renderer = new Render(false)
 // 收藏
-function  handleCollect(e) {
+function handleCollect(e) {
   const { url, title, category } = e.target.dataset
   chrome.storage.sync.get("collect", async (res) => {
     let data = JSON.parse(JSON.stringify(res.collect))
@@ -83,12 +83,12 @@ function handleOCardMenu(e) {
 }
 
 // bookmark-item失去hover事件
-function handleBookmarkItemBlur(e){
+function handleBookmarkItemBlur(e) {
   e.currentTarget.querySelector(".menu-box").classList.remove("menu-open")
 }
 
-//bookmark item事件代理
-function handleBookmarkItemClick(e) {
+//bookmark item事件代理 Event delegation
+export const bookmarkEventDelegation = (e) => {
   let classList = Array.from(e.target.classList)
   if (classList.includes("icon-collect")) {
     if (classList.includes("icon-collect--act")) {
@@ -135,7 +135,7 @@ function switchMode(modeData) {
 //注册收藏列表相关监听器
 export const initClickListener = function () {
   Array.from(document.querySelectorAll("#bookmark,#collect")).forEach((e) => {
-    e.addEventListener("click", handleBookmarkItemClick)
+    e.addEventListener("click", bookmarkEventDelegation)
   })
   document.querySelector(".form-item").addEventListener("click", (e) => {
     document.querySelector(".form-item").classList.toggle("mode-open")
@@ -145,12 +145,11 @@ export const initClickListener = function () {
   })
 }
 // 注册mouseleave相关监听器
-export const initMouseLeaveListener = ()=>{
+export const initMouseLeaveListener = () => {
   Array.from(document.querySelectorAll(".bookmark-item")).forEach((e) => {
     e.addEventListener("mouseleave", handleBookmarkItemBlur)
   })
 }
-
 
 // 全部一起注册，冚家富贵
 export const initAllListener = function () {

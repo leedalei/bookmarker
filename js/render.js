@@ -158,8 +158,8 @@ export class Render {
   }
 
   //注册搜索结果
-  initSearchResult(data) {
-    this.createSearchResultDom(data)
+  async initSearchResult(data) {
+    await this.createSearchResultDom(data)
   }
   //生成搜索结果的dom结果
   async createSearchResultDom(data) {
