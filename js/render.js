@@ -5,7 +5,7 @@ async function createCollect(data) {
   storageData = JSON.stringify(storageData)
   let html = ""
   if (!data.children) {
-    html += `<li class="bookmark-li">`
+    html += `<li class="bookmark-li flow-in-from-up">`
     html += `
       <div class="bookmark-item" data-url="${data.url}">
         <div class="bookmark-item-bg unclick"></div>
@@ -92,7 +92,7 @@ function createFavorite(data) {
   if (data.length > 0) {
     for (let item of data) {
       html += `
-      <li class="bookmark-li">
+      <li class="bookmark-li flow-in-from-up">
         <div class="bookmark-item" data-url="${item.url}">
           <div class="bookmark-item-bg unclick"></div>
           <img class="icon-top unclick" src="./img/collected2.svg" />
