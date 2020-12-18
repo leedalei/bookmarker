@@ -73,6 +73,11 @@ function handleCollapse(e) {
   let icon = e.target.querySelector(".btn-collapse")
   icon.classList.toggle("btn-collapse--act")
 }
+// 卡片菜单
+function handleCardMenu(e) {
+  let curFolder = e.target.parentNode
+  curFolder.querySelector(".menu-box").classList.toggle("menu-open")
+}
 
 //bookmark item点击事件，需要分别处理下面的不同子元素点击
 function handleBookmarkItemClick(e) {
@@ -82,6 +87,9 @@ function handleBookmarkItemClick(e) {
       return handleDelCollect(e)
     }
     return handleCollect(e)
+  }
+  if (classList.includes("icon-menu")) {
+    return handleCardMenu(e)
   }
   if (classList.includes("del-icon")) {
     return handleDelCollect(e)
@@ -142,10 +150,6 @@ function switchMode(modeData) {
   document.querySelector("body").setAttribute("color-mode", modeData)
 }
 
-// 卡片菜单显示隐藏
-function openCardMenu(e) {
-}
-
 // 注册全局监听器
 export const initGlobalListener = function () {}
 
@@ -165,9 +169,6 @@ export const initSearchListener = function () {
 
 //注册设置相关监听器
 export const initSettingListener = function () {
-  Array.from(document.querySelectorAll(".switch-tab")).forEach((e) => {
-    e.addEventListener("click", switchTabTo)
-  })
   document.querySelector(".form-item").addEventListener("click", (e) => {
     document.querySelector(".form-item").classList.toggle("mode-open")
   })

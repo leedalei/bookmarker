@@ -122,6 +122,9 @@ body {
   width: 25%;
   position: relative;
 }
+.bookmark-li:hover {
+  z-index: 6;
+}
 .bookmark-item {
   position: relative;
   z-index: 1;
@@ -199,10 +202,10 @@ body {
   color: #333;
   padding: 6px 0;
   border-radius: 12px;
-  right: -42px;
-  top: 16px;
+  right: 14px;
+  top: 32px;
   transform: scale(0);
-  transform-origin: left top;
+  transform-origin: right top;
   box-shadow: 1px 2px 12px rgba(121, 119, 119, 12%);
   transition: all .3s ease;
 }
