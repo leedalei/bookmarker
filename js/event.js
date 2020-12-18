@@ -110,6 +110,31 @@ function handleBookmarkItemClick(e) {
   }
 }
 
+// 搜索
+function search(e) {
+  if (e.which === 13) {
+    var obj = document.querySelectorAll(".search-select")[0]
+    const {value} = obj.dataset
+    const inputValue = e.target.value
+    let url = ""
+    switch (value) {
+      case "baidu":
+        url = "https://baidu.com/s?wd="
+        break
+      case "google":
+        url = "https://www.google.com/search?q="
+        break
+      case "bing":
+        url = "https://www.bing.com/search?q="
+        break
+      case "sougou":
+        url = "https://www.sogou.com/web?query="
+        break
+    }
+    window.open(`${url}${inputValue}`, "_blank")
+  }
+}
+
 // 切换颜色模式
 function switchTabTo(e) {
   let { value } = e.currentTarget.dataset
@@ -132,6 +157,61 @@ function switchMode(modeData) {
   document.querySelector("body").setAttribute("color-mode", modeData)
 }
 
+// 获取value/options 元素
+function getOptionsEle(e){
+	const childrenNode = e.parentNode.childNodes
+	const children = []
+	childrenNode.forEach(item=>{
+		if(item.nodeType === 1){
+			children.push(item)
+		}
+	})
+	return children
+}
+
+// 显示隐藏 select
+function handleSelect(e){
+	const valueEle = getOptionsEle(e.target)[0]
+	const optionsEle = getOptionsEle(e.target)[1]
+	const optionsStatus = optionsEle.style.display
+	if(optionsStatus === '' || optionsStatus === 'none'){
+		optionsEle.style.display = 'block'
+		valueEle.classList.add('show')
+	} else {
+		optionsEle.style.display = 'none'
+		valueEle.classList.remove('show')
+	}
+  e.stopPropagation()
+}
+
+// 点击select
+function onSelect(e){
+	const { value } = e.target.dataset
+	const label = e.target.innerText
+	const optionsEle = e.target.parentNode
+	optionsEle.style.display = 'none'
+	const valueEl = getOptionsEle(optionsEle)[0]
+	valueEl.dataset.value = value
+	valueEl.innerText = label
+	valueEl.classList.remove('show')
+  e.stopPropagation()
+}
+
+// 隐藏所有options
+function hideOptions(){
+  const allOptions = document.querySelectorAll('.select-options')
+  allOptions.forEach(e=>{
+    e.style.display = 'none'
+    const valueEle = getOptionsEle(e)
+    valueEle[0].classList.remove('show')
+  })
+}
+
+// 注册全局监听器
+export const initGlobalListener = function () {
+  document.getElementsByTagName('body')[0].addEventListener('click',hideOptions)
+}
+
 //注册收藏列表相关监听器
 export const initClickListener = function () {
   Array.from(document.querySelectorAll("#bookmark,#collect")).forEach((e) => {
@@ -152,8 +232,23 @@ export const initMouseLeaveListener = ()=>{
 }
 
 
+//注册select监听器
+export const initSelectListener = function () {
+	Array.from(document.querySelectorAll(".select-value")).forEach((e) => {
+    e.addEventListener("click", handleSelect)
+  })
+	Array.from(document.querySelectorAll(".select-option")).forEach((e) => {
+    e.addEventListener("click", onSelect)
+  })
+}
+
 // 全部一起注册，冚家富贵
 export const initAllListener = function () {
   initClickListener()
   initMouseLeaveListener()
+  initGlobalListener()
+  initBookmarkListener()
+  initSearchListener()
+  initSettingListener()
+  initSelectListener()
 }
