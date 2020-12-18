@@ -156,7 +156,7 @@ export const initMouseLeaveListener = ()=>{
 export class SearchBar{
   constructor(){
     this.init()
-    this.searchInsideDebounce = debounce(this.searchInside,200)
+    this.searchInsideDebounce = debounce(this.searchInside,700)
   }
   init(){
     this.initSearchOutside()
@@ -193,21 +193,25 @@ export class SearchBar{
   }
   //注册搜索本地
   initSearchInside(){
-    document.querySelector("#search-bar").addEventListener('input',this.searchInside)
+    document.querySelector("#search-bar").addEventListener('input',(e)=>this.searchInsideDebounce(e))
   }
   //搜索本地实际逻辑
   searchInside(e){
-    console.log(e.target.value)
-    chrome.bookmarks.search(e.target.value, (data)=>{
-      console.log(data)
-    })
+    let query = e.target.value
+    if (query.length){
+      document.querySelectorAll("#bookmark,#collect").forEach(ele=>{
+        ele.style.display = 'none'
+      })
+      chrome.bookmarks.search(query, (data)=>{
+        renderer.initSearchResult(data)
+      })
+    }else{
+      document.querySelectorAll("#bookmark,#collect").forEach(ele=>{
+        ele.style.display = 'block'
+      })
+      document.querySelector('#search-result').style.display='none'
+    }
   }
-}
-
-export const renderSearchResult = (query)=>{
-  chrome.bookmarks.search(query, (data)=>{
-    console.log(data)
-  })
 }
 
 // 全部一起注册，冚家富贵
