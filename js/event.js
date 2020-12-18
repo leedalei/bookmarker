@@ -165,6 +165,7 @@ function handleSelect(e){
 		optionsEle.style.display = 'none'
 		valueEle.classList.remove('show')
 	}
+  e.stopPropagation()
 }
 
 // 点击select
@@ -177,10 +178,23 @@ function onSelect(e){
 	valueEl.dataset.value = value
 	valueEl.innerText = label
 	valueEl.classList.remove('show')
+  e.stopPropagation()
+}
+
+// 隐藏所有options
+function hideOptions(){
+  const allOptions = document.querySelectorAll('.select-options')
+  allOptions.forEach(e=>{
+    e.style.display = 'none'
+    const valueEle = getOptionsEle(e)
+    valueEle[0].classList.remove('show')
+  })
 }
 
 // 注册全局监听器
-export const initGlobalListener = function () {}
+export const initGlobalListener = function () {
+  document.getElementsByTagName('body')[0].addEventListener('click',hideOptions)
+}
 
 //注册收藏列表相关监听器
 export const initBookmarkListener = function () {
