@@ -192,7 +192,7 @@ function onSelect(e){
 	optionsEle.style.display = 'none'
 	const valueEl = getOptionsEle(optionsEle)[0]
 	valueEl.dataset.value = value
-	valueEl.innerText = label
+	valueEl.querySelector("span").innerText = label
 	valueEl.classList.remove('show')
   e.stopPropagation()
 }
