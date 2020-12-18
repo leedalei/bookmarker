@@ -86,6 +86,47 @@
   opacity: 1;
 }
 
+/* card-menu */
+.bookmark-item #menu-icon {
+  fill: var(--item-menu);
+}
+.bookmark-item .icon-menu {
+  position: absolute;
+  cursor: pointer;
+  padding: 10px;
+  right: 10px;
+  top: 6px;
+}
+.bookmark-item .menu-box {
+  position: absolute;
+  z-index: 6;
+  background-color: var(--item-menu-bg);
+  list-style: none;
+  border: 1px solid #eee;
+  border-color: var(--item-menu-border);
+  color: #333;
+  border-radius: 12px 0 12px 12px;
+  right: 40px;
+  top: 24px;
+  transform: scale(0);
+  transform-origin: right top;
+  box-shadow: 1px 2px 12px rgba(121, 119, 119, 12%);
+  transition: all .3s ease;
+}
+.bookmark-item .menu-box.menu-open {
+  transform: scale(1);
+}
+.bookmark-item .menu-box .menu-li {
+  padding: 8px 20px;
+  color: var(--item-menu-li);
+  transition: all .3s ease;
+}
+.bookmark-item .menu-box .menu-li:hover {
+  background-color: var(--item-menu-li-bg);
+}
+
+/* edit-box */
+
 /* setting-box */
 .setting {
   user-select: none;
