@@ -15,6 +15,11 @@ export class Render {
           </g>
       </g>
     </svg>`
+    this.dataError = `
+    <li class="no-data">
+      <img src="./img/empty.svg">
+      <p>暂无置顶嗷，铁汁</p>
+    </li>`
   }
   async init() {
     await this.initFavorite()
@@ -64,11 +69,7 @@ export class Render {
       </li>`
       }
     } else {
-      html += `
-    <li class="no-data">
-      <img src="./img/empty.svg">
-      <p>暂无置顶嗷，铁汁</p>
-    </li>`
+      html += this.dataError
     }
     html += `</ul></div>`
     let collectEl = document.getElementById("collect")
@@ -145,11 +146,7 @@ export class Render {
         }
       }
     } else {
-      html += `
-      <li class="no-data">
-        <img src="./img/empty.svg">
-        <p>暂无数据嗷，铁汁</p>
-      </li>`
+      html += this.dataError
     }
     html += `</ul></div>`
     for (let item of data.children) {
@@ -209,11 +206,7 @@ export class Render {
       </li>`
       }
     } else {
-      html += `
-    <li class="no-data">
-      <img src="./img/empty.svg">
-      <p>无匹配结果嗷，铁汁</p>
-    </li>`
+      html += this.dataError
     }
     html += `</ul></div>`
     let resultEle = document.getElementById("search-result")
