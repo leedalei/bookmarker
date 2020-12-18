@@ -142,6 +142,10 @@ function switchMode(modeData) {
   document.querySelector("body").setAttribute("color-mode", modeData)
 }
 
+// 卡片菜单显示隐藏
+function openCardMenu(e) {
+}
+
 // 注册全局监听器
 export const initGlobalListener = function () {}
 

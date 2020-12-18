@@ -180,6 +180,43 @@ body {
 .bookmark-item .icon:hover{
   transform: rotate(144deg);
 }
+.bookmark-item #menu-icon {
+  fill: var(--item-menu);
+}
+.bookmark-item .icon-menu {
+  position: absolute;
+  cursor: pointer;
+  padding: 10px;
+  right: 10px;
+  top: 6px;
+}
+.bookmark-item .menu-box {
+  position: absolute;
+  z-index: 6;
+  background-color: #fff;
+  list-style: none;
+  border: 1px solid #eee;
+  color: #333;
+  padding: 6px 0;
+  border-radius: 12px;
+  right: -42px;
+  top: 16px;
+  transform: scale(0);
+  transform-origin: left top;
+  box-shadow: 1px 2px 12px rgba(121, 119, 119, 12%);
+  transition: all .3s ease;
+}
+.bookmark-item .menu-box.menu-open {
+  transform: scale(1);
+}
+.bookmark-item .menu-box .menu-li {
+  padding: 6px 14px;
+  transition: all .3s ease;
+}
+.bookmark-item .menu-box .menu-li:hover {
+  background-color: #f6f6f6;
+}
+
 .bookmark-item-title {
   display: flex;
   align-items: center;

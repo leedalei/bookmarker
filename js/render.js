@@ -14,6 +14,21 @@ async function createCollect(data) {
         ? "./img/collect2.svg"
         : "./img/collected2.svg"
     }" />
+        <svg class="icon-menu" width="16px" height="4px" viewBox="0 0 16 4" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <g id="2" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                <g id="hover" transform="translate(-264.000000, -18.000000)">
+                    <g id="menu-icon" transform="translate(264.000000, 18.000000)" fill-rule="nonzero">
+                        <path d="M0,1.6 C0,2.4836556 0.7163444,3.2 1.6,3.2 C2.4836556,3.2 3.2,2.4836556 3.2,1.6 C3.2,0.7163444 2.4836556,0 1.6,0 C0.7163444,0 0,0.7163444 0,1.6 L0,1.6 Z" id="路径"></path>
+                        <path d="M6.4,1.60000002 C6.4,2.48365561 7.1163444,3.2 8,3.2 C8.8836556,3.2 9.6,2.48365561 9.6,1.60000002 C9.6,1.02837508 9.29504174,0.500171837 8.80000001,0.214359359 C8.30495828,-0.0714531196 7.69504172,-0.0714531196 7.19999999,0.214359359 C6.70495826,0.500171837 6.4,1.02837508 6.4,1.60000002 L6.4,1.60000002 Z" id="路径"></path>
+                        <path d="M12.8,1.6 C12.8,2.4836556 13.5163444,3.2 14.4,3.2 C15.2836556,3.2 16,2.4836556 16,1.6 C16,0.7163444 15.2836556,0 14.4,0 C13.5163444,0 12.8,0.7163444 12.8,1.6 Z" id="路径"></path>
+                    </g>
+                </g>
+            </g>
+        </svg>
+        <ul class="menu-box">
+          <li class="menu-li">编辑</li>
+          <li class="menu-li">删除</li>
+        </ul>
         <div class="bookmark-item-title unclick">
             <img src="chrome://favicon/${data.url}" alt="" />
             <p class="ellipsis">${data.title}</p>
@@ -81,6 +96,21 @@ function createFavorite(data) {
         <div class="bookmark-item" data-url="${item.url}">
           <div class="bookmark-item-bg unclick"></div>
           <img class="icon-top unclick" src="./img/collected2.svg" />
+          <svg class="icon-menu" width="16px" height="4px" viewBox="0 0 16 4" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <g id="2" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                  <g id="hover" transform="translate(-264.000000, -18.000000)">
+                      <g id="menu-icon" transform="translate(264.000000, 18.000000)" fill-rule="nonzero">
+                          <path d="M0,1.6 C0,2.4836556 0.7163444,3.2 1.6,3.2 C2.4836556,3.2 3.2,2.4836556 3.2,1.6 C3.2,0.7163444 2.4836556,0 1.6,0 C0.7163444,0 0,0.7163444 0,1.6 L0,1.6 Z" id="路径"></path>
+                          <path d="M6.4,1.60000002 C6.4,2.48365561 7.1163444,3.2 8,3.2 C8.8836556,3.2 9.6,2.48365561 9.6,1.60000002 C9.6,1.02837508 9.29504174,0.500171837 8.80000001,0.214359359 C8.30495828,-0.0714531196 7.69504172,-0.0714531196 7.19999999,0.214359359 C6.70495826,0.500171837 6.4,1.02837508 6.4,1.60000002 L6.4,1.60000002 Z" id="路径"></path>
+                          <path d="M12.8,1.6 C12.8,2.4836556 13.5163444,3.2 14.4,3.2 C15.2836556,3.2 16,2.4836556 16,1.6 C16,0.7163444 15.2836556,0 14.4,0 C13.5163444,0 12.8,0.7163444 12.8,1.6 Z" id="路径"></path>
+                      </g>
+                  </g>
+              </g>
+          </svg>
+          <ul class="menu-box">
+            <li class="menu-li">编辑</li>
+            <li class="menu-li">删除</li>
+          </ul>
           <div class="bookmark-item-title unclick">
             <img src="chrome://favicon/${item.url}" alt="" />
             <p class="ellipsis">${item.title}</p>

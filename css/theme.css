@@ -5,6 +5,7 @@
   --input-font: #333;
   --input-icon: #9aa0a6;
   --search-font: #333;
+  --item-menu: #9aa0a6;
   --item-border: #eee;
   --item-bg: #fff;
   --header-font: #333;
@@ -22,6 +23,7 @@
   --input-font: #dfdfdf;
   --input-icon: rgba(255, 255, 255, 0.88);
   --search-font: #d2d2d2;
+  --item-menu: #dedede;
   --item-border: #333;
   --item-bg: #222;
   --header-font: #d2d2d2;
@@ -43,6 +45,7 @@
     --input-font: #dfdfdf;
     --input-icon: rgba(255, 255, 255, 0.88);
     --search-font: #d2d2d2;
+    --item-menu: #dedede;
     --item-border: #333;
     --item-bg: #222;
     --header-font: #d2d2d2;
@@ -60,6 +63,7 @@
     --input-font: #333;
     --input-icon: #9aa0a6;
     --search-font: #333;
+    --item-menu: #9aa0a6;
     --item-border: #eee;
     --item-bg: #fff;
     --header-font: #333;
