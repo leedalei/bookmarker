@@ -1,5 +1,8 @@
-import { renderFavorite } from "./render"
+import { Render } from "./render"
 import { getStorageData } from "./store"
+import { debounce } from './util'
+
+let renderer = new Render(false)
 // 收藏
 function  handleCollect(e) {
   const { url, title, category } = e.target.dataset
@@ -7,7 +10,7 @@ function  handleCollect(e) {
     let data = JSON.parse(JSON.stringify(res.collect))
     data.push({ url, title, category })
     chrome.storage.sync.set({ collect: data })
-    await renderFavorite(url, title, category)
+    await renderer.initFavorite(url, title, category)
     initMouseLeaveListener() //重新注册监听器
     updateCollectStatus(true)
   })
@@ -54,7 +57,7 @@ function handleDelCollect(e) {
       }
     })
     chrome.storage.sync.set({ collect: data })
-    renderFavorite() //重新渲染
+    renderer.initFavorite() //重新渲染
     updateCollectStatus(false, url)
   })
   e.stopPropagation()
@@ -108,32 +111,6 @@ function handleBookmarkItemClick(e) {
   }
 }
 
-// 搜索
-function search(e) {
-  if (e.which === 13) {
-    var obj = document.querySelectorAll(".search-select")[0]
-    var index = obj.selectedIndex
-    var value = obj.options[index].value
-    const inputValue = e.target.value
-    let url = ""
-    switch (value) {
-      case "baidu":
-        url = "https://baidu.com/s?wd="
-        break
-      case "google":
-        url = "https://www.google.com/search?q="
-        break
-      case "bing":
-        url = "https://www.bing.com/search?q="
-        break
-      case "sougou":
-        url = "https://www.sogou.com/web?query="
-        break
-    }
-    window.open(`${url}${inputValue}`, "_blank")
-  }
-}
-
 // 切换颜色模式
 function switchTabTo(e) {
   let { value } = e.currentTarget.dataset
@@ -175,17 +152,67 @@ export const initMouseLeaveListener = ()=>{
   })
 }
 
-//注册键盘相关监听器
-export const initKeyListener = function () {
-  document.querySelector("input").onkeypress = (e) => {
-    search(e)
+//面对对象编程，搜索栏
+export class SearchBar{
+  constructor(){
+    this.init()
+    this.searchInsideDebounce = debounce(this.searchInside,200)
+  }
+  init(){
+    this.initSearchOutside()
+    this.initSearchInside()
+  }
+  // 注册搜索外部
+  initSearchOutside(){
+     document.querySelector("#search-bar").addEventListener('keyup',this.searchOutside)
+  }
+  //搜索外部实际逻辑
+  searchOutside(e) {
+    if (e.which === 13) {
+      var obj = document.querySelectorAll(".search-select")[0]
+      var index = obj.selectedIndex
+      var value = obj.options[index].value
+      const inputValue = e.target.value
+      let url = ""
+      switch (value) {
+        case "baidu":
+          url = "https://baidu.com/s?wd="
+          break
+        case "google":
+          url = "https://www.google.com/search?q="
+          break
+        case "bing":
+          url = "https://www.bing.com/search?q="
+          break
+        case "sougou":
+          url = "https://www.sogou.com/web?query="
+          break
+      }
+      window.open(`${url}${inputValue}`, "_blank")
+    }
+  }
+  //注册搜索本地
+  initSearchInside(){
+    document.querySelector("#search-bar").addEventListener('input',this.searchInside)
+  }
+  //搜索本地实际逻辑
+  searchInside(e){
+    console.log(e.target.value)
+    chrome.bookmarks.search(e.target.value, (data)=>{
+      console.log(data)
+    })
   }
 }
 
+export const renderSearchResult = (query)=>{
+  chrome.bookmarks.search(query, (data)=>{
+    console.log(data)
+  })
+}
 
 // 全部一起注册，冚家富贵
 export const initAllListener = function () {
   initClickListener()
   initMouseLeaveListener()
-  initKeyListener()
+  new SearchBar()
 }
