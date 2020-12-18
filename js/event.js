@@ -74,9 +74,14 @@ function handleCollapse(e) {
   icon.classList.toggle("btn-collapse--act")
 }
 // 卡片菜单
-function handleCardMenu(e) {
+function handleOCardMenu(e) {
   let curFolder = e.target.parentNode
   curFolder.querySelector(".menu-box").classList.toggle("menu-open")
+}
+
+// bookmark-item失去hover事件
+function handleBookmarkItemBlur(e){
+  e.currentTarget.querySelector(".menu-box").classList.remove("menu-open")
 }
 
 //bookmark item点击事件，需要分别处理下面的不同子元素点击
@@ -89,7 +94,7 @@ function handleBookmarkItemClick(e) {
     return handleCollect(e)
   }
   if (classList.includes("icon-menu")) {
-    return handleCardMenu(e)
+    return handleOCardMenu(e)
   }
   if (classList.includes("del-icon")) {
     return handleDelCollect(e)
@@ -157,6 +162,9 @@ export const initGlobalListener = function () {}
 export const initBookmarkListener = function () {
   Array.from(document.querySelectorAll("#bookmark,#collect")).forEach((e) => {
     e.addEventListener("click", handleBookmarkItemClick)
+  })
+  Array.from(document.querySelectorAll(".bookmark-item")).forEach((e) => {
+    e.addEventListener("mouseleave", handleBookmarkItemBlur)
   })
 }
 
