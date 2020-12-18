@@ -256,7 +256,7 @@ body {
 }
 
 @media (max-width: 1280px) {
-  #bookmark,#collect {
+  #bookmark, #collect, #search-result {
     width: 90%;
   }
   .bookmark-li {
@@ -264,7 +264,7 @@ body {
   }
 }
 @media (max-width: 1024px) {
-  #bookmark,#collect {
+  #bookmark, #collect, #search-result {
     width: 90%;
   }
   .bookmark-li {
@@ -272,7 +272,7 @@ body {
   }
 }
 @media (max-width: 640px) {
-  #bookmark,#collect {
+  #bookmark, #collect, #search-result {
     width: 90%;
   }
   .bookmark-li {

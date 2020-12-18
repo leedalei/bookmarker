@@ -210,6 +210,9 @@ function hideOptions(){
 // 注册全局监听器
 export const initGlobalListener = function () {
   document.getElementsByTagName('body')[0].addEventListener('click',hideOptions)
+  document.getElementsByTagName('body')[0].addEventListener('click',() => {
+    document.querySelector(".form-item").classList.remove("mode-open")
+  })
 }
 
 //注册收藏列表相关监听器
@@ -218,7 +221,8 @@ export const initClickListener = function () {
     e.addEventListener("click", bookmarkEventDelegation)
   })
   document.querySelector(".form-item").addEventListener("click", (e) => {
-    document.querySelector(".form-item").classList.toggle("mode-open")
+    e.currentTarget.classList.toggle("mode-open")
+    e.stopPropagation()
   })
   Array.from(document.querySelectorAll(".form-item svg")).forEach((e) => {
     e.addEventListener("click", switchTabTo)
@@ -230,7 +234,6 @@ export const initMouseLeaveListener = () => {
     e.addEventListener("mouseleave", handleBookmarkItemBlur)
   })
 }
-
 
 //注册select监听器
 export const initSelectListener = function () {
