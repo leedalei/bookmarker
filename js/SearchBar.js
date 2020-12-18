@@ -1,6 +1,6 @@
 import { Render } from "./Render"
 import { debounce } from './util'
-import {bookmarkEventDelegation} from './event'
+import { bookmarkEventDelegation } from './event'
 let renderer = new Render(false)
 export class SearchBar {
   constructor() {
@@ -21,10 +21,13 @@ export class SearchBar {
   searchOutside(e) {
     if (e.which === 13) {
       var obj = document.querySelectorAll(".search-select")[0]
-      var index = obj.selectedIndex
-      var value = obj.options[index].value
+      const { value } = obj.dataset
       const inputValue = e.target.value
       let url = ""
+      if (!inputValue) {
+        alert("写点什么在搜索吧！老铁。")
+        return
+      }
       switch (value) {
         case "baidu":
           url = "https://baidu.com/s?wd="

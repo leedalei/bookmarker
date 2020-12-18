@@ -77,13 +77,18 @@ function handleCollapse(e) {
   icon.classList.toggle("btn-collapse--act")
 }
 // 卡片菜单
-function handleOCardMenu(e) {
-  let curFolder = e.target.parentNode
-  curFolder.querySelector(".menu-box").classList.toggle("menu-open")
+function handleCardMenu(e) {
+  e.target.parentNode.querySelector(".menu-box").classList.toggle("menu-open")
+  e.stopPropagation()
+}
+// 卡片Li点击
+function handleMenuLi(e) {
+
 }
 
 // bookmark-item失去hover事件
 function handleBookmarkItemBlur(e) {
+  console.log(e.currentTarget)
   e.currentTarget.querySelector(".menu-box").classList.remove("menu-open")
 }
 
@@ -97,7 +102,7 @@ export const bookmarkEventDelegation = (e) => {
     return handleCollect(e)
   }
   if (classList.includes("icon-menu")) {
-    return handleOCardMenu(e)
+    return handleCardMenu(e)
   }
   if (classList.includes("del-icon")) {
     return handleDelCollect(e)
@@ -107,31 +112,6 @@ export const bookmarkEventDelegation = (e) => {
   }
   if (classList.includes("bookmark-item")) {
     return handleJump(e)
-  }
-}
-
-// 搜索
-function search(e) {
-  if (e.which === 13) {
-    var obj = document.querySelectorAll(".search-select")[0]
-    const {value} = obj.dataset
-    const inputValue = e.target.value
-    let url = ""
-    switch (value) {
-      case "baidu":
-        url = "https://baidu.com/s?wd="
-        break
-      case "google":
-        url = "https://www.google.com/search?q="
-        break
-      case "bing":
-        url = "https://www.bing.com/search?q="
-        break
-      case "sougou":
-        url = "https://www.sogou.com/web?query="
-        break
-    }
-    window.open(`${url}${inputValue}`, "_blank")
   }
 }
 
@@ -215,23 +195,25 @@ export const initGlobalListener = function () {
   })
 }
 
-//注册收藏列表相关监听器
-export const initClickListener = function () {
+// 注册mouseleave相关监听器
+export const initMouseLeaveListener = () => {
+  console.log(document.querySelectorAll(".bookmark-item"))
+  Array.from(document.querySelectorAll(".bookmark-item")).forEach((e) => {
+    console.log(e)
+    e.addEventListener("mouseleave", handleBookmarkItemBlur)
+  })
+}
+// 注册按钮点击相关监听
+export const initIconClickListener = () => {
   Array.from(document.querySelectorAll("#bookmark,#collect")).forEach((e) => {
     e.addEventListener("click", bookmarkEventDelegation)
-  })
-  document.querySelector(".form-item").addEventListener("click", (e) => {
-    e.currentTarget.classList.toggle("mode-open")
-    e.stopPropagation()
   })
   Array.from(document.querySelectorAll(".form-item svg")).forEach((e) => {
     e.addEventListener("click", switchTabTo)
   })
-}
-// 注册mouseleave相关监听器
-export const initMouseLeaveListener = () => {
-  Array.from(document.querySelectorAll(".bookmark-item")).forEach((e) => {
-    e.addEventListener("mouseleave", handleBookmarkItemBlur)
+  document.querySelector(".form-item").addEventListener("click", (e) => {
+    e.currentTarget.classList.toggle("mode-open")
+    e.stopPropagation()
   })
 }
 
@@ -247,8 +229,7 @@ export const initSelectListener = function () {
 
 // 全部一起注册，冚家富贵
 export const initAllListener = function () {
-  initClickListener()
-  initMouseLeaveListener()
+  initIconClickListener()
   initGlobalListener()
   initSelectListener()
 }

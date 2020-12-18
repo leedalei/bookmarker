@@ -17,10 +17,10 @@ function getModeData() {
 
 
 async function main() {
+  getModeData()
   new Render(true)
   initAllListener() //然后注册所有的事件监听器
   new SearchBar()
-  getModeData()
 }
 
 main()
