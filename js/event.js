@@ -98,8 +98,7 @@ function handleBookmarkItemClick(e) {
 function search(e) {
   if (e.which === 13) {
     var obj = document.querySelectorAll(".search-select")[0]
-    var index = obj.selectedIndex
-    var value = obj.options[index].value
+    const {value} = obj.dataset
     const inputValue = e.target.value
     let url = ""
     switch (value) {
@@ -142,6 +141,44 @@ function switchMode(modeData) {
   document.querySelector("body").setAttribute("color-mode", modeData)
 }
 
+// 获取value/options 元素
+function getOptionsEle(e){
+	const childrenNode = e.parentNode.childNodes
+	const children = []
+	childrenNode.forEach(item=>{
+		if(item.nodeType === 1){
+			children.push(item)
+		}
+	})
+	return children
+}
+
+// 显示隐藏 select
+function handleSelect(e){
+	const valueEle = getOptionsEle(e.target)[0]
+	const optionsEle = getOptionsEle(e.target)[1]
+	const optionsStatus = optionsEle.style.display
+	if(optionsStatus === '' || optionsStatus === 'none'){
+		optionsEle.style.display = 'block'
+		valueEle.classList.add('show')
+	} else {
+		optionsEle.style.display = 'none'
+		valueEle.classList.remove('show')
+	}
+}
+
+// 点击select
+function onSelect(e){
+	const { value } = e.target.dataset
+	const label = e.target.innerText
+	const optionsEle = e.target.parentNode
+	optionsEle.style.display = 'none'
+	const valueEl = getOptionsEle(optionsEle)[0]
+	valueEl.dataset.value = value
+	valueEl.innerText = label
+	valueEl.classList.remove('show')
+}
+
 // 注册全局监听器
 export const initGlobalListener = function () {}
 
@@ -172,10 +209,21 @@ export const initSettingListener = function () {
   })
 }
 
+//注册select监听器
+export const initSelectListener = function () {
+	Array.from(document.querySelectorAll(".select-value")).forEach((e) => {
+    e.addEventListener("click", handleSelect)
+  })
+	Array.from(document.querySelectorAll(".select-option")).forEach((e) => {
+    e.addEventListener("click", onSelect)
+  })
+}
+
 // 全部一起注册，冚家富贵
 export const initAllListener = function () {
   initGlobalListener()
   initBookmarkListener()
   initSearchListener()
   initSettingListener()
+  initSelectListener()
 }
