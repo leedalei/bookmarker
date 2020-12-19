@@ -15,16 +15,20 @@ export class Render {
           </g>
       </g>
     </svg>`
-    this.dataError = `
-    <li class="no-data">
-      <img src="./img/empty.svg">
-      <p>暂无置顶嗷，铁汁</p>
-    </li>`
   }
+  // 初始化
   async init() {
     await this.initFavorite()
     await this.initCollect()
   }
+  dataError(value = "暂无数据哦，铁子。") {
+    return `
+    <li class="no-data">
+      <img src="./img/empty.svg">
+      <p>${value}</p>
+    </li>`
+  }
+
   //注册置顶栏
   async initFavorite() {
     let res = await getStorageData("collect")
@@ -69,7 +73,7 @@ export class Render {
       </li>`
       }
     } else {
-      html += this.dataError
+      html += this.dataError("暂无置顶哦，铁子。")
     }
     html += `</ul></div>`
     let collectEl = document.getElementById("collect")
@@ -157,7 +161,7 @@ export class Render {
         }
       }
     } else {
-      html += this.dataError
+      html += this.dataError()
     }
     html += `</ul></div>`
     for (let item of data.children) {
@@ -217,7 +221,7 @@ export class Render {
       </li>`
       }
     } else {
-      html += this.dataError
+      html += this.dataError("暂无搜索结果哦，铁子。")
     }
     html += `</ul></div>`
     let resultEle = document.getElementById("search-result")

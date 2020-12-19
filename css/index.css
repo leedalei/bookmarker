@@ -240,6 +240,7 @@ body {
   flex-direction: column;
   align-items: center;
   width: 100%;
+  margin-top: 12px;
   margin-bottom: 24px;
 }
 .no-data img{
