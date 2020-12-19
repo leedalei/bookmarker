@@ -19,6 +19,9 @@
   --folder-botton: #eee;
   --setting-line: #eee;
   --setting-icon: #555;
+  --switch-bg: #eaeaea;
+  --switch-checked-bg: #64bd63;
+  --switch-icon-bg: #fff;
 }
 [color-mode=dark] {
   --body-bg: #323336;
@@ -41,6 +44,9 @@
   --folder-botton: transparent;
   --setting-line: #555;
   --setting-icon: #dedede;
+  --switch-bg: #2F2F2F;
+  --switch-checked-bg: #64bd63;
+  --switch-icon-bg: #222;
 }
 
 /* 如果浏览器支持自动切换黑暗模式特性 */
@@ -67,6 +73,9 @@
     --folder-botton: transparent;
     --setting-line: #555;
     --setting-icon: #dedede;
+    --switch-bg: #2F2F2F;
+    --switch-checked-bg: #64bd63;
+    --switch-icon-bg: #222;
   }
   [color-mode=light] {
     --body-bg: #fff;
@@ -89,5 +98,8 @@
     --folder-botton: #eee;
     --setting-line: #eee;
     --setting-icon: #555;
+    --switch-bg: #eaeaea;
+    --switch-checked-bg: #64bd63;
+    --switch-icon-bg: #fff;
   }
 }

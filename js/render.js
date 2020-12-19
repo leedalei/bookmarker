@@ -74,11 +74,9 @@ export class Render {
     html += `</ul></div>`
     let collectEl = document.getElementById("collect")
     collectEl.innerHTML = html
-    this.initMouseLeaveListener()
   }
   // 隐藏item的menu
   handleBookmarkItemBlur(e) {
-    console.log(e.currentTarget)
     e.currentTarget.querySelector(".menu-box").classList.remove("menu-open")
   }
   // 监听鼠标移动
@@ -100,6 +98,7 @@ export class Render {
           main.innerHTML += await this.createCollectDom(item)
         }
         document.body.appendChild(main)
+        this.initMouseLeaveListener()
         resolve()
       })
     })
@@ -166,7 +165,6 @@ export class Render {
         html += await this.createCollectDom(item)
       }
     }
-    this.initMouseLeaveListener()
     return html
   }
 
@@ -225,6 +223,7 @@ export class Render {
     let resultEle = document.getElementById("search-result")
     resultEle.style.display = 'block'
     resultEle.innerHTML = html
+    this.initMouseLeaveListener()
   }
 }
 

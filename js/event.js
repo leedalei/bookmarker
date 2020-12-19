@@ -85,12 +85,6 @@ function handleMenuLi(e) {
 
 }
 
-// bookmark-item失去hover事件
-function handleBookmarkItemBlur(e) {
-  console.log(e.currentTarget)
-  e.currentTarget.querySelector(".menu-box").classList.remove("menu-open")
-}
-
 //bookmark item事件代理 Event delegation
 export const bookmarkEventDelegation = (e) => {
   let classList = Array.from(e.target.classList)
@@ -112,6 +106,15 @@ export const bookmarkEventDelegation = (e) => {
   if (classList.includes("bookmark-item")) {
     return handleJump(e)
   }
+}
+
+//setting-box事件代理 Event delegation
+export const settingBoxEventDelegation = (e) => {
+  let classList = Array.from(e.target.classList)
+  e.stopPropagation()
+}
+function hideSettingBox() {
+  document.querySelector(".setting-box").classList.remove("setting-open")
 }
 
 // 切换颜色模式
@@ -189,29 +192,29 @@ function hideOptions(){
 // 注册全局监听器
 export const initGlobalListener = function () {
   document.getElementsByTagName('body')[0].addEventListener('click',hideOptions)
+  document.getElementsByTagName('body')[0].addEventListener('click',hideSettingBox)
   document.getElementsByTagName('body')[0].addEventListener('click',() => {
     document.querySelector(".form-item").classList.remove("mode-open")
   })
 }
 
-// 注册mouseleave相关监听器
-export const initMouseLeaveListener = () => {
-  console.log(document.querySelectorAll(".bookmark-item"))
-  Array.from(document.querySelectorAll(".bookmark-item")).forEach((e) => {
-    console.log(e)
-    e.addEventListener("mouseleave", handleBookmarkItemBlur)
-  })
-}
 // 注册按钮点击相关监听
 export const initIconClickListener = () => {
   Array.from(document.querySelectorAll("#bookmark,#collect")).forEach((e) => {
     e.addEventListener("click", bookmarkEventDelegation)
+  })
+  Array.from(document.querySelectorAll(".setting-box")).forEach((e) => {
+    e.addEventListener("click", settingBoxEventDelegation)
   })
   Array.from(document.querySelectorAll(".form-item svg")).forEach((e) => {
     e.addEventListener("click", switchTabTo)
   })
   document.querySelector(".form-item").addEventListener("click", (e) => {
     e.currentTarget.classList.toggle("mode-open")
+    e.stopPropagation()
+  })
+  document.querySelector(".setting-icon").addEventListener("click", (e) => {
+    e.currentTarget.parentNode.querySelector(".setting-box").classList.toggle("setting-open")
     e.stopPropagation()
   })
 }
