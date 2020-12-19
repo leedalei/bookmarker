@@ -30,7 +30,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid #dfe1e5;
+  border: 1px solid var(--input-border);
   box-shadow: none;
   border-radius: 24px;
   z-index: 3;
@@ -39,7 +39,6 @@ body {
   padding: 0 16px;
   width: 482px;
   transition: all .3s ease;
-  border-color: var(--input-border);
   background-color: var(--input-bg);
 }
 .input-box:hover {
@@ -75,8 +74,7 @@ body {
   margin-bottom: 64px;
 }
 .bookmark-folder {
-  border-bottom: 1px solid #eee;
-  border-color: var(--folder-botton);
+  border-bottom: 1px solid var(--folder-botton);
 }
 .bookmark-header {
   display: flex;
@@ -131,11 +129,10 @@ body {
   z-index: 1;
   margin: 12px 10px;
   padding: 32px 24px 16px;
-  border: 1px solid #eee;
+  border: 1px solid var(--item-border);
   border-radius: 14px;
   cursor: pointer;
   transition: all .3s ease;
-  border-color: var(--item-border);
 }
 .bookmark-item::before{
   position: absolute;
@@ -197,8 +194,7 @@ body {
   padding: 4px;
   margin-right: 16px;
   border-radius: 100%;
-  border: 1px solid #eee;
-  border-color: var(--item-border);
+  border: 1px solid var(--item-border);
 }
 .bookmark-item-url {
   color: var(--item-url);
@@ -244,6 +240,7 @@ body {
   flex-direction: column;
   align-items: center;
   width: 100%;
+  margin-top: 12px;
   margin-bottom: 24px;
 }
 .no-data img{

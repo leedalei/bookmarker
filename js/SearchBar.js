@@ -60,7 +60,6 @@ export class SearchBar {
       })
       chrome.bookmarks.search(query, async (data) => {
         await renderer.initSearchResult(data)
-        renderer.initMouseLeaveListener() // 重新监听
         document.querySelector("#search-result").addEventListener('click',bookmarkEventDelegation)
       })
     } else {

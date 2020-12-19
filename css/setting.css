@@ -102,9 +102,8 @@
   z-index: 6;
   background-color: var(--item-menu-bg);
   list-style: none;
-  border: 1px solid #eee;
-  border-color: var(--item-menu-border);
-  color: #333;
+  border: 1px solid var(--item-menu-border);
+  color: var(--item-title);
   border-radius: 12px 0 12px 12px;
   right: 40px;
   top: 24px;
@@ -112,6 +111,7 @@
   transform-origin: right top;
   box-shadow: 1px 2px 12px rgba(121, 119, 119, 12%);
   transition: all .3s ease;
+  overflow: hidden;
 }
 .bookmark-item .menu-box.menu-open {
   transform: scale(1);
@@ -132,7 +132,6 @@
   user-select: none;
 }
 .setting-icon {
-  display: none;
   position: absolute;
   right: 72px;
   top: 32px;
@@ -145,17 +144,20 @@
   fill: var(--setting-icon);
 }
 .setting-box {
-  display: none;
   position: absolute;
   z-index: 99;
-  right: 110px;
-  top: 56px;
+  right: 120px;
+  top: 72px;
   width: 320px;
-  border-radius: 12px;
+  border-radius: 12px 0 12px 12px;
   background-color: var(--item-bg);
-  border: 1px solid #f6f6f6;
-  border-color: var(--item-border);
-  border-color: rgba(115, 206, 113, .48);
+  border: 1px solid var(--item-border);
+  transform: scale(0);
+  transform-origin: top right;
+  transition: all .3s ease;
+}
+.setting-box.setting-open {
+  transform: scale(1);
 }
 .setting-box::before {
   position: absolute;
@@ -185,16 +187,12 @@
   display: flex;
   align-items: center;
   padding: 24px 42px;
-  border-bottom: 1px solid #eee;
-  border-color: var(--setting-line);
+  border-bottom: 1px solid var(--setting-line);
 }
 .setting-box > .box-header img {
   height: 32px;
   width: 32px;
-  border-radius: 12px;
   margin-right: 18px;
-  background-color: #333;
-  box-shadow: 0 4px 6px rgba(137, 140, 144, .25);
 }
 .setting-box > .box-header p {
   font-size: 15px;
@@ -209,8 +207,7 @@
   color: var(--item-title);
 }
 .setting-box > .box-content > .box-item:not(:last-child) {
-  border-bottom: 1px solid #eee;
-  border-color: var(--setting-line);
+  border-bottom: 1px solid var(--setting-line);
 }
 .setting-box > .box-content .item-li {
   display: flex;
@@ -219,3 +216,43 @@
 .setting-box > .box-content .item-li:not(:last-child) {
   margin-bottom: 12px;
 }
+
+/* switch按钮 */
+.mui-switch {
+	width: 34px;
+	height: 20px;
+	position: relative;
+	border-radius: 20px;
+	background-clip: content-box;
+	display: inline-block;
+	-webkit-appearance: none;
+	user-select: none;
+	outline: none;
+	cursor: pointer;
+	background-color: var(--switch-bg);
+}
+.mui-switch:before {
+	content: '';
+	width: 14px;
+	height: 14px;
+	position: absolute;
+	top: 3px;
+	left: 3px;
+	border-radius: 8px;
+	background-color: var(--switch-icon-bg);
+}
+.mui-switch:checked {
+	background-color: var(--switch-checked-bg);
+}
+.mui-switch:checked:before {
+  left: 17px;
+  background-color: #fff;
+}
+.mui-switch.mui-switch-anim { transition: border cubic-bezier(0, 0, 0, 1) 0.4s, box-shadow cubic-bezier(0, 0, 0, 1) 0.4s; }
+.mui-switch.mui-switch-anim:before { transition: left 0.3s; }
+.mui-switch.mui-switch-anim:checked {
+	box-shadow: var(--switch-checked-bg) 0 0 0 16px inset;
+	background-color: var(--switch-checked-bg);
+	transition: border ease 0.4s, box-shadow ease 0.4s, background-color ease 1.2s;
+}
+.mui-switch.mui-switch-anim:checked:before { transition: left 0.3s; }
