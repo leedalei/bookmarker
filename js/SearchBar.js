@@ -11,6 +11,7 @@ export class SearchBar {
     this.initSearchOutside()
     this.initSearchInside()
   }
+
   // 注册搜索外部
   initSearchOutside() {
     document
@@ -43,6 +44,11 @@ export class SearchBar {
           break
       }
       window.open(`${url}${inputValue}`, "_blank")
+      e.target.value = ''
+      document.querySelectorAll("#bookmark,#collect").forEach((ele) => {
+        ele.style.display = "block"
+      })
+      document.querySelector("#search-result").style.display = "none"
     }
   }
   //注册搜索本地
@@ -67,7 +73,6 @@ export class SearchBar {
         ele.style.display = "block"
       })
       document.querySelector("#search-result").style.display = "none"
-      
     }
   }
 }
