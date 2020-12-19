@@ -10,7 +10,6 @@ function handleCollect(e) {
     data.push({ url, title, category })
     chrome.storage.sync.set({ collect: data })
     await renderer.initFavorite(url, title, category)
-    initMouseLeaveListener() //重新注册监听器
     updateCollectStatus(true)
   })
   e.stopPropagation()

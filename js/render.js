@@ -74,6 +74,18 @@ export class Render {
     html += `</ul></div>`
     let collectEl = document.getElementById("collect")
     collectEl.innerHTML = html
+    this.initMouseLeaveListener()
+  }
+  // 隐藏item的menu
+  handleBookmarkItemBlur(e) {
+    console.log(e.currentTarget)
+    e.currentTarget.querySelector(".menu-box").classList.remove("menu-open")
+  }
+  // 监听鼠标移动
+  initMouseLeaveListener() {
+    Array.from(document.querySelectorAll(".bookmark-item")).forEach((e) => {
+      e.addEventListener("mouseleave", this.handleBookmarkItemBlur)
+    })
   }
 
   //注册书签列表
@@ -154,6 +166,7 @@ export class Render {
         html += await this.createCollectDom(item)
       }
     }
+    this.initMouseLeaveListener()
     return html
   }
 
