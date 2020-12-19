@@ -1,6 +1,7 @@
 import { Render } from "./Render"
 import { SearchBar } from "./SearchBar"
 import { Confirm } from "./Confirm"
+import { EditBox } from './EditBox'
 
 import { initAllListener } from "./event"
 
@@ -22,6 +23,8 @@ async function main() {
   new Render(true)
   initAllListener() //然后注册所有的事件监听器
   new SearchBar()
+  // let editBox = new EditBox({title: "title", link: "https://biandan.me", type: "edit"})
+  // editBox.show()
   // let confirm = new Confirm({text:"你真的要删除吗？鸡掰",type:"warning"})
   // confirm.show()
 }
