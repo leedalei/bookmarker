@@ -1,40 +1,40 @@
 import { Render } from "./Render"
-import { DefaultFunc, ItemFunc } from "./Function"
+import { Confirm } from "./Confirm"
+import { EditBox } from './EditBox'
+import { switchMode, addCollect, delCollect, updateCollectStatus, handleCollapse, handleJump, removeBookmark } from "./Function"
 
 let renderer = new Render(false)
-let func = new DefaultFunc()
-let itemFunc = new ItemFunc()
 
 // 切换颜色模式
 function handleSwitchClick(e) {
   let { value } = e.currentTarget.dataset
   switch (value) {
     case "light":
-      func.switchMode("light")
+      switchMode("light")
       break
     case "dark":
-      func.switchMode("dark")
+      switchMode("dark")
       break
     case "auto":
-      func.switchMode("auto")
+      switchMode("auto")
       break
   }
 }
 
 // 添加收藏
 function handleCollect(e) {
-  itemFunc.addCollect(e.target.dataset).then(() => {
+  addCollect(e.target.dataset).then(() => {
     renderer.initFavorite()
-    itemFunc.updateCollectStatus(true)
+    updateCollectStatus(true)
   })
   e.stopPropagation()
 }
 // 删除收藏
 function handleDelCollect(e) {
   const { url } = e.target.dataset
-  itemFunc.delCollect(url).then(() => {
+  delCollect(url).then(() => {
     renderer.initFavorite() //重新渲染
-    itemFunc.updateCollectStatus(false, url)
+    updateCollectStatus(false, url)
   })
   e.stopPropagation()
 }
@@ -58,7 +58,48 @@ function handleCardMenu(e) {
 }
 // 卡片Li点击
 function handleMenuLi(e) {
-  
+  const { type } = e.target.dataset
+  const option = e.target.parentNode.dataset
+  const classList = Array.from(e.currentTarget.classList)
+  const ele = e.target.parentNode.parentNode
+  switch(type) {
+    case 'edit':
+      let editBox = new EditBox(option, type)
+      e.target.parentNode.classList.remove("menu-open")
+      editBox.show()
+      break
+    case 'remove':
+      if(classList.includes('collect')) {
+        delCollect(option.url).then(() => {
+          return removeBookmark(option.id)
+        }).then(() => {
+          ele.remove()
+        })
+        return
+      }
+      if(classList.includes('bookmark')) {
+        removeBookmark(option.id).then(() => {
+          return delCollect(option.url)
+        }).then(() => {
+          renderer.initFavorite()
+          ele.remove()
+        })
+        return
+      }
+      if(classList.includes('search-result')) {
+        removeBookmark(option.id).then(() => {
+          return delCollect(option.url)
+        }).then(() => {
+          renderer.initFavorite()
+          renderer.initCollect()
+          renderer.initSearchResult()
+          ele.remove()
+        })
+        return
+      }
+      break
+  }
+  e.stopPropagation()
 }
 
 //bookmark item事件代理 Event delegation
@@ -73,14 +114,17 @@ export const bookmarkEventDelegation = (e) => {
   if (classList.includes("icon-menu")) {
     return handleCardMenu(e)
   }
+  if (classList.includes("menu-li")) {
+    return handleMenuLi(e)
+  }
   if (classList.includes("del-icon")) {
     return handleDelCollect(e)
   }
   if (classList.includes("bookmark-header")) {
-    return func.handleCollapse(e)
+    return handleCollapse(e)
   }
   if (classList.includes("bookmark-item")) {
-    return func.handleJump(e)
+    return handleJump(e)
   }
 }
 //setting-box事件代理 Event delegation

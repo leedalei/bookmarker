@@ -1,8 +1,9 @@
 export class EditBox {
-  constructor(option) {
-    this.type = option.type
+  constructor(option, type) {
+    this.type = type
     this.title = option.title
-    this.link = option.link
+    this.url = option.url
+    this.id = option.id
   }
   // 显示
   show() {
@@ -22,7 +23,7 @@ export class EditBox {
       </div>
       <div class="box-li">
         <p>链接</p>
-        <input id="link-input" name="link-input" placeholder="title" value="${this.link}">
+        <input id="url-input" name="url-input" placeholder="title" value="${this.url}">
       </div>
       <div class="box-footer">
         <button class="edit-button btn-cancel">取消</button>
@@ -41,17 +42,18 @@ export class EditBox {
   }
   initEventListener(){
     document.querySelector("#edit-box .btn-cancel").addEventListener("click",()=>{
-      console.log("取消编辑")
       this.hide()
     })
     document.querySelector("#edit-box .btn-confirm").addEventListener("click",()=>{
       if (this.type == 'edit') {
-        console.log('确认编辑')
+        const title = document.querySelector("#edit-box #title-input").value
+        const url = document.querySelector("#edit-box #url-input").value
+        const data = { title, url }
+        chrome.bookmarks.update(this.id, data, res => {
+          console.log(res)
+        })
       } else {
-        console.log('确认添加')
       }
-      console.log("title", this.title)
-      console.log("link", this.link)
       this.hide()
     })
   }
