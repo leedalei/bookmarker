@@ -7,5 +7,14 @@
   },
   "searchPlaceholder": {
     "message":"検索してください、バディ"
+  },
+  "noStickyData":{
+    "message":"无置顶数据，铁子"
+  },
+  "noData":{
+    "message":"暂无数据嗷，兄弟"
+  },
+  "noSearchResult":{
+    "message":"没找到匹配的书签嗷~"
   }
 }

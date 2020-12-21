@@ -6,6 +6,36 @@
     "message": "The best bookmark plugin in the Eastern Hemisphere"
   },
   "searchPlaceholder": {
-    "message":"Please search, buddy"
+    "message":"Type to search for bookmarks locally, type enter to enable search engine"
+  },
+  "noStickyData":{
+    "message":"No sticky data"
+  },
+  "noData":{
+    "message":"no data, sorry"
+  },
+  "noSearchResult":{
+    "message":"no search result, sorry"
+  },
+  "stickyFolderName":{
+    "message": "StickyBookmark"
+  },
+  "settingOpenFolder":{
+    "message":"Expand bookmarks"
+  },
+  "settingBlockCSDN":{
+    "message":"Block CSDN"
+  },
+  "settingEngine":{
+    "message":"Search engine"
+  },
+  "settingLanguage":{
+    "message":"Language"
+  },
+  "cardEdit":{
+    "message":"Edit"
+  },
+  "cardDelete":{
+    "message":"Delete"
   }
 }

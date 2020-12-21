@@ -17,7 +17,7 @@
   transition: all ease 0.5s;
 }
 .select-container.show .select-options {
-	max-height: 132px !important;
+	max-height: 140px !important;
 }
 .select-container.show svg {
   transform: rotate(180deg);

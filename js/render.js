@@ -55,7 +55,7 @@ export class Render {
     let html = `<div class="bookmark-folder">
   <div class="bookmark-header">
     <span class="btn-collapse unclick"></span>
-    <h3 class="bookmark-title unclick">置顶收藏</h3>
+    <h3 class="bookmark-title unclick">置顶书签</h3>
   </div>
   <ul class="bookmark-ul">`
     if (data.length > 0) {
@@ -146,8 +146,7 @@ export class Render {
               ${data.url}
             </p>
             <div class="bookmark-info">
-              <p class="unclick">${storageData.search(data.url) === -1 ? "未收藏" : "已收藏"
-        }</p>
+              <p class="unclick">&nbsp;</p>
               <img class="icon icon-collect ${storageData.search(data.url) === -1 ? "" : "icon-collect--act"
         }" data-id="${data.id}" data-url="${data.url}" data-title="${data.title}" data-category="${category}" src="${storageData.search(data.url) === -1
           ? "./img/collect.svg"
@@ -221,8 +220,7 @@ export class Render {
             ${item.url}
           </p>
           <div class="bookmark-info">
-            <p class="unclick">${storageData.search(item.url) === -1 ? "未收藏" : "已收藏"
-          }</p>
+            <p class="unclick">&nbsp;</p>
             <img class="icon icon-collect ${storageData.search(item.url) === -1 ? "" : "icon-collect--act"
           }" data-url="${item.url}" data-title="${item.title}" src="${storageData.search(item.url) === -1
             ? "./img/collect.svg"
