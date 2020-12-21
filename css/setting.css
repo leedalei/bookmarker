@@ -271,7 +271,7 @@
   position: relative;
   padding: 6px 4px;
   border-radius: 8px;
-  background-color: #d8fae1;
+  background-color: var(--switch-bg);
 }
 .switch-tab svg{
   width: 18px;
@@ -285,6 +285,7 @@
   height: 22px;
   left: 4px;
   top: 4px;
+  opacity: .9;
   background-color: #ffffff;
   z-index: 0;
   transition: all ease .3s;
