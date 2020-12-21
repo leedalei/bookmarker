@@ -36,7 +36,9 @@ export class SearchBar {
 
   async getLocalSetting(){
     let res = await getStorageData("engine")
-    this.setEngine("engine", res.engine)
+    if(res.engine){
+      this.setEngine("engine", res.engine)
+    }
   }
 
   setEngine(name,value){
