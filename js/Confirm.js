@@ -1,9 +1,11 @@
 export class Confirm{
-  constructor(option){
+  constructor(option, confirmClick, cancelClick){
     this.text = option.text
     this.confirmText = option.confirmText || '确定'
     this.cancelText = option.cancelText || '取消'
     this.type = option.type || 'warning' // info warning  warning下确认是红色
+    this.cancelClick = cancelClick
+    this.confirmClick = confirmClick
   }
   //显示
   show(){
@@ -35,12 +37,18 @@ export class Confirm{
     box.classList.remove("confirm-animation")
   }
   initEventListener(){
-    document.querySelector("#confirm .btn-cancel").addEventListener("click",()=>{
+    document.querySelector("#confirm .btn-cancel").addEventListener("click",() => {
       console.log("取消回调")
+      if (typeof this.cancelClick === 'function') {
+        this.cancelClick.apply(this, arguments)
+      }
       this.hide()
     })
-    document.querySelector("#confirm .btn-confirm").addEventListener("click",()=>{
+    document.querySelector("#confirm .btn-confirm").addEventListener("click",() => {
       console.log("确认回调")
+      if (typeof this.confirmClick === 'function') {
+        this.confirmClick.apply(this, arguments)
+      }
       this.hide()
     })
   }

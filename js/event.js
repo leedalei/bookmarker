@@ -61,7 +61,7 @@ function handleMenuLi(e) {
   const { type } = e.target.dataset
   const option = e.target.parentNode.dataset
   const classList = Array.from(e.currentTarget.classList)
-  const ele = e.target.parentNode.parentNode
+  const ele = e.target.parentNode.parentNode.parentNode
   switch(type) {
     case 'edit':
       let editBox = new EditBox(option, type)
@@ -69,34 +69,38 @@ function handleMenuLi(e) {
       editBox.show()
       break
     case 'remove':
-      if(classList.includes('collect')) {
-        delCollect(option.url).then(() => {
-          return removeBookmark(option.id)
-        }).then(() => {
-          ele.remove()
-        })
-        return
-      }
-      if(classList.includes('bookmark')) {
-        removeBookmark(option.id).then(() => {
-          return delCollect(option.url)
-        }).then(() => {
-          renderer.initFavorite()
-          ele.remove()
-        })
-        return
-      }
-      if(classList.includes('search-result')) {
-        removeBookmark(option.id).then(() => {
-          return delCollect(option.url)
-        }).then(() => {
-          renderer.initFavorite()
-          renderer.initCollect()
-          renderer.initSearchResult()
-          ele.remove()
-        })
-        return
-      }
+      let confirm = new Confirm({text:"你真的要删除吗？鸡掰",type:"warning"}, () => {
+        if(classList.includes('collect')) {
+          delCollect(option.url).then(() => {
+            return removeBookmark(option.id)
+          }).then(() => {
+            ele.remove()
+          })
+          return
+        }
+        if(classList.includes('bookmark')) {
+          removeBookmark(option.id).then(() => {
+            return delCollect(option.url)
+          }).then(() => {
+            renderer.initFavorite()
+            ele.remove()
+          })
+          return
+        }
+        if(classList.includes('search-result')) {
+          removeBookmark(option.id).then(() => {
+            return delCollect(option.url)
+          }).then(() => {
+            renderer.initFavorite()
+            renderer.initCollect()
+            renderer.initSearchResult()
+            ele.remove()
+          })
+          return
+        }
+      })
+      e.target.parentNode.classList.remove("menu-open")
+      confirm.show()
       break
   }
   e.stopPropagation()
