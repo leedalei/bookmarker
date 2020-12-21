@@ -120,8 +120,9 @@ export class Render {
   }
   //生成书签列表的dom结构
   async createCollectDom(data, category) {
-    let storageData = await getStorageData("collect")
-    storageData = JSON.stringify(storageData)
+    let storageDataOrigin = await getStorageData()
+    let storageData = JSON.stringify(storageDataOrigin.collect)
+
     let html = ""
     if (!data.children) {
       html += `<li class="bookmark-li flow-in-from-up">`
@@ -159,10 +160,10 @@ export class Render {
     }
     html = `<div class="bookmark-folder">
     <div class="bookmark-header">
-      <span class="btn-collapse btn-collapse--act unclick"></span>
+      <span class="btn-collapse ${storageDataOrigin.isOpenFolder ? "" : "btn-collapse--act"} unclick"></span>
       <h3 class="bookmark-title unclick">${data.title}</h3>
     </div>
-    <ul class="bookmark-ul" style="display:none">`
+    <ul class="bookmark-ul" style="display:${storageDataOrigin.isOpenFolder ? "flex" : "none"}">`
     //先把无children的处理完
     if (data.children.length) {
       for (let item of data.children) {

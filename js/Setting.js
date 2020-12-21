@@ -2,6 +2,13 @@ import { getStorageData, setStorageData } from "./store"
 import { SearchBar } from "./SearchBar"
 let searchBar = new SearchBar()
 
+//switch开关
+async function handleSwitchChange(e) {
+  let { checked,name } = e.currentTarget
+  await setStorageData({ [name]: checked })
+}
+
+//switchTab选择
 async function handleSwitchTabSelect(e) {
   let { name } = e.currentTarget.dataset
   let { idx, value } = e.target.dataset
@@ -18,13 +25,18 @@ export class Setting {
   }
   //获取数据回填
   async getLocalSetting() {
-    let res = await getStorageData("engine")
+    let res = await getStorageData()
     if(res.engine){
       this.setSwitchTabValue("engine", res.engine)
     }
-    let res2 = await getStorageData("language")
-    if(res2.language){
-      this.setSwitchTabValue("language", res2.language)
+    if(res.language){
+      this.setSwitchTabValue("language", res.language)
+    }
+    if(res.isOpenFolder!==undefined){
+      this.setSwitchValue("isOpenFolder",res.isOpenFolder)
+    }
+    if(res.isBlockCSDN!==undefined){
+      this.setSwitchValue("isBlockCSDN",res.isBlockCSDN)
     }
   }
   initEvents() {
@@ -37,13 +49,22 @@ export class Setting {
       e.stopPropagation()
     })
     //switchTab设置
+    Array.from(document.querySelectorAll(".switch")).forEach((ele) => {
+      ele.addEventListener("change", handleSwitchChange)
+    })
+    //switchTab设置
     Array.from(document.querySelectorAll(".switch-tab")).forEach((ele) => {
       ele.addEventListener("click", handleSwitchTabSelect)
     })
   }
+  //设置switch开关的value
+  setSwitchValue(name,value){
+    let curSwitch = document.querySelector(`.switch[name='${name}']`)
+    curSwitch.checked = value
+  }
   //设置swichTab的value
-  setSwitchTabValue(tabName, value) {
-    let curTab = document.querySelector(`.switch-tab[data-name='${tabName}']`)
+  setSwitchTabValue(name, value) {
+    let curTab = document.querySelector(`.switch-tab[data-name='${name}']`)
     let thumb = curTab.querySelector(".switch-tab-thumb")
     let switchTabItem = curTab.querySelector(
       `.switch-tab-item[data-value='${value}']`

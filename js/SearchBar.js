@@ -54,7 +54,7 @@ export class SearchBar {
       .addEventListener("keyup", this.searchOutside)
   }
   //搜索外部实际逻辑
-  searchOutside(e) {
+  async searchOutside(e) {
     if (e.which === 13) {
       var {value} = document.querySelector(".search-select").dataset
       const inputValue = e.currentTarget.value
@@ -76,8 +76,8 @@ export class SearchBar {
           url = "https://www.sogou.com/web?query="
           break
       }
-      console.log(`${url}${inputValue}`)
-      window.open(`${url}${inputValue}`, "_blank")
+      let res = await getStorageData()
+      window.open(`${url}${inputValue}${!!res.isBlockCSDN?"":" -csdn"}`, "_blank")
       e.currentTarget.value = ''
       document.querySelectorAll("#bookmark,#collect").forEach((ele) => {
         ele.style.display = "block"
