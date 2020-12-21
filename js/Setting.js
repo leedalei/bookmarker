@@ -19,9 +19,13 @@ export class Setting {
   //获取数据回填
   async getLocalSetting() {
     let res = await getStorageData("engine")
-    this.setSwitchTabValue("engine", res.engine)
+    if(res.engine){
+      this.setSwitchTabValue("engine", res.engine)
+    }
     let res2 = await getStorageData("language")
-    this.setSwitchTabValue("language", res2.language)
+    if(res2.language){
+      this.setSwitchTabValue("language", res2.language)
+    }
   }
   initEvents() {
     //打开设置
