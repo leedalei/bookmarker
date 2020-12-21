@@ -26,7 +26,6 @@ export class SearchBar {
       const inputValue = e.target.value
       let url = ""
       if (!inputValue) {
-        alert("写点什么在搜索吧！老铁。")
         return
       }
       switch (value) {

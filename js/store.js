@@ -1,5 +1,3 @@
-let storageData = null
-
 // 取
 export const getStorageData = (key) =>
   new Promise((resolve, reject) =>

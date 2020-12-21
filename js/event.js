@@ -1,7 +1,7 @@
 import { Render } from "./Render"
 import { Confirm } from "./Confirm"
 import { EditBox } from './EditBox'
-import { switchMode, addCollect, delCollect, updateCollectStatus, handleCollapse, handleJump, removeBookmark } from "./Function"
+import { switchMode, addCollect, delCollect, updateCollectStatus, handleCollapse, handleJump, removeBookmark } from "./function"
 
 let renderer = new Render(false)
 
@@ -175,8 +175,9 @@ function hideOptions(){
 
 // 注册全局监听器
 export const initGlobalListener = function () {
-  document.getElementsByTagName('body')[0].addEventListener('click', () => {
+  document.body.addEventListener('click', () => {
     hideOptions()
+    document.querySelector(".setting-icon").classList.toggle("setting-icon--act")
     document.querySelector(".setting-box").classList.remove("setting-open")
     document.querySelector(".form-item").classList.remove("mode-open")
   })
@@ -184,20 +185,21 @@ export const initGlobalListener = function () {
 
 // 注册按钮点击相关监听
 export const initIconClickListener = () => {
-  Array.from(document.querySelectorAll("#bookmark,#collect")).forEach((e) => {
-    e.addEventListener("click", bookmarkEventDelegation)
+  Array.from(document.querySelectorAll("#bookmark,#collect")).forEach((ele) => {
+    ele.addEventListener("click", bookmarkEventDelegation)
   })
-  Array.from(document.querySelectorAll(".setting-box")).forEach((e) => {
-    e.addEventListener("click", settingBoxEventDelegation)
+  Array.from(document.querySelectorAll(".setting-box")).forEach((ele) => {
+    ele.addEventListener("click", settingBoxEventDelegation)
   })
-  Array.from(document.querySelectorAll(".form-item svg")).forEach((e) => {
-    e.addEventListener("click", handleSwitchClick)
+  Array.from(document.querySelectorAll(".form-item svg")).forEach((ele) => {
+    ele.addEventListener("click", handleSwitchClick)
   })
   document.querySelector(".form-item").addEventListener("click", (e) => {
     e.currentTarget.classList.toggle("mode-open")
     e.stopPropagation()
   })
   document.querySelector(".setting-icon").addEventListener("click", (e) => {
+    e.currentTarget.classList.toggle("setting-icon--act")
     e.currentTarget.parentNode.querySelector(".setting-box").classList.toggle("setting-open")
     e.stopPropagation()
   })
@@ -205,11 +207,11 @@ export const initIconClickListener = () => {
 
 //注册select监听器
 export const initSelectListener = function () {
-	Array.from(document.querySelectorAll(".select-value")).forEach((e) => {
-    e.addEventListener("click", handleSelect)
+	Array.from(document.querySelectorAll(".select-value")).forEach((ele) => {
+    ele.addEventListener("click", handleSelect)
   })
-	Array.from(document.querySelectorAll(".select-option")).forEach((e) => {
-    e.addEventListener("click", onSelect)
+	Array.from(document.querySelectorAll(".select-option")).forEach((ele) => {
+    ele.addEventListener("click", onSelect)
   })
 }
 

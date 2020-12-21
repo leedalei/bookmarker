@@ -2,13 +2,13 @@ import { getStorageData } from "./store"
 
 // 获取颜色模式
 export function getModeData() {
-  chrome.storage.sync.get('mode',(res)=>{
-    let {mode} = res
-    if(!mode) {
-      mode = 'auto'
-      chrome.storage.sync.set({'mode': mode})
+  chrome.storage.sync.get("mode", (res) => {
+    let { mode } = res
+    if (!mode) {
+      mode = "auto"
+      chrome.storage.sync.set({ mode: mode })
     }
-    document.querySelector('body').setAttribute("color-mode", mode)
+    document.querySelector("body").setAttribute("color-mode", mode)
   })
 }
 // 切换颜色模式
@@ -34,7 +34,7 @@ export function handleCollapse(e) {
 
 // 删除收藏
 export function delCollect(url) {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     chrome.storage.sync.get("collect", (res) => {
       let data = JSON.parse(JSON.stringify(res.collect))
       data.forEach((item, index) => {
@@ -50,7 +50,7 @@ export function delCollect(url) {
 // 添加收藏
 export function addCollect(data) {
   const { id, url, title, category } = data
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     chrome.storage.sync.get("collect", (res) => {
       let data = JSON.parse(JSON.stringify(res.collect))
       data.push({ id, url, title, category })
@@ -91,8 +91,8 @@ export async function updateCollectStatus(isAddCollect, url) {
 
 //彻底移除bookmark
 export function removeBookmark(id) {
-  return new Promise(resolve => {
-    chrome.bookmarks.remove(id, res => {
+  return new Promise((resolve) => {
+    chrome.bookmarks.remove(id, (res) => {
       resolve(res)
     })
   })

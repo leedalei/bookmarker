@@ -1,6 +1,6 @@
 import { Render } from "./Render"
 import { SearchBar } from "./SearchBar"
-import { getModeData } from "./Function"
+import { getModeData } from "./function"
 
 import { Confirm } from "./Confirm"
 import { EditBox } from './EditBox'
