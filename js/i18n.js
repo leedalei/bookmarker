@@ -18,13 +18,11 @@ export function initI18n() {
     editBoxConfirm:i18n.getMessage('editBoxConfirm')
   }
   document.querySelector("#search-input").setAttribute("placeholder",i18nList.searchPlaceholder)
-  console.log(JSON.stringify(i18nList))
   for(let key in i18nList){
     initLanguageText(key, i18nList[key])
   }
 }
 function initLanguageText(key,value){
-  console.log(value)
   let ele = document.querySelector(`*[data-lang-text='${key}']`)
   if(ele){
     ele.innerText = value
