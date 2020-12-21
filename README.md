@@ -11,6 +11,7 @@ npm install
 
 npm run build
 ```
+注：每次更新js文件后都需要重新build，以为index.html引用的是webpack打包以后的包。
 
 ## 使用方法
 设置-扩展程序-开发者模式-加载已解压的应用程序-选择这个文件夹
