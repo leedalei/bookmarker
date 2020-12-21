@@ -3,18 +3,57 @@
     "message": "Bookmarker"
   },
   "appDesc": {
-    "message": "동반구 최고의 북마크 플러그인"
+    "message": "동반구에서 최고의 Chrome 즐겨 찾기 플러그인 만들기"
   },
   "searchPlaceholder": {
-    "message":"검색해주세요 친구"
+    "message":"직접 입력은 로컬에서 북마크를 검색 할 수 있습니다. 검색 엔진을 사용하려면 Enter 키를 누르세요."
   },
   "noStickyData":{
-    "message":"无置顶数据，铁子"
+    "message":"고정 된 데이터 없음"
   },
   "noData":{
-    "message":"暂无数据嗷，兄弟"
+    "message":"데이터 없음"
   },
   "noSearchResult":{
-    "message":"没找到匹配的书签嗷~"
+    "message":"일치하는 북마크가 없습니다.~"
+  },
+  "stickyFolderName":{
+    "message": "고정 된 책갈피"
+  },
+  "settingOpenFolder":{
+    "message":"책갈피 펼치기"
+  },
+  "settingBlockCSDN":{
+    "message":"CSDN 차단"
+  },
+  "settingEngine":{
+    "message":"기본 검색 엔진"
+  },
+  "settingLanguage":{
+    "message":"기본 언어"
+  },
+  "cardEdit":{
+    "message":"수정"
+  },
+  "cardDelete":{
+    "message":"지우다"
+  },
+  "editBoxTitle":{
+    "message":"표제"
+  },
+  "editBoxLink":{
+    "message":"웹 사이트 링크"
+  },
+  "editBoxCancel":{
+    "message":"취소"
+  },
+  "editBoxConfirm":{
+    "message":"확인"
+  },
+  "confirmBoxCancel":{
+    "message":"취소"
+  },
+  "confirmBoxConfirm":{
+    "message":"확인"
   }
 }

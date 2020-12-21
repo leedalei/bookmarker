@@ -37,5 +37,23 @@
   },
   "cardDelete":{
     "message":"撤去"
+  },
+  "editBoxTitle":{
+    "message":"見出し"
+  },
+  "editBoxLink":{
+    "message":"ウェブリンク"
+  },
+  "editBoxCancel":{
+    "message":"いいえ"
+  },
+  "editBoxConfirm":{
+    "message":"はい"
+  },
+  "confirmBoxCancel":{
+    "message":"いいえ"
+  },
+  "confirmBoxConfirm":{
+    "message":"はい"
   }
 }
