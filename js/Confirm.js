@@ -22,8 +22,8 @@ export class Confirm{
     box.innerHTML = `
       <p class="confirm-text">${this.text}</p>
       <div class="confirm-footer">
-        <button class="confirm-btn btn-cancel">${this.cancelText}</button>
-        <button class="confirm-btn btn-confirm ${this.type==='warnging'?'':'btn-confirm--warning'}">${this.confirmText}</button>
+        <button class="confirm-btn btn-cancel" data-lang-text="confirmBoxCancel">${this.cancelText}</button>
+        <button class="confirm-btn btn-confirm ${this.type==='warnging'?'':'btn-confirm--warning'}" data-lang-text="confirmBoxConfirm">${this.confirmText}</button>
       </div>
     `
     setTimeout(()=>{

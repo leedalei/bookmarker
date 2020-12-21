@@ -10,11 +10,11 @@ export class Render {
     await this.initFavorite()
     await this.initCollect()
   }
-  dataError(value = "暂无数据哦，铁子。") {
+  dataError(value = "暂无数据哦，铁子",languageText="noData") {
     return `
     <li class="no-data">
       <img src="./img/empty.svg">
-      <p>${value}</p>
+      <p data-lang-text="${languageText}">${value}</p>
     </li>`
   }
   itemMenuDOM(dataset) {
@@ -85,7 +85,7 @@ export class Render {
       </li>`
       }
     } else {
-      html += this.dataError("暂无置顶哦，铁子。")
+      html += this.dataError("暂无置顶哦，铁子。","noStickyData")
     }
     html += `</ul></div>`
     let collectEl = document.getElementById("collect")
@@ -231,7 +231,7 @@ export class Render {
       </li>`
       }
     } else {
-      html += this.dataError("暂无搜索结果哦，铁子。")
+      html += this.dataError("暂无搜索结果哦，铁子。","noSearchResult")
     }
     html += `</ul></div>`
     let resultEle = document.getElementById("search-result")

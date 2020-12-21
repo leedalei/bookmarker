@@ -19,16 +19,16 @@ export class EditBox {
     box.style.display = 'block'
     box.innerHTML = `
       <div class="box-li">
-        <p>标题</p>
+        <p data-lang-text="editBoxTitle">标题</p>
         <input id="title-input" name="itle-input" placeholder="title" value="${this.title}">
       </div>
       <div class="box-li">
-        <p>链接</p>
+        <p data-lang-text="editBoxLink">链接</p>
         <input id="url-input" name="url-input" placeholder="title" value="${this.url}">
       </div>
       <div class="box-footer">
-        <button class="edit-button btn-cancel">取消</button>
-        <button class="edit-button btn-confirm">确认</button>
+        <button class="edit-button btn-cancel" data-lang-text="editBoxCancel">取消</button>
+        <button class="edit-button btn-confirm" data-lang-text="editBoxConfirm">确认</button>
       </div>
     `
     setTimeout(()=>{

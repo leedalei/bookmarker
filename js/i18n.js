@@ -1,6 +1,6 @@
-function initI18n() {
+export function initI18n() {
   let i18n = chrome.i18n
-  this.i18n = {
+  let i18nList = {
     searchPlaceholder: i18n.getMessage('searchPlaceholder'),
     noStickyData: i18n.getMessage('noStickyData'),
     noData: i18n.getMessage('noData'),
@@ -11,6 +11,22 @@ function initI18n() {
     settingEngine: i18n.getMessage('settingEngine'),
     settingLanguage: i18n.getMessage('settingLanguage'),
     cardEdit: i18n.getMessage('cardEdit'),
-    cardDelete: i18n.getMessage('cardDelete')
+    cardDelete: i18n.getMessage('cardDelete'),
+    editBoxTitle:i18n.getMessage('editBoxTitle'),
+    editBoxLink:i18n.getMessage('editBoxLink'),
+    editBoxCancel:i18n.getMessage('editBoxCancel'),
+    editBoxConfirm:i18n.getMessage('editBoxConfirm')
+  }
+  document.querySelector("#search-input").setAttribute("placeholder",i18nList.searchPlaceholder)
+  console.log(JSON.stringify(i18nList))
+  for(let key in i18nList){
+    initLanguageText(key, i18nList[key])
+  }
+}
+function initLanguageText(key,value){
+  console.log(value)
+  let ele = document.querySelector(`*[data-lang-text='${key}']`)
+  if(ele){
+    ele.innerText = value
   }
 }
