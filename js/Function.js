@@ -59,6 +59,22 @@ export function addCollect(data) {
     })
   })
 }
+export function updateCollectData(value) {
+  return new Promise((resolve) => {
+    chrome.storage.sync.get("collect", (res) => {
+      let data = JSON.parse(JSON.stringify(res.collect))
+      data.forEach((item, index) => {
+        if (item.url === url) {
+          const category = { category: item.category }
+          const result = Object.assign({}, value, category)
+          data.splice(index, 1, result)
+        }
+      })
+      chrome.storage.sync.set({ collect: data })
+      resolve()
+    })
+  })
+}
 // 更新收藏的状态
 export async function updateCollectStatus(isAddCollect, url) {
   let storageData = await getStorageData("collect")

@@ -40,14 +40,14 @@ export class Confirm{
     document.querySelector("#confirm .btn-cancel").addEventListener("click",() => {
       console.log("取消回调")
       if (typeof this.cancelClick === 'function') {
-        this.cancelClick.apply(this, arguments)
+        this.cancelClick()
       }
       this.hide()
     })
     document.querySelector("#confirm .btn-confirm").addEventListener("click",() => {
       console.log("确认回调")
       if (typeof this.confirmClick === 'function') {
-        this.confirmClick.apply(this, arguments)
+        this.confirmClick()
       }
       this.hide()
     })
