@@ -154,7 +154,7 @@
   z-index: 99;
   right: 120px;
   top: 72px;
-  width: 320px;
+  width: 360px;
   border-radius: 12px 0 12px 12px;
   background-color: var(--item-bg);
   border: 1px solid var(--item-border);
@@ -218,6 +218,7 @@
 .setting-box > .box-content .item-li {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 .setting-box > .box-content .item-li:not(:last-child) {
   margin-bottom: 12px;
@@ -262,3 +263,41 @@
 	transition: border ease 0.4s, box-shadow ease 0.4s, background-color ease 1.2s;
 }
 .mui-switch.mui-switch-anim:checked:before { transition: left 0.3s; }
+
+/* switch-tab */
+.switch-tab{
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding: 6px 4px;
+  border-radius: 8px;
+  background-color: #d8fae1;
+}
+.switch-tab svg{
+  width: 18px;
+  height: 18px;
+  pointer-events: none;
+}
+.switch-tab-thumb{
+  position: absolute;
+  border-radius: 8px;
+  width: 30px;
+  height: 22px;
+  left: 4px;
+  top: 4px;
+  background-color: #ffffff;
+  z-index: 0;
+  transition: all ease .3s;
+  pointer-events: none;
+}
+.switch-tab-item{
+  position: relative;
+  text-align: center;
+  width: 30px;
+  height: 18px;
+  line-height: 18px;
+  font-size: 12px;
+  border-radius: 8px;
+  z-index: 1;
+  cursor: pointer;
+}

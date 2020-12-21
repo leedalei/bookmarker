@@ -39,18 +39,6 @@ function handleDelCollect(e) {
   e.stopPropagation()
 }
 
-// 获取value/options 元素
-function getOptionsEle(e) {
-  const childrenNode = e.parentNode.childNodes
-  const children = []
-  childrenNode.forEach(item=>{
-    if(item.nodeType === 1){
-      children.push(item)
-    }
-  })
-  return children
-}
-
 // 卡片菜单
 function handleCardMenu(e) {
   e.target.parentNode.querySelector(".menu-box").classList.toggle("menu-open")
@@ -137,39 +125,12 @@ export const settingBoxEventDelegation = (e) => {
   e.stopPropagation()
 }
 
-// 显示隐藏 select
-function handleSelect(e){
-	const valueEle = getOptionsEle(e.target)[0]
-	const optionsEle = getOptionsEle(e.target)[1]
-	const optionsStatus = optionsEle.style.display
-	if(optionsStatus === '' || optionsStatus === 'none'){
-		optionsEle.style.display = 'block'
-		valueEle.classList.add('show')
-	} else {
-		optionsEle.style.display = 'none'
-		valueEle.classList.remove('show')
-	}
-  e.stopPropagation()
-}
-// 点击select
-function onSelect(e){
-	const { value } = e.target.dataset
-	const label = e.target.innerText
-	const optionsEle = e.target.parentNode
-	optionsEle.style.display = 'none'
-	const valueEl = getOptionsEle(optionsEle)[0]
-	valueEl.dataset.value = value
-	valueEl.querySelector("span").innerText = label
-	valueEl.classList.remove('show')
-  e.stopPropagation()
-}
+
 // 隐藏所有options
 function hideOptions(){
-  const allOptions = document.querySelectorAll('.select-options')
-  allOptions.forEach(e=>{
-    e.style.display = 'none'
-    const valueEle = getOptionsEle(e)
-    valueEle[0].classList.remove('show')
+  const allOptions = document.querySelectorAll('.select-container')
+  allOptions.forEach(ele=>{
+    ele.classList.remove('show')
   })
 }
 
@@ -198,26 +159,11 @@ export const initIconClickListener = () => {
     e.currentTarget.classList.toggle("mode-open")
     e.stopPropagation()
   })
-  document.querySelector(".setting-icon").addEventListener("click", (e) => {
-    e.currentTarget.classList.toggle("setting-icon--act")
-    e.currentTarget.parentNode.querySelector(".setting-box").classList.toggle("setting-open")
-    e.stopPropagation()
-  })
-}
-
-//注册select监听器
-export const initSelectListener = function () {
-	Array.from(document.querySelectorAll(".select-value")).forEach((ele) => {
-    ele.addEventListener("click", handleSelect)
-  })
-	Array.from(document.querySelectorAll(".select-option")).forEach((ele) => {
-    ele.addEventListener("click", onSelect)
-  })
+  
 }
 
 // 全部一起注册，冚家富贵
 export const initAllListener = function () {
   initIconClickListener()
   initGlobalListener()
-  initSelectListener()
 }

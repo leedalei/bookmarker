@@ -1,7 +1,27 @@
 import { Render } from "./Render"
 import { debounce } from './util'
 import { bookmarkEventDelegation } from './event'
+import {getStorageData} from "./store"
 let renderer = new Render(false)
+
+// 显示隐藏 select
+function handleSelectOpen(e){
+  let selectContainer = e.currentTarget.parentNode
+	selectContainer.classList.toggle('show')
+  e.stopPropagation()
+}
+// 点击select
+function handleSelectChange(e){
+  let selectValue = e.currentTarget.parentNode.querySelector(".select-value")
+  let selectContainer = e.currentTarget.parentNode
+	const { value } = e.target.dataset
+  const label = e.target.innerText
+	selectValue.dataset.value = value
+	selectValue.querySelector("span").innerText = label
+	selectContainer.classList.toggle('show')
+  e.stopPropagation()
+}
+
 export class SearchBar {
   constructor() {
     this.init()
@@ -10,8 +30,25 @@ export class SearchBar {
   init() {
     this.initSearchOutside()
     this.initSearchInside()
+    this.initSelectListener()
+    this.getLocalSetting()
   }
 
+  async getLocalSetting(){
+    let res = await getStorageData("engine")
+    this.setEngine("engine", res.engine)
+  }
+
+  setEngine(name,value){
+    console.log("name:"+name)
+    let selectContainer = document.querySelector(`.select-container[data-name='${name}']`)
+    let selectValue = selectContainer.querySelector(".select-value")
+    console.log(selectContainer)
+    console.log(selectValue)
+    console.log("!")
+    selectValue.dataset.value = value
+    selectValue.querySelector("span").innerText = value
+  }
   // 注册搜索外部
   initSearchOutside() {
     document
@@ -74,4 +111,14 @@ export class SearchBar {
       document.querySelector("#search-result").style.display = "none"
     }
   }
+  //注册右侧的下拉框
+  initSelectListener(){
+    Array.from(document.querySelectorAll(".select-value")).forEach((ele) => {
+      ele.addEventListener("click", handleSelectOpen)
+    })
+    Array.from(document.querySelectorAll(".select-options")).forEach((ele) => {
+      ele.addEventListener("click", handleSelectChange)
+    })
+  }
+
 }

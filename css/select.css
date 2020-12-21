@@ -16,12 +16,14 @@
   margin-top: 3px;
   transition: all ease 0.5s;
 }
-.select-container .select-value.show svg {
+.select-container.show .select-options {
+	max-height: 132px !important;
+}
+.select-container.show svg {
   transform: rotate(180deg);
 }
 .select-container .select-options {
   position: absolute;
-  display: none;
   margin-top: 13px;
   color: var(--input-bg);
   border-radius: 4px;
@@ -29,7 +31,10 @@
   z-index: 9;
   left: 0;
   transform: translateX(-25%);
-  background-color: var(--body-bg);
+	background-color: var(--body-bg);
+	max-height: 0;
+	transition: all ease .5s;
+	overflow: hidden;
 }
 .select-container .select-options .select-option {
   color: var(--item-title);
