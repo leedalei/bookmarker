@@ -1,7 +1,7 @@
 import { Render } from "./Render"
 import { Confirm } from "./Confirm"
 import { EditBox } from './EditBox'
-import { switchMode, addCollect, delCollect, updateCollectStatus, handleCollapse, handleJump, removeBookmark } from "./Function"
+import { switchMode, addCollect, delCollect, updateCollectStatus, handleCollapse, handleJump, removeBookmark } from "./function"
 
 let renderer = new Render(false)
 

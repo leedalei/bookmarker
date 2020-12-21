@@ -105,7 +105,6 @@ export class Render {
   //注册书签列表
   initCollect() {
     return new Promise((resolve, reject) => {
-      // content-script无权限获取目录，需要和background通信
       chrome.bookmarks.getTree(async (data) => {
         let main = document.getElementById("bookmark")
         main.innerHTML = ""
