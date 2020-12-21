@@ -181,14 +181,14 @@ export const initGlobalListener = function () {
 
 // 注册按钮点击相关监听
 export const initIconClickListener = () => {
-  Array.from(document.querySelectorAll("#bookmark,#collect")).forEach((e) => {
-    e.addEventListener("click", bookmarkEventDelegation)
+  Array.from(document.querySelectorAll("#bookmark,#collect")).forEach((ele) => {
+    ele.addEventListener("click", bookmarkEventDelegation)
   })
-  Array.from(document.querySelectorAll(".setting-box")).forEach((e) => {
-    e.addEventListener("click", settingBoxEventDelegation)
+  Array.from(document.querySelectorAll(".setting-box")).forEach((ele) => {
+    ele.addEventListener("click", settingBoxEventDelegation)
   })
-  Array.from(document.querySelectorAll(".form-item svg")).forEach((e) => {
-    e.addEventListener("click", handleSwitchClick)
+  Array.from(document.querySelectorAll(".form-item svg")).forEach((ele) => {
+    ele.addEventListener("click", handleSwitchClick)
   })
   document.querySelector(".form-item").addEventListener("click", (e) => {
     e.currentTarget.classList.toggle("mode-open")
@@ -203,11 +203,11 @@ export const initIconClickListener = () => {
 
 //注册select监听器
 export const initSelectListener = function () {
-	Array.from(document.querySelectorAll(".select-value")).forEach((e) => {
-    e.addEventListener("click", handleSelect)
+	Array.from(document.querySelectorAll(".select-value")).forEach((ele) => {
+    ele.addEventListener("click", handleSelect)
   })
-	Array.from(document.querySelectorAll(".select-option")).forEach((e) => {
-    e.addEventListener("click", onSelect)
+	Array.from(document.querySelectorAll(".select-option")).forEach((ele) => {
+    ele.addEventListener("click", onSelect)
   })
 }
 
