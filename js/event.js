@@ -57,7 +57,7 @@ function handleCardMenu(e) {
   e.stopPropagation()
 }
 // 卡片Li点击
-function handleMenuLi(e) {
+function handleMenuLiClick(e) {
   const { type } = e.target.dataset
   const option = e.target.parentNode.dataset
   const classList = Array.from(e.currentTarget.classList)
@@ -119,7 +119,7 @@ export const bookmarkEventDelegation = (e) => {
     return handleCardMenu(e)
   }
   if (classList.includes("menu-li")) {
-    return handleMenuLi(e)
+    return handleMenuLiClick(e)
   }
   if (classList.includes("del-icon")) {
     return handleDelCollect(e)
