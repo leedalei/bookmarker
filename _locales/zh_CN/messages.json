@@ -21,10 +21,10 @@
     "message": "置顶书签"
   },
   "settingOpenFolder":{
-    "message":"默认展开书签"
+    "message":"展开书签"
   },
   "settingBlockCSDN":{
-    "message":"默认屏蔽CSDN"
+    "message":"屏蔽CSDN"
   },
   "settingEngine":{
     "message":"默认搜索引擎"
