@@ -6,7 +6,7 @@
     "message": "做东半球最好用的Chrome收藏夹插件"
   },
   "searchPlaceholder": {
-    "message":"输入即可本地搜索书签，键入回车则启用搜索引擎"
+    "message":"仅输入即可本地搜索书签，按回车则启用搜索引擎"
   },
   "noStickyData":{
     "message":"无置顶数据，铁子"
@@ -37,5 +37,23 @@
   },
   "cardDelete":{
     "message":"删除"
+  },
+  "editBoxTitle":{
+    "message":"标题"
+  },
+  "editBoxLink":{
+    "message":"链接"
+  },
+  "editBoxCancel":{
+    "message":"取消"
+  },
+  "editBoxConfirm":{
+    "message":"确认"
+  },
+  "confirmBoxCancel":{
+    "message":"取消"
+  },
+  "confirmBoxConfirm":{
+    "message":"确认"
   }
 }

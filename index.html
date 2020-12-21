@@ -42,17 +42,17 @@
         <div class="box-content">
           <div class="box-item">
             <div class="item-li">
-              <p>默认展开书签</p>
+              <p data-lang-text="settingOpenFolder">默认展开书签</p>
               <input type="checkbox" name="isOpenFolder" class="switch switch-anim">
             </div>
             <div class="item-li">
-              <p>是否屏蔽CSDN</p>
+              <p data-lang-text="settingBlockCSDN">是否屏蔽CSDN</p>
               <input type="checkbox" name="isBlockCSDN" class="switch switch-anim">
             </div>
           </div>
           <div class="box-item">
             <div class="item-li">
-              <p>默认搜索引擎</p>
+              <p data-lang-text="settingEngine">默认搜索引擎</p>
               <div class="switch-tab" data-name="engine">
                 <div class="switch-tab-thumb"></div>
                 <div class="switch-tab-item" data-idx="0" data-value="Google"><svg t="1608542908422" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1389" width="48" height="48"><path d="M512 6.4C233.6 6.4 6.4 233.6 6.4 512s227.2 505.6 505.6 505.6 505.6-227.2 505.6-505.6S790.4 6.4 512 6.4z m211.2 678.4c-22.4 22.4-51.2 38.4-92.8 54.4-38.4 16-80 25.6-118.4 25.6-51.2 0-96-12.8-134.4-32-38.4-22.4-67.2-51.2-89.6-89.6-22.4-41.6-28.8-83.2-28.8-131.2 0-51.2 12.8-96 32-134.4 22.4-38.4 51.2-70.4 92.8-92.8 32-16 70.4-25.6 118.4-25.6 64 0 108.8 12.8 144 38.4s54.4 57.6 67.2 105.6l-102.4 16c-9.6-25.6-22.4-41.6-38.4-54.4-16-12.8-41.6-22.4-70.4-22.4-41.6 0-80 12.8-105.6 41.6-25.6 25.6-38.4 67.2-38.4 121.6 0 57.6 12.8 102.4 38.4 131.2 25.6 28.8 57.6 41.6 99.2 41.6 22.4 0 41.6-3.2 64-12.8 22.4-9.6 38.4-16 54.4-28.8v-64H505.6v-83.2H720v195.2z" fill="#d81e06" p-id="1390"></path></svg></div>
@@ -62,7 +62,7 @@
               </div>
             </div>
             <div class="item-li">
-              <p>语言</p>
+              <p data-lang-text="settingLanguage">语言</p>
               <div class="switch-tab" data-name="language">
                 <div class="switch-tab-thumb"></div>
                 <div class="switch-tab-item" data-idx="0" data-value="cn"><svg t="1608528424998" class="icon" viewBox="0 0 1536 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="12749" width="32" height="32"><path d="M0 0h1531.214953v1024H0z" fill="#DE2910" p-id="12750"></path><path d="M255.202492 114.841121l31.900312 98.890966h105.271028l-86.130841 63.800623 31.900311 98.890966L255.202492 315.813084l-86.130841 60.610592 31.900312-98.890966-86.130842-63.800623h105.271029L255.202492 114.841121zM526.35514 63.800623v31.900312l31.900312 12.760124-35.090343 9.570094-3.190031 35.090342-19.140187-28.71028-31.900312 9.570093 22.330219-25.520249-19.140187-28.71028 31.900311 12.760124 22.330218-28.71028z m118.031153 111.65109l-15.950156 31.900312 25.520249 25.520249-35.090342-9.570093-15.950156 31.900311-6.380062-35.090342-35.090343-6.380063 31.900311-15.950156-6.380062-35.090342 25.520249 28.71028 31.900312-15.950156z m-35.090343 140.361371l9.570094 31.900312h35.090342l-28.71028 19.140187 9.570093 31.900311-28.71028-19.140187-28.71028 19.140187 9.570093-31.900311-28.71028-19.140187h35.090342l15.950156-31.900312z m-82.94081 105.271028l-3.190031 35.090343 31.900312 12.760124-31.900312 9.570094-3.190031 31.900311-19.140187-28.71028-35.090343 9.570094 22.330218-25.52025-19.140187-28.71028 31.900312 12.760125 25.520249-28.710281z m0 0" fill="#FFDE00" p-id="12751"></path></svg></div>
@@ -79,7 +79,7 @@
       <span class="icon">
         <svg focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path></svg>
       </span>
-      <input id="search-input" type="text" placeholder="Please search,Sir">
+      <input id="search-input" type="text" placeholder="仅输入即可本地搜索书签，按回车则启用搜索引擎">
       <div class="select-container" data-name="engine">
         <div class="select-value search-select" data-value="Google">
           <span class="unclick">Google</span>
