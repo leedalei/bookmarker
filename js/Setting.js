@@ -29,9 +29,9 @@ export class Setting {
     if(res.engine){
       this.setSwitchTabValue("engine", res.engine)
     }
-    if(res.language){
-      this.setSwitchTabValue("language", res.language)
-    }
+    // if(res.language){ //目前语言是全自动获取的
+    //   this.setSwitchTabValue("language", res.language)
+    // }
     if(res.isOpenFolder!==undefined){
       this.setSwitchValue("isOpenFolder",res.isOpenFolder)
     }
