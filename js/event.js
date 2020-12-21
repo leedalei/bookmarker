@@ -138,7 +138,7 @@ function hideOptions(){
 export const initGlobalListener = function () {
   document.body.addEventListener('click', () => {
     hideOptions()
-    document.querySelector(".setting-icon").classList.toggle("setting-icon--act")
+    document.querySelector(".setting-icon").classList.remove("setting-icon--act")
     document.querySelector(".setting-box").classList.remove("setting-open")
     document.querySelector(".form-item").classList.remove("mode-open")
   })
