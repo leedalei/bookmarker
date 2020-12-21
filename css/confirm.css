@@ -7,9 +7,10 @@
   border-radius: 12px;
   transform: translate(-50%,-50%);
   z-index: 10;
-  background-color: #fff;
-  border: 1px solid #eee;
-  box-shadow: 0 0 10px 0 #d3d2d2;
+  color: var(--item-title);
+  background-color: var(--item-bg);
+  border: 1px solid var(--item-border);
+  box-shadow: 0 0 10px 0 rgba(53, 52, 52, .18);
   user-select: none;
 }
 .confirm-animation{
