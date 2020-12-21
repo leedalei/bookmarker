@@ -3,18 +3,39 @@
     "message": "Bookmarker"
   },
   "appDesc": {
-    "message": "東半球で最高のブックマークプラグイン"
+    "message": "東半球で最高のChrome Favoritesプラグインを作る"
   },
   "searchPlaceholder": {
-    "message":"検索してください、バディ"
+    "message":"ローカルでブックマークを検索するには直接入力してください， Enterキーを押して検索エンジンを有効にします。"
   },
   "noStickyData":{
-    "message":"无置顶数据，铁子"
+    "message":"重要なしおりはありません"
   },
   "noData":{
-    "message":"暂无数据嗷，兄弟"
+    "message":"データはまだだ"
   },
   "noSearchResult":{
-    "message":"没找到匹配的书签嗷~"
+    "message":"該当するブックマークは見つかりませんでした。"
+  },
+  "stickyFolderName":{
+    "message": "重要なしおり"
+  },
+  "settingOpenFolder":{
+    "message":"ブックマークを展開する"
+  },
+  "settingBlockCSDN":{
+    "message":"デフォルトでCSDNをブロック"
+  },
+  "settingEngine":{
+    "message":"デフォルトの検索エンジン"
+  },
+  "settingLanguage":{
+    "message":"デフォルト言語"
+  },
+  "cardEdit":{
+    "message":"モディファイ"
+  },
+  "cardDelete":{
+    "message":"撤去"
   }
 }
