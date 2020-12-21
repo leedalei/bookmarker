@@ -96,7 +96,9 @@
   padding: 10px;
   right: 10px;
   top: 6px;
+  transition: all ease .3s;
 }
+
 .bookmark-item .menu-box {
   position: absolute;
   z-index: 6;
@@ -139,6 +141,10 @@
   width: 24px;
   height: 24px;
   padding: 10px;
+  transition: all ease .3s;
+}
+.setting .setting-icon--act{
+  transform: rotate(90deg);
 }
 .setting-icon #svg-icon {
   fill: var(--setting-icon);

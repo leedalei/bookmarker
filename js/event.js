@@ -171,8 +171,9 @@ function hideOptions(){
 
 // 注册全局监听器
 export const initGlobalListener = function () {
-  document.getElementsByTagName('body')[0].addEventListener('click', () => {
+  document.body.addEventListener('click', () => {
     hideOptions()
+    document.querySelector(".setting-icon").classList.toggle("setting-icon--act")
     document.querySelector(".setting-box").classList.remove("setting-open")
     document.querySelector(".form-item").classList.remove("mode-open")
   })
@@ -194,6 +195,7 @@ export const initIconClickListener = () => {
     e.stopPropagation()
   })
   document.querySelector(".setting-icon").addEventListener("click", (e) => {
+    e.currentTarget.classList.toggle("setting-icon--act")
     e.currentTarget.parentNode.querySelector(".setting-box").classList.toggle("setting-open")
     e.stopPropagation()
   })
