@@ -50,7 +50,7 @@ export class Render {
       chrome.storage.sync.set({ collect: [] })
     }
   }
-  //生成制定栏dom结构
+  //生成置顶栏dom结构
   createFavoriteDom(data) {
     let html = `<div class="bookmark-folder">
   <div class="bookmark-header">
@@ -147,7 +147,7 @@ export class Render {
             <div class="bookmark-info">
               <p class="unclick">${storageData.search(data.url) === -1 ? "未收藏" : "已收藏"
         }</p>
-              <img class="icon-collect ${storageData.search(data.url) === -1 ? "" : "icon-collect--act"
+              <img class="icon icon-collect ${storageData.search(data.url) === -1 ? "" : "icon-collect--act"
         }" data-id="${data.id}" data-url="${data.url}" data-title="${data.title}" data-category="${category}" src="${storageData.search(data.url) === -1
           ? "./img/collect.svg"
           : "./img/collected.svg"
@@ -222,7 +222,7 @@ export class Render {
           <div class="bookmark-info">
             <p class="unclick">${storageData.search(item.url) === -1 ? "未收藏" : "已收藏"
           }</p>
-            <img class="icon-collect ${storageData.search(item.url) === -1 ? "" : "icon-collect--act"
+            <img class="icon icon-collect ${storageData.search(item.url) === -1 ? "" : "icon-collect--act"
           }" data-url="${item.url}" data-title="${item.title}" src="${storageData.search(item.url) === -1
             ? "./img/collect.svg"
             : "./img/collected.svg"

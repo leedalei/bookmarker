@@ -1,9 +1,10 @@
 export class EditBox {
-  constructor(option, type) {
+  constructor(option, type, confirmClick) {
     this.type = type
     this.title = option.title
     this.url = option.url
     this.id = option.id
+    this.confirmClick = confirmClick
   }
   // 显示
   show() {
@@ -49,8 +50,8 @@ export class EditBox {
         const title = document.querySelector("#edit-box #title-input").value
         const url = document.querySelector("#edit-box #url-input").value
         const data = { title, url }
-        chrome.bookmarks.update(this.id, data, res => {
-          console.log(res)
+        chrome.bookmarks.update(this.id, data, () => {
+          this.confirmClick(data)
         })
       } else {
       }

@@ -1,7 +1,7 @@
 import { Render } from "./Render"
 import { Confirm } from "./Confirm"
 import { EditBox } from './EditBox'
-import { switchMode, addCollect, delCollect, updateCollectStatus, handleCollapse, handleJump, removeBookmark } from "./function"
+import { switchMode, addCollect, delCollect, updateItemDOM, updateCollectData, updateCollectStatus, handleCollapse, handleJump, removeBookmark } from "./function"
 
 let renderer = new Render(false)
 
@@ -52,46 +52,55 @@ function handleMenuLiClick(e) {
   const ele = e.target.parentNode.parentNode.parentNode
   switch(type) {
     case 'edit':
-      let editBox = new EditBox(option, type)
+      let editBox = new EditBox(option, type, value => {
+        const result = Object.assign({}, value, { id: option.id })
+        if (classList.includes('collect')) {
+          resetItemData(result, classList)
+        } else {
+          updateItemDOM(ele, value).then(() => {
+            resetItemData(result, classList)
+          })
+        }
+      })
       e.target.parentNode.classList.remove("menu-open")
       editBox.show()
       break
     case 'remove':
       let confirm = new Confirm({text:"你真的要删除吗？鸡掰",type:"warning"}, () => {
-        if(classList.includes('collect')) {
           delCollect(option.url).then(() => {
             return removeBookmark(option.id)
           }).then(() => {
+            if(classList.includes('bookmark')) {
+              renderer.initFavorite()
+            }
+            if(classList.includes('search-result')) {
+              renderer.initFavorite()
+              renderer.initCollect()
+              renderer.initSearchResult()
+            }
+            if(classList.includes('collect')) {
+              renderer.initCollect()
+            }
             ele.remove()
           })
-          return
-        }
-        if(classList.includes('bookmark')) {
-          removeBookmark(option.id).then(() => {
-            return delCollect(option.url)
-          }).then(() => {
-            renderer.initFavorite()
-            ele.remove()
-          })
-          return
-        }
-        if(classList.includes('search-result')) {
-          removeBookmark(option.id).then(() => {
-            return delCollect(option.url)
-          }).then(() => {
-            renderer.initFavorite()
-            renderer.initCollect()
-            renderer.initSearchResult()
-            ele.remove()
-          })
-          return
-        }
       })
       e.target.parentNode.classList.remove("menu-open")
       confirm.show()
       break
   }
   e.stopPropagation()
+}
+// 修改收藏数据
+function resetItemData(value, classList) {
+  updateCollectData(value).then(() => {
+    if(classList.includes('collect') || classList.includes('search-result')) {
+      renderer.initFavorite()
+      renderer.initCollect()
+    }
+    if(classList.includes('bookmark')) {
+      renderer.initFavorite()
+    }
+  })
 }
 
 //bookmark item事件代理 Event delegation

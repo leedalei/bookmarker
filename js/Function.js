@@ -59,12 +59,13 @@ export function addCollect(data) {
     })
   })
 }
+// 更新收藏数据
 export function updateCollectData(value) {
   return new Promise((resolve) => {
     chrome.storage.sync.get("collect", (res) => {
       let data = JSON.parse(JSON.stringify(res.collect))
       data.forEach((item, index) => {
-        if (item.url === url) {
+        if (item.id === value.id) {
           const category = { category: item.category }
           const result = Object.assign({}, value, category)
           data.splice(index, 1, result)
@@ -73,6 +74,21 @@ export function updateCollectData(value) {
       chrome.storage.sync.set({ collect: data })
       resolve()
     })
+  })
+}
+// 更新Item的DOM
+export function updateItemDOM(ele, value) {
+  return new Promise(resolve => {
+    const { title, url } = value
+    const item = ele.querySelector(".bookmark-item").dataset
+    const menuBox = ele.querySelector(".menu-box").dataset
+    const iconCollect = ele.querySelector(".icon-collect").dataset
+    item.url = menuBox.url = iconCollect.url = url
+    menuBox.title = iconCollect.title = title
+    ele.querySelector(".bookmark-item-title p").innerHTML = title
+    ele.querySelector(".bookmark-item-url").innerHTML = url
+    ele.querySelector(".bookmark-item-title img").src = `chrome://favicon/${url}`
+    resolve()
   })
 }
 // 更新收藏的状态
