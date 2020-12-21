@@ -10,12 +10,12 @@ function handleSelectOpen(e){
 	selectContainer.classList.toggle('show')
   e.stopPropagation()
 }
-// 点击select
+// 点击selectItem
 function handleSelectChange(e){
+  const { value } = e.target.dataset
+  const label = e.target.innerText
   let selectValue = e.currentTarget.parentNode.querySelector(".select-value")
   let selectContainer = e.currentTarget.parentNode
-	const { value } = e.target.dataset
-  const label = e.target.innerText
 	selectValue.dataset.value = value
 	selectValue.querySelector("span").innerText = label
 	selectContainer.classList.toggle('show')
@@ -42,12 +42,8 @@ export class SearchBar {
   }
 
   setEngine(name,value){
-    console.log("name:"+name)
     let selectContainer = document.querySelector(`.select-container[data-name='${name}']`)
     let selectValue = selectContainer.querySelector(".select-value")
-    console.log(selectContainer)
-    console.log(selectValue)
-    console.log("!")
     selectValue.dataset.value = value
     selectValue.querySelector("span").innerText = value
   }
