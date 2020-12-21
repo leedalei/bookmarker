@@ -50,35 +50,35 @@ export class SearchBar {
   // 注册搜索外部
   initSearchOutside() {
     document
-      .querySelector("#search-bar")
+      .querySelector("#search-input")
       .addEventListener("keyup", this.searchOutside)
   }
   //搜索外部实际逻辑
   searchOutside(e) {
     if (e.which === 13) {
-      var obj = document.querySelectorAll(".search-select")[0]
-      const { value } = obj.dataset
-      const inputValue = e.target.value
+      var {value} = document.querySelector(".search-select").dataset
+      const inputValue = e.currentTarget.value
       let url = ""
       if (!inputValue) {
         return
       }
       switch (value) {
-        case "baidu":
+        case "Baidu":
           url = "https://baidu.com/s?wd="
           break
-        case "google":
+        case "Google":
           url = "https://www.google.com/search?q="
           break
-        case "bing":
+        case "Bing":
           url = "https://www.bing.com/search?q="
           break
-        case "sougou":
+        case "Sougou":
           url = "https://www.sogou.com/web?query="
           break
       }
+      console.log(`${url}${inputValue}`)
       window.open(`${url}${inputValue}`, "_blank")
-      e.target.value = ''
+      e.currentTarget.value = ''
       document.querySelectorAll("#bookmark,#collect").forEach((ele) => {
         ele.style.display = "block"
       })
@@ -88,7 +88,7 @@ export class SearchBar {
   //注册搜索本地
   initSearchInside() {
     document
-      .querySelector("#search-bar")
+      .querySelector("#search-input")
       .addEventListener("input", (e) => this.searchInsideDebounce(e))
   }
   //搜索本地实际逻辑
