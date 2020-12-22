@@ -1,21 +1,5 @@
 import { getStorageData } from "./store"
 
-// 获取颜色模式
-export function getModeData() {
-  chrome.storage.sync.get("mode", (res) => {
-    let { mode } = res
-    if (!mode) {
-      mode = "auto"
-      chrome.storage.sync.set({ mode: mode })
-    }
-    document.querySelector("body").setAttribute("color-mode", mode)
-  })
-}
-// 切换颜色模式
-export function switchMode(modeData) {
-  chrome.storage.sync.set({ mode: modeData })
-  document.querySelector("body").setAttribute("color-mode", modeData)
-}
 // 跳转
 export function handleJump(e) {
   const url = e.target.dataset.url
@@ -85,8 +69,8 @@ export function updateItemDOM(ele, value) {
     const iconCollect = ele.querySelector(".icon-collect").dataset
     item.url = menuBox.url = iconCollect.url = url
     menuBox.title = iconCollect.title = title
-    ele.querySelector(".bookmark-item-title p").innerHTML = title
-    ele.querySelector(".bookmark-item-url").innerHTML = url
+    ele.querySelector(".bookmark-item-title p").innerText = title
+    ele.querySelector(".bookmark-item-url").innerText = url
     ele.querySelector(".bookmark-item-title img").src = `chrome://favicon/${url}`
     resolve()
   })

@@ -119,6 +119,7 @@ body {
 .bookmark-li {
   width: 25%;
   position: relative;
+  transition: all ease .5s;
 }
 .bookmark-li:hover {
   z-index: 6;
@@ -261,17 +262,11 @@ body {
   }
 }
 @media (max-width: 1024px) {
-  #bookmark, #collect, #search-result {
-    width: 90%;
-  }
   .bookmark-li {
     width: 50%;
   }
 }
 @media (max-width: 640px) {
-  #bookmark, #collect, #search-result {
-    width: 90%;
-  }
   .bookmark-li {
     width: 100%;
   }

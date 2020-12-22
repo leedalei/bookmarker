@@ -1,25 +1,9 @@
-import { Render } from "./Render"
-import { Confirm } from "./Confirm"
-import { EditBox } from './EditBox'
-import { switchMode, addCollect, delCollect, updateItemDOM, updateCollectData, updateCollectStatus, handleCollapse, handleJump, removeBookmark } from "./function"
+import { Render } from "../components/Render"
+import { Confirm } from "../components/Confirm"
+import { EditBox } from '../components/EditBox'
+import { addCollect, delCollect, updateItemDOM, updateCollectData, updateCollectStatus, handleCollapse, handleJump, removeBookmark } from "./function"
 
 let renderer = new Render(false)
-
-// 切换颜色模式
-function handleSwitchClick(e) {
-  let { value } = e.currentTarget.dataset
-  switch (value) {
-    case "light":
-      switchMode("light")
-      break
-    case "dark":
-      switchMode("dark")
-      break
-    case "auto":
-      switchMode("auto")
-      break
-  }
-}
 
 // 添加收藏
 function handleCollect(e) {
@@ -41,7 +25,7 @@ function handleDelCollect(e) {
 
 // 卡片菜单
 function handleCardMenu(e) {
-  e.target.parentNode.querySelector(".menu-box").classList.toggle("menu-open")
+  e.target.parentNode.querySelector(".menu-box").classList.toggle("menu--open")
   e.stopPropagation()
 }
 // 卡片Li点击
@@ -62,7 +46,7 @@ function handleMenuLiClick(e) {
           })
         }
       })
-      e.target.parentNode.classList.remove("menu-open")
+      e.target.parentNode.classList.remove("menu--open")
       editBox.show()
       break
     case 'remove':
@@ -84,7 +68,7 @@ function handleMenuLiClick(e) {
             ele.remove()
           })
       })
-      e.target.parentNode.classList.remove("menu-open")
+      e.target.parentNode.classList.remove("menu--open")
       confirm.show()
       break
   }
@@ -94,12 +78,9 @@ function handleMenuLiClick(e) {
 function resetItemData(value, classList) {
   updateCollectData(value).then(() => {
     if(classList.includes('collect') || classList.includes('search-result')) {
-      renderer.initFavorite()
       renderer.initCollect()
     }
-    if(classList.includes('bookmark')) {
-      renderer.initFavorite()
-    }
+    renderer.initFavorite()
   })
 }
 
@@ -128,12 +109,6 @@ export const bookmarkEventDelegation = (e) => {
     return handleJump(e)
   }
 }
-//setting-box事件代理 Event delegation
-export const settingBoxEventDelegation = (e) => {
-  let classList = Array.from(e.target.classList)
-  e.stopPropagation()
-}
-
 
 // 隐藏所有options
 function hideOptions(){
@@ -148,8 +123,8 @@ export const initGlobalListener = function () {
   document.body.addEventListener('click', () => {
     hideOptions()
     document.querySelector(".setting-icon").classList.remove("setting-icon--act")
-    document.querySelector(".setting-box").classList.remove("setting-open")
-    document.querySelector(".form-item").classList.remove("mode-open")
+    document.querySelector(".setting-box").classList.remove("setting--open")
+    document.querySelector(".form-item").classList.remove("mode--open")
   })
 }
 
@@ -158,17 +133,11 @@ export const initIconClickListener = () => {
   Array.from(document.querySelectorAll("#bookmark,#collect")).forEach((ele) => {
     ele.addEventListener("click", bookmarkEventDelegation)
   })
-  Array.from(document.querySelectorAll(".setting-box")).forEach((ele) => {
-    ele.addEventListener("click", settingBoxEventDelegation)
-  })
-  Array.from(document.querySelectorAll(".form-item svg")).forEach((ele) => {
-    ele.addEventListener("click", handleSwitchClick)
-  })
+
   document.querySelector(".form-item").addEventListener("click", (e) => {
-    e.currentTarget.classList.toggle("mode-open")
+    e.currentTarget.classList.toggle("mode--open")
     e.stopPropagation()
   })
-  
 }
 
 // 全部一起注册，冚家富贵

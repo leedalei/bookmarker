@@ -1,10 +1,10 @@
-import { getStorageData, setStorageData } from "./store"
+import { getStorageData, setStorageData } from "../js/store"
 import { SearchBar } from "./SearchBar"
 let searchBar = new SearchBar()
 
 //switch开关
 async function handleSwitchChange(e) {
-  let { checked,name } = e.currentTarget
+  let { checked, name } = e.currentTarget
   await setStorageData({ [name]: checked })
 }
 
@@ -22,22 +22,28 @@ export class Setting {
   constructor() {
     this.initEvents()
     this.getLocalSetting()
+    this.stop()
   }
   //获取数据回填
   async getLocalSetting() {
     let res = await getStorageData()
-    if(res.engine){
+    if (res.engine) {
       this.setSwitchTabValue("engine", res.engine)
     }
     // if(res.language){ //目前语言是全自动获取的
     //   this.setSwitchTabValue("language", res.language)
     // }
-    if(res.isOpenFolder!==undefined){
-      this.setSwitchValue("isOpenFolder",res.isOpenFolder)
+    if (res.isOpenFolder !== undefined) {
+      this.setSwitchValue("isOpenFolder", res.isOpenFolder)
     }
-    if(res.isBlockCSDN!==undefined){
-      this.setSwitchValue("isBlockCSDN",res.isBlockCSDN)
+    if (res.isBlockCSDN !== undefined) {
+      this.setSwitchValue("isBlockCSDN", res.isBlockCSDN)
     }
+  }
+  stop() {
+    document.querySelector(".setting-box").addEventListener("click", (e) => {
+      e.stopPropagation()
+    })
   }
   initEvents() {
     //打开设置
@@ -45,7 +51,7 @@ export class Setting {
       e.currentTarget.classList.toggle("setting-icon--act")
       e.currentTarget.parentNode
         .querySelector(".setting-box")
-        .classList.toggle("setting-open")
+        .classList.toggle("setting--open")
       e.stopPropagation()
     })
     //switchTab设置
@@ -58,13 +64,16 @@ export class Setting {
     })
   }
   //设置switch开关的value
-  setSwitchValue(name,value){
+  setSwitchValue(name, value) {
     let curSwitch = document.querySelector(`.switch[name='${name}']`)
     curSwitch.checked = value
   }
   //设置swichTab的value
   setSwitchTabValue(name, value) {
     let curTab = document.querySelector(`.switch-tab[data-name='${name}']`)
+    if (!curTab) {
+      return
+    }
     let thumb = curTab.querySelector(".switch-tab-thumb")
     let switchTabItem = curTab.querySelector(
       `.switch-tab-item[data-value='${value}']`

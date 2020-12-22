@@ -16,10 +16,10 @@
   -ms-transition: all .3s ease;
   -o-transition: all .3s ease;
 }
-.form-item.mode-open, .form-item:hover {
+.form-item.mode--open, .form-item:hover {
   background-color: #eaeaea;
 }
-[color-mode=dark] .form-item.mode-open, [color-mode=dark] .form-item:hover {
+[color-mode=dark] .form-item.mode--open, [color-mode=dark] .form-item:hover {
   background-color: #414F5F;
 }
 .form-item > svg {
@@ -53,20 +53,20 @@
   fill: #DAF5F5;
   z-index: 1;
 }
-.mode-open {
+.mode--open {
   height: 120px;
 }
-.mode-open svg {
+.mode--open svg {
   opacity: 1;
 }
-.mode-open .icon-light {
+.mode--open .icon-light {
   transform: translateY(calc(100% + 6px));
   -webkit-transform: translateY(calc(100% + 6px));
   -moz-transform: translateY(calc(100% + 6px));
   -ms-transform: translateY(calc(100% + 6px));
   -o-transform: translateY(calc(100% + 6px));
 }
-.mode-open .icon-dark {
+.mode--open .icon-dark {
   transform: translateY(calc(200% + 12px));
   -webkit-transform: translateY(calc(200% + 12px));
   -moz-transform: translateY(calc(200% + 12px));
@@ -115,7 +115,7 @@
   transition: all .3s ease;
   overflow: hidden;
 }
-.bookmark-item .menu-box.menu-open {
+.bookmark-item .menu-box.menu--open {
   transform: scale(1);
 }
 .bookmark-item .menu-box .menu-li {
@@ -162,7 +162,7 @@
   transform-origin: top right;
   transition: all .3s ease;
 }
-.setting-box.setting-open {
+.setting-box.setting--open {
   transform: scale(1);
 }
 .setting-box::before {
