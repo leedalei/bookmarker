@@ -1,7 +1,7 @@
 import { Render } from "./Render"
-import { debounce } from './util'
-import { bookmarkEventDelegation } from './event'
-import {getStorageData} from "./store"
+import { debounce } from '../js/util'
+import { bookmarkEventDelegation } from '../js/event'
+import {getStorageData} from "../js/store"
 let renderer = new Render(false)
 
 // 显示隐藏 select

@@ -1,4 +1,4 @@
-import { getStorageData } from "./store"
+import { getStorageData } from "../js/store"
 export class Render {
   constructor(autoInit) {
     if (autoInit) {

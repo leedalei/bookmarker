@@ -1,21 +1,5 @@
 import { getStorageData } from "./store"
 
-// 获取颜色模式
-export function getModeData() {
-  chrome.storage.sync.get("mode", (res) => {
-    let { mode } = res
-    if (!mode) {
-      mode = "auto"
-      chrome.storage.sync.set({ mode: mode })
-    }
-    document.querySelector("body").setAttribute("color-mode", mode)
-  })
-}
-// 切换颜色模式
-export function switchMode(modeData) {
-  chrome.storage.sync.set({ mode: modeData })
-  document.querySelector("body").setAttribute("color-mode", modeData)
-}
 // 跳转
 export function handleJump(e) {
   const url = e.target.dataset.url

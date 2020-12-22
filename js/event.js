@@ -1,25 +1,9 @@
-import { Render } from "./Render"
-import { Confirm } from "./Confirm"
-import { EditBox } from './EditBox'
-import { switchMode, addCollect, delCollect, updateItemDOM, updateCollectData, updateCollectStatus, handleCollapse, handleJump, removeBookmark } from "./function"
+import { Render } from "../components/Render"
+import { Confirm } from "../components/Confirm"
+import { EditBox } from '../components/EditBox'
+import { addCollect, delCollect, updateItemDOM, updateCollectData, updateCollectStatus, handleCollapse, handleJump, removeBookmark } from "./function"
 
 let renderer = new Render(false)
-
-// 切换颜色模式
-function handleSwitchClick(e) {
-  let { value } = e.currentTarget.dataset
-  switch (value) {
-    case "light":
-      switchMode("light")
-      break
-    case "dark":
-      switchMode("dark")
-      break
-    case "auto":
-      switchMode("auto")
-      break
-  }
-}
 
 // 添加收藏
 function handleCollect(e) {
@@ -149,9 +133,7 @@ export const initIconClickListener = () => {
   Array.from(document.querySelectorAll("#bookmark,#collect")).forEach((ele) => {
     ele.addEventListener("click", bookmarkEventDelegation)
   })
-  Array.from(document.querySelectorAll(".form-item svg")).forEach((ele) => {
-    ele.addEventListener("click", handleSwitchClick)
-  })
+
   document.querySelector(".form-item").addEventListener("click", (e) => {
     e.currentTarget.classList.toggle("mode--open")
     e.stopPropagation()
