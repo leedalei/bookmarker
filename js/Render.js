@@ -93,7 +93,7 @@ export class Render {
   }
   // 隐藏item的menu
   handleBookmarkItemBlur(e) {
-    e.currentTarget.querySelector(".menu-box").classList.remove("menu-open")
+    e.currentTarget.querySelector(".menu-box").classList.remove("menu--open")
   }
   // 监听鼠标移动
   initMouseLeaveListener() {
