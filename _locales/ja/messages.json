@@ -38,6 +38,9 @@
   "cardDelete":{
     "message":"撤去"
   },
+  "cardDeleteWarning":{
+    "message":"本当に削除しますか"
+  },
   "editBoxTitle":{
     "message":"見出し"
   },

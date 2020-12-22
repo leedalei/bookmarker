@@ -38,6 +38,9 @@
   "cardDelete":{
     "message":"Delete"
   },
+  "cardDeleteWarning":{
+    "message":"Do you really want to delete it? bro"
+  },
   "editBoxTitle":{
     "message":"Title"
   },

@@ -1,27 +1,27 @@
-import { getStorageData } from "../js/store"
+import { getStorageData } from "../js/util";
 export class Render {
   constructor(autoInit) {
     if (autoInit) {
-      this.init()
+      this.init();
     }
   }
   // 初始化
   async init() {
-    await this.initFavorite()
-    await this.initCollect()
+    await this.initFavorite();
+    await this.initCollect();
   }
   dataError(value) {
     return `
     <li class="no-data">
       <img src="./img/empty.svg">
       <p>${value}</p>
-    </li>`
+    </li>`;
   }
   itemMenuDOM(dataset) {
-    let data = ''
+    let data = "";
     if (dataset) {
       for (let key in dataset) {
-        data += ` data-${key}="${dataset[key]}"`
+        data += ` data-${key}="${dataset[key]}"`;
       }
     }
     return ` <svg class="icon-menu" width="16px" height="4px" viewBox="0 0 16 4" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -38,16 +38,16 @@ export class Render {
     <ul class="menu-box"${data}>
       <li class="menu-li" data-type="edit">编辑</li>
       <li class="menu-li" data-type="remove">删除</li>
-    </ul>`
+    </ul>`;
   }
 
   //注册置顶栏
   async initFavorite() {
-    let res = await getStorageData("collect")
+    let res = await getStorageData("collect");
     if (res.collect) {
-      this.createFavoriteDom(res.collect)
+      this.createFavoriteDom(res.collect);
     } else {
-      chrome.storage.sync.set({ collect: [] })
+      chrome.storage.sync.set({ collect: [] });
     }
   }
   //生成置顶栏dom结构
@@ -55,9 +55,11 @@ export class Render {
     let html = `<div class="bookmark-folder">
   <div class="bookmark-header">
     <span class="btn-collapse unclick"></span>
-    <h3 class="bookmark-title unclick">${chrome.i18n.getMessage("stickyFolderName")}</h3>
+    <h3 class="bookmark-title unclick">${chrome.i18n.getMessage(
+      "stickyFolderName"
+    )}</h3>
   </div>
-  <ul class="bookmark-ul">`
+  <ul class="bookmark-ul">`;
     if (data.length > 0) {
       for (let item of data) {
         html += `
@@ -68,7 +70,7 @@ export class Render {
           ${this.itemMenuDOM({
             id: item.id,
             title: item.title,
-            url: item.url
+            url: item.url,
           })}
           <div class="bookmark-item-title unclick">
             <img src="chrome://favicon/${item.url}" alt="" />
@@ -79,64 +81,67 @@ export class Render {
           </p>
           <div class="bookmark-info">
             <p class="unclick">${item.category}</p>
-            <img class="icon del-icon" data-url="${item.url}" src="./img/del.svg" />
+            <img class="icon del-icon" data-url="${
+              item.url
+            }" src="./img/del.svg" />
           </div>
         </div>
-      </li>`
+      </li>`;
       }
     } else {
-      html += this.dataError(chrome.i18n.getMessage("noStickyData"))
+      html += this.dataError(chrome.i18n.getMessage("noStickyData"));
     }
-    html += `</ul></div>`
-    let collectEl = document.getElementById("collect")
-    collectEl.innerHTML = html
+    html += `</ul></div>`;
+    let collectEl = document.getElementById("collect");
+    collectEl.innerHTML = html;
   }
   // 隐藏item的menu
   handleBookmarkItemBlur(e) {
-    e.currentTarget.querySelector(".menu-box").classList.remove("menu--open")
+    e.currentTarget.querySelector(".menu-box").classList.remove("menu--open");
   }
   // 监听鼠标移动
   initMouseLeaveListener() {
     Array.from(document.querySelectorAll(".bookmark-item")).forEach((e) => {
-      e.addEventListener("mouseleave", this.handleBookmarkItemBlur)
-    })
+      e.addEventListener("mouseleave", this.handleBookmarkItemBlur);
+    });
   }
 
   //注册书签列表
   initCollect() {
     return new Promise((resolve, reject) => {
       chrome.bookmarks.getTree(async (data) => {
-        let main = document.getElementById("bookmark")
-        main.innerHTML = ""
-        let folderList = data[0].children
+        let main = document.getElementById("bookmark");
+        main.innerHTML = "";
+        let folderList = data[0].children;
         for (let item of folderList) {
-          main.innerHTML += await this.createCollectDom(item)
+          main.innerHTML += await this.createCollectDom(item);
         }
-        document.body.appendChild(main)
-        this.initMouseLeaveListener()
-        resolve()
-      })
-    })
+        document.body.appendChild(main);
+        this.initMouseLeaveListener();
+        resolve();
+      });
+    });
   }
   //生成书签列表的dom结构
   async createCollectDom(data, category) {
-    let storageDataOrigin = await getStorageData()
-    let storageData = JSON.stringify(storageDataOrigin.collect)
+    let storageDataOrigin = await getStorageData();
+    let storageData = JSON.stringify(storageDataOrigin.collect);
 
-    let html = ""
+    let html = "";
     if (!data.children) {
-      html += `<li class="bookmark-li flow-in-from-up">`
+      html += `<li class="bookmark-li flow-in-from-up">`;
       html += `
         <div class="bookmark-item" data-url="${data.url}">
           <div class="bookmark-item-bg unclick"></div>
-          <img class="icon-top unclick" data-url="${data.url}" src="${storageData.search(data.url) === -1
+          <img class="icon-top unclick" data-url="${data.url}" src="${
+        storageData.search(data.url) === -1
           ? "./img/collect2.svg"
           : "./img/collected2.svg"
-        }" />
+      }" />
         ${this.itemMenuDOM({
           id: data.id,
           title: data.title,
-          url: data.url
+          url: data.url,
         })}
           <div class="bookmark-item-title unclick">
               <img src="chrome://favicon/${data.url}" alt="" />
@@ -147,70 +152,79 @@ export class Render {
             </p>
             <div class="bookmark-info">
               <p class="unclick">&nbsp;</p>
-              <img class="icon icon-collect ${storageData.search(data.url) === -1 ? "" : "icon-collect--act"
-        }" data-id="${data.id}" data-url="${data.url}" data-title="${data.title}" data-category="${category}" src="${storageData.search(data.url) === -1
+              <img class="icon icon-collect ${
+                storageData.search(data.url) === -1 ? "" : "icon-collect--act"
+              }" data-id="${data.id}" data-url="${data.url}" data-title="${
+        data.title
+      }" data-category="${category}" src="${
+        storageData.search(data.url) === -1
           ? "./img/collect.svg"
           : "./img/collected.svg"
-        }" />
+      }" />
             </div>
           </div>
-        </li>`
-      return html
+        </li>`;
+      return html;
     }
     html = `<div class="bookmark-folder">
     <div class="bookmark-header">
-      <span class="btn-collapse ${storageDataOrigin.isOpenFolder ? "" : "btn-collapse--act"} unclick"></span>
+      <span class="btn-collapse ${
+        storageDataOrigin.isOpenFolder ? "" : "btn-collapse--act"
+      } unclick"></span>
       <h3 class="bookmark-title unclick">${data.title}</h3>
     </div>
-    <ul class="bookmark-ul" style="display:${storageDataOrigin.isOpenFolder ? "flex" : "none"}">`
+    <ul class="bookmark-ul" style="display:${
+      storageDataOrigin.isOpenFolder ? "flex" : "none"
+    }">`;
     //先把无children的处理完
     if (data.children.length) {
       for (let item of data.children) {
         if (!item.children) {
-          let category = data.title
-          html += await this.createCollectDom(item, category)
+          let category = data.title;
+          html += await this.createCollectDom(item, category);
         }
       }
     } else {
-      html += this.dataError(chrome.i18n.getMessage("noData"))
+      html += this.dataError(chrome.i18n.getMessage("noData"));
     }
-    html += `</ul></div>`
+    html += `</ul></div>`;
     for (let item of data.children) {
       if (item.children) {
-        html += await this.createCollectDom(item)
+        html += await this.createCollectDom(item);
       }
     }
-    return html
+    return html;
   }
 
   //注册搜索结果
   async initSearchResult(data) {
-    await this.createSearchResultDom(data)
+    await this.createSearchResultDom(data);
   }
   //生成搜索结果的dom结果
   async createSearchResultDom(data) {
-    let storageData = await getStorageData("collect")
-    storageData = JSON.stringify(storageData)
+    let storageData = await getStorageData("collect");
+    storageData = JSON.stringify(storageData);
     let html = `<div class="bookmark-folder">
   <div class="bookmark-header">
     <span class="btn-collapse unclick"></span>
     <h3 class="bookmark-title unclick">搜索结果</h3>
   </div>
-  <ul class="bookmark-ul">`
+  <ul class="bookmark-ul">`;
     if (data.length > 0) {
       for (let item of data) {
         html += `
       <li class="bookmark-li flow-in-from-up">
         <div class="bookmark-item" data-url="${item.url}">
           <div class="bookmark-item-bg unclick"></div>
-          <img class="icon-top unclick" data-url="${item.url}" src="${storageData.search(item.url) === -1
+          <img class="icon-top unclick" data-url="${item.url}" src="${
+          storageData.search(item.url) === -1
             ? "./img/collect2.svg"
             : "./img/collected2.svg"
-          }" />
+        }" />
           ${this.itemMenuDOM({
             id: item.id,
             title: item.title,
-            url: item.url
+            url: item.url,
           })}
           <div class="bookmark-item-title unclick">
             <img src="chrome://favicon/${item.url}" alt="" />
@@ -221,24 +235,24 @@ export class Render {
           </p>
           <div class="bookmark-info">
             <p class="unclick">&nbsp;</p>
-            <img class="icon icon-collect ${storageData.search(item.url) === -1 ? "" : "icon-collect--act"
-          }" data-url="${item.url}" data-title="${item.title}" src="${storageData.search(item.url) === -1
+            <img class="icon icon-collect ${
+              storageData.search(item.url) === -1 ? "" : "icon-collect--act"
+            }" data-url="${item.url}" data-title="${item.title}" src="${
+          storageData.search(item.url) === -1
             ? "./img/collect.svg"
             : "./img/collected.svg"
-          }" />
+        }" />
           </div>
         </div>
-      </li>`
+      </li>`;
       }
     } else {
-      html += this.dataError(chrome.i18n.getMessage("noSearchResult"))
+      html += this.dataError(chrome.i18n.getMessage("noSearchResult"));
     }
-    html += `</ul></div>`
-    let resultEle = document.getElementById("search-result")
-    resultEle.style.display = 'block'
-    resultEle.innerHTML = html
-    this.initMouseLeaveListener()
+    html += `</ul></div>`;
+    let resultEle = document.getElementById("search-result");
+    resultEle.style.display = "block";
+    resultEle.innerHTML = html;
+    this.initMouseLeaveListener();
   }
 }
-
-

@@ -38,6 +38,9 @@
   "cardDelete":{
     "message":"지우다"
   },
+  "cardDeleteWarning":{
+    "message":"정말로 삭제 하시겠습니까"
+  },
   "editBoxTitle":{
     "message":"표제"
   },

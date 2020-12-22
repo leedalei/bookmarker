@@ -38,6 +38,9 @@
   "cardDelete":{
     "message":"删除"
   },
+  "cardDeleteWarning":{
+    "message":"你真的要删除吗？鸡掰"
+  },
   "editBoxTitle":{
     "message":"标题"
   },
