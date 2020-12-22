@@ -94,12 +94,9 @@ function handleMenuLiClick(e) {
 function resetItemData(value, classList) {
   updateCollectData(value).then(() => {
     if(classList.includes('collect') || classList.includes('search-result')) {
-      renderer.initFavorite()
       renderer.initCollect()
     }
-    if(classList.includes('bookmark')) {
-      renderer.initFavorite()
-    }
+    renderer.initFavorite()
   })
 }
 
@@ -128,12 +125,6 @@ export const bookmarkEventDelegation = (e) => {
     return handleJump(e)
   }
 }
-//setting-box事件代理 Event delegation
-export const settingBoxEventDelegation = (e) => {
-  let classList = Array.from(e.target.classList)
-  e.stopPropagation()
-}
-
 
 // 隐藏所有options
 function hideOptions(){
@@ -158,9 +149,6 @@ export const initIconClickListener = () => {
   Array.from(document.querySelectorAll("#bookmark,#collect")).forEach((ele) => {
     ele.addEventListener("click", bookmarkEventDelegation)
   })
-  Array.from(document.querySelectorAll(".setting-box")).forEach((ele) => {
-    ele.addEventListener("click", settingBoxEventDelegation)
-  })
   Array.from(document.querySelectorAll(".form-item svg")).forEach((ele) => {
     ele.addEventListener("click", handleSwitchClick)
   })
@@ -168,7 +156,6 @@ export const initIconClickListener = () => {
     e.currentTarget.classList.toggle("mode-open")
     e.stopPropagation()
   })
-  
 }
 
 // 全部一起注册，冚家富贵

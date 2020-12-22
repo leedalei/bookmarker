@@ -77,8 +77,8 @@ export class SearchBar {
           break
       }
       let res = await getStorageData()
-      window.open(`${url}${inputValue}${res.isBlockCSDN ? " -csdn":""}`, "_blank");
-      e.currentTarget.value = '';
+      window.open(`${url}${inputValue}${res.isBlockCSDN ? " -csdn":""}`, "_blank")
+      document.querySelector("#search-input").value = ''
       document.querySelectorAll("#bookmark,#collect").forEach((ele) => {
         ele.style.display = "block"
       })

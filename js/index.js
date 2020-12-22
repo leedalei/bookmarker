@@ -11,7 +11,7 @@ async function main() {
   initAllListener(); //然后注册所有的事件监听器
   new SearchBar();
   new Setting();
-  initI18n(); 
+  initI18n();
 }
 
 main();

@@ -85,8 +85,8 @@ export function updateItemDOM(ele, value) {
     const iconCollect = ele.querySelector(".icon-collect").dataset
     item.url = menuBox.url = iconCollect.url = url
     menuBox.title = iconCollect.title = title
-    ele.querySelector(".bookmark-item-title p").innerHTML = title
-    ele.querySelector(".bookmark-item-url").innerHTML = url
+    ele.querySelector(".bookmark-item-title p").innerText = title
+    ele.querySelector(".bookmark-item-url").innerText = url
     ele.querySelector(".bookmark-item-title img").src = `chrome://favicon/${url}`
     resolve()
   })
