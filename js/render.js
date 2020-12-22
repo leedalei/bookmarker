@@ -10,11 +10,11 @@ export class Render {
     await this.initFavorite()
     await this.initCollect()
   }
-  dataError(value = "暂无数据哦，铁子",languageText="noData") {
+  dataError() {
     return `
     <li class="no-data">
       <img src="./img/empty.svg">
-      <p data-lang-text="${languageText}">${value}</p>
+      <p>${value}</p>
     </li>`
   }
   itemMenuDOM(dataset) {
@@ -55,7 +55,7 @@ export class Render {
     let html = `<div class="bookmark-folder">
   <div class="bookmark-header">
     <span class="btn-collapse unclick"></span>
-    <h3 class="bookmark-title unclick">置顶书签</h3>
+    <h3 class="bookmark-title unclick">${chrome.i18n.getMessage("stickyFolderName")}</h3>
   </div>
   <ul class="bookmark-ul">`
     if (data.length > 0) {
@@ -85,7 +85,7 @@ export class Render {
       </li>`
       }
     } else {
-      html += this.dataError("暂无置顶哦，铁子。","noStickyData")
+      html += this.dataError(chrome.i18n.getMessage("noStickyData"))
     }
     html += `</ul></div>`
     let collectEl = document.getElementById("collect")
@@ -172,7 +172,7 @@ export class Render {
         }
       }
     } else {
-      html += this.dataError()
+      html += this.dataError(chrome.i18n.getMessage("noData"))
     }
     html += `</ul></div>`
     for (let item of data.children) {
@@ -231,7 +231,7 @@ export class Render {
       </li>`
       }
     } else {
-      html += this.dataError("暂无搜索结果哦，铁子。","noSearchResult")
+      html += this.dataError(chrome.i18n.getMessage("noSearchResult"))
     }
     html += `</ul></div>`
     let resultEle = document.getElementById("search-result")
