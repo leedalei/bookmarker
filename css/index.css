@@ -119,6 +119,7 @@ body {
 .bookmark-li {
   width: 25%;
   position: relative;
+  transition: all ease .5s;
 }
 .bookmark-li:hover {
   z-index: 6;
