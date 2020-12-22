@@ -41,7 +41,7 @@ function handleDelCollect(e) {
 
 // 卡片菜单
 function handleCardMenu(e) {
-  e.target.parentNode.querySelector(".menu-box").classList.toggle("menu-open")
+  e.target.parentNode.querySelector(".menu-box").classList.toggle("menu--open")
   e.stopPropagation()
 }
 // 卡片Li点击
@@ -62,7 +62,7 @@ function handleMenuLiClick(e) {
           })
         }
       })
-      e.target.parentNode.classList.remove("menu-open")
+      e.target.parentNode.classList.remove("menu--open")
       editBox.show()
       break
     case 'remove':
@@ -84,7 +84,7 @@ function handleMenuLiClick(e) {
             ele.remove()
           })
       })
-      e.target.parentNode.classList.remove("menu-open")
+      e.target.parentNode.classList.remove("menu--open")
       confirm.show()
       break
   }
@@ -139,8 +139,8 @@ export const initGlobalListener = function () {
   document.body.addEventListener('click', () => {
     hideOptions()
     document.querySelector(".setting-icon").classList.remove("setting-icon--act")
-    document.querySelector(".setting-box").classList.remove("setting-open")
-    document.querySelector(".form-item").classList.remove("mode-open")
+    document.querySelector(".setting-box").classList.remove("setting--open")
+    document.querySelector(".form-item").classList.remove("mode--open")
   })
 }
 
@@ -153,7 +153,7 @@ export const initIconClickListener = () => {
     ele.addEventListener("click", handleSwitchClick)
   })
   document.querySelector(".form-item").addEventListener("click", (e) => {
-    e.currentTarget.classList.toggle("mode-open")
+    e.currentTarget.classList.toggle("mode--open")
     e.stopPropagation()
   })
 }

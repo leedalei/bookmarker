@@ -22,6 +22,7 @@ export class Setting {
   constructor() {
     this.initEvents()
     this.getLocalSetting()
+    this.stop()
   }
   //获取数据回填
   async getLocalSetting() {
@@ -39,13 +40,18 @@ export class Setting {
       this.setSwitchValue("isBlockCSDN", res.isBlockCSDN)
     }
   }
+  stop() {
+    document.querySelector(".setting-box").addEventListener("click", (e) => {
+      e.stopPropagation()
+    })
+  }
   initEvents() {
     //打开设置
     document.querySelector(".setting-icon").addEventListener("click", (e) => {
       e.currentTarget.classList.toggle("setting-icon--act")
       e.currentTarget.parentNode
         .querySelector(".setting-box")
-        .classList.toggle("setting-open")
+        .classList.toggle("setting--open")
       e.stopPropagation()
     })
     //switchTab设置
