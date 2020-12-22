@@ -10,7 +10,7 @@ export class Render {
     await this.initFavorite()
     await this.initCollect()
   }
-  dataError() {
+  dataError(value) {
     return `
     <li class="no-data">
       <img src="./img/empty.svg">
