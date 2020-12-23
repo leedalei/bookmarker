@@ -225,7 +225,11 @@ export class Render {
   <ul class="bookmark-ul">`;
     if (data.length > 0) {
       for (let item of data) {
-        const category = document.querySelector(`.bookmark .icon-collect[data-id='${item.id}']`).dataset.category
+        let $categoryEle = document.querySelector(`.bookmark .icon-collect[data-id='${item.id}']`)
+        if(!$categoryEle){
+          continue
+        }
+        let category = $categoryEle.dataset.category
         html += await this.createBookmarkItem(item, category)
       }
     } else {
