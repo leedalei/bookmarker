@@ -20,6 +20,9 @@
   "stickyFolderName":{
     "message": "고정 된 책갈피"
   },
+  "searchResultFolderName":{
+    "message": "검색 결과"
+  },
   "settingOpenFolder":{
     "message":"책갈피 펼치기"
   },

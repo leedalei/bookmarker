@@ -220,7 +220,7 @@ export class Render {
     let html = `<div class="bookmark-folder">
   <div class="bookmark-header">
     <span class="btn-collapse unclick"></span>
-    <h3 class="bookmark-title unclick">搜索结果</h3>
+    <h3 class="bookmark-title unclick">${chrome.i18n.getMessage("searchResultFolderName")}</h3>
   </div>
   <ul class="bookmark-ul">`;
     if (data.length > 0) {

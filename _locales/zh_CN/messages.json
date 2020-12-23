@@ -20,6 +20,9 @@
   "stickyFolderName":{
     "message": "置顶书签"
   },
+  "searchResultFolderName":{
+    "message": "搜索结果"
+  },
   "settingOpenFolder":{
     "message":"展开书签"
   },
