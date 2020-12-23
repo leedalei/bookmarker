@@ -4,13 +4,13 @@
   padding: 15px;
   left: 50%;
   top: 50%;
-  border-radius: 12px;
+  border-radius: 6px;
   transform: translate(-50%,-50%);
   z-index: 10;
   color: var(--item-title);
   background-color: var(--item-bg);
   border: 1px solid var(--item-border);
-  box-shadow: 0 0 10px 0 rgba(53, 52, 52, .18);
+  box-shadow: 2px 3px 20px rgb(136 136 136 / 0.24);
   user-select: none;
 }
 .confirm-animation{
