@@ -222,7 +222,6 @@ export class Render {
   <ul class="bookmark-ul">`;
     if (data.length > 0) {
       for (let item of data) {
-        console.log(this.ids)
         html += `
       <li class="bookmark-li flow-in-from-up">
         <div class="bookmark-item" data-url="${item.url}">
