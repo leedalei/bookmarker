@@ -134,7 +134,7 @@ export class Render {
         <div class="bookmark-item" data-url="${data.url}">
           <div class="bookmark-item-bg unclick"></div>
           <img class="icon-top unclick" data-url="${data.url}" src="${
-        storageData.search(data.url) === -1
+        storageData.search(data.id) === -1
           ? "./img/collect2.svg"
           : "./img/collected2.svg"
       }" />
@@ -153,11 +153,11 @@ export class Render {
             <div class="bookmark-info">
               <p class="unclick">&nbsp;</p>
               <img class="icon icon-collect ${
-                storageData.search(data.url) === -1 ? "" : "icon-collect--act"
+                storageData.search(data.id) === -1 ? "" : "icon-collect--act"
               }" data-id="${data.id}" data-url="${data.url}" data-title="${
         data.title
       }" data-category="${category}" src="${
-        storageData.search(data.url) === -1
+        storageData.search(data.id) === -1
           ? "./img/collect.svg"
           : "./img/collected.svg"
       }" />
@@ -217,7 +217,7 @@ export class Render {
         <div class="bookmark-item" data-url="${item.url}">
           <div class="bookmark-item-bg unclick"></div>
           <img class="icon-top unclick" data-url="${item.url}" src="${
-          storageData.search(item.url) === -1
+          storageData.search(item.id) === -1
             ? "./img/collect2.svg"
             : "./img/collected2.svg"
         }" />
@@ -236,9 +236,9 @@ export class Render {
           <div class="bookmark-info">
             <p class="unclick">&nbsp;</p>
             <img class="icon icon-collect ${
-              storageData.search(item.url) === -1 ? "" : "icon-collect--act"
+              storageData.search(item.id) === -1 ? "" : "icon-collect--act"
             }" data-url="${item.url}" data-title="${item.title}" src="${
-          storageData.search(item.url) === -1
+          storageData.search(item.id) === -1
             ? "./img/collect.svg"
             : "./img/collected.svg"
         }" />
