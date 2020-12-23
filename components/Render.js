@@ -4,9 +4,12 @@ export class Render {
     if (autoInit) {
       this.init();
     }
+    this.isOpenFolder = false;
+    this.ids = [];
   }
   // 初始化
   async init() {
+    await this.initData();
     await this.initFavorite();
     await this.initCollect();
   }
@@ -39,6 +42,15 @@ export class Render {
       <li class="menu-li" data-type="edit">编辑</li>
       <li class="menu-li" data-type="remove">删除</li>
     </ul>`;
+  }
+
+  // 获取初始化数据
+  async initData() {
+    let storageDataOrigin = await getStorageData();
+    this.isOpenFolder = storageDataOrigin.isOpenFolder;
+    storageDataOrigin.collect.find((item) => {
+      this.ids.push(item.id);
+    })
   }
 
   //注册置顶栏
@@ -113,6 +125,7 @@ export class Render {
         let main = document.getElementById("bookmark");
         main.innerHTML = "";
         let folderList = data[0].children;
+        console.log(this.ids, this.isOpenFolder)
         for (let item of folderList) {
           main.innerHTML += await this.createCollectDom(item);
         }
@@ -124,9 +137,6 @@ export class Render {
   }
   //生成书签列表的dom结构
   async createCollectDom(data, category) {
-    let storageDataOrigin = await getStorageData();
-    let storageData = JSON.stringify(storageDataOrigin.collect);
-
     let html = "";
     if (!data.children) {
       html += `<li class="bookmark-li flow-in-from-up">`;
@@ -134,7 +144,7 @@ export class Render {
         <div class="bookmark-item" data-url="${data.url}">
           <div class="bookmark-item-bg unclick"></div>
           <img class="icon-top unclick" data-url="${data.url}" src="${
-        storageData.search(data.id) === -1
+        this.ids.indexOf(data.id) === -1
           ? "./img/collect2.svg"
           : "./img/collected2.svg"
       }" />
@@ -153,11 +163,11 @@ export class Render {
             <div class="bookmark-info">
               <p class="unclick">&nbsp;</p>
               <img class="icon icon-collect ${
-                storageData.search(data.id) === -1 ? "" : "icon-collect--act"
+                this.ids.indexOf(data.id) === -1 ? "" : "icon-collect--act"
               }" data-id="${data.id}" data-url="${data.url}" data-title="${
         data.title
       }" data-category="${category}" src="${
-        storageData.search(data.id) === -1
+        this.ids.indexOf(data.id) === -1
           ? "./img/collect.svg"
           : "./img/collected.svg"
       }" />
@@ -169,12 +179,12 @@ export class Render {
     html = `<div class="bookmark-folder">
     <div class="bookmark-header">
       <span class="btn-collapse ${
-        storageDataOrigin.isOpenFolder ? "" : "btn-collapse--act"
+        this.isOpenFolder ? "" : "btn-collapse--act"
       } unclick"></span>
       <h3 class="bookmark-title unclick">${data.title}</h3>
     </div>
     <ul class="bookmark-ul" style="display:${
-      storageDataOrigin.isOpenFolder ? "flex" : "none"
+      this.isOpenFolder ? "flex" : "none"
     }">`;
     //先把无children的处理完
     if (data.children.length) {
@@ -212,12 +222,13 @@ export class Render {
   <ul class="bookmark-ul">`;
     if (data.length > 0) {
       for (let item of data) {
+        console.log(this.ids)
         html += `
       <li class="bookmark-li flow-in-from-up">
         <div class="bookmark-item" data-url="${item.url}">
           <div class="bookmark-item-bg unclick"></div>
           <img class="icon-top unclick" data-url="${item.url}" src="${
-          storageData.search(item.id) === -1
+            this.ids.indexOf(item.id) === -1
             ? "./img/collect2.svg"
             : "./img/collected2.svg"
         }" />
@@ -236,9 +247,9 @@ export class Render {
           <div class="bookmark-info">
             <p class="unclick">&nbsp;</p>
             <img class="icon icon-collect ${
-              storageData.search(item.id) === -1 ? "" : "icon-collect--act"
+              this.ids.indexOf(item.id) === -1 ? "" : "icon-collect--act"
             }" data-url="${item.url}" data-title="${item.title}" src="${
-          storageData.search(item.id) === -1
+              this.ids.indexOf(item.id) === -1
             ? "./img/collect.svg"
             : "./img/collected.svg"
         }" />

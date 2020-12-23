@@ -103,6 +103,7 @@ export class SearchBar {
         ele.style.display = "none";
       });
       chrome.bookmarks.search(query, async (data) => {
+        await renderer.initData();
         await renderer.initSearchResult(data);
         document
           .querySelector("#search-result")
