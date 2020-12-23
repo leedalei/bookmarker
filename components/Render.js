@@ -88,9 +88,7 @@ export class Render {
   async initData() {
     let storageDataOrigin = await getStorageData();
     this.isOpenFolder = storageDataOrigin.isOpenFolder;
-    storageDataOrigin.collect.find((item) => {
-      this.ids.push(item.id);
-    })
+    this.ids = storageDataOrigin.collect.map(item => item.id)
   }
 
   //注册置顶栏
