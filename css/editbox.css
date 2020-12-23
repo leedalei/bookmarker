@@ -5,12 +5,13 @@
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 100;
-  background-color: #fff;
+  background-color: var(--item-menu-bg);
   box-shadow: 2px 3px 20px rgb(136 136 136 / 0.24);
   padding: 24px 32px;
   border-radius: 6px;
   padding-top: 32px;
-  border: 1px solid #e8e8e8;
+  border: 1px solid var(--item-menu-border);
+  color: var(--item-menu-li);
 }
 .edit-box .box-li {
   display: flex;
@@ -26,6 +27,8 @@
   border: 1px solid #e8e8e8;
   padding: 8px 12px;
   width: 200px;
+  color: var(--input-font);
+  background-color: var(--input-bg);
   transition: all .3s ease;
 }
 .edit-box .box-li input:hover,
