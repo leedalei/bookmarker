@@ -219,8 +219,6 @@ export class Render {
   }
   //生成搜索结果的dom结果
   async createSearchResultDom(data) {
-    let storageData = await getStorageData("collect");
-    storageData = JSON.stringify(storageData);
     let html = `<div class="bookmark-folder">
   <div class="bookmark-header">
     <span class="btn-collapse unclick"></span>
@@ -229,39 +227,8 @@ export class Render {
   <ul class="bookmark-ul">`;
     if (data.length > 0) {
       for (let item of data) {
-        html += `
-      <li class="bookmark-li flow-in-from-up">
-        <div class="bookmark-item" data-url="${item.url}">
-          <div class="bookmark-item-bg unclick"></div>
-          <img class="icon-top unclick" data-url="${item.url}" src="${
-            this.ids.indexOf(item.id) === -1
-            ? "./img/collect2.svg"
-            : "./img/collected2.svg"
-        }" />
-          ${this.itemMenuDOM({
-            id: item.id,
-            title: item.title,
-            url: item.url,
-          })}
-          <div class="bookmark-item-title unclick">
-            <img src="chrome://favicon/${item.url}" alt="" />
-            <p class="ellipsis">${item.title}</p>
-          </div>
-          <p class="bookmark-item-url ellipsis unclick">
-            ${item.url}
-          </p>
-          <div class="bookmark-info">
-            <p class="unclick">&nbsp;</p>
-            <img class="icon icon-collect ${
-              this.ids.indexOf(item.id) === -1 ? "" : "icon-collect--act"
-            }" data-url="${item.url}" data-title="${item.title}" src="${
-              this.ids.indexOf(item.id) === -1
-            ? "./img/collect.svg"
-            : "./img/collected.svg"
-        }" />
-          </div>
-        </div>
-      </li>`;
+        const category = document.querySelector(`.bookmark .icon-collect[data-id='${item.id}']`).dataset.category
+        html += await this.createBookmarkItem(item, category)
       }
     } else {
       html += this.dataError(chrome.i18n.getMessage("noSearchResult"));

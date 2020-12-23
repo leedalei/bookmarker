@@ -21,18 +21,16 @@ export function handleCollapse(e) {
 }
 
 // 删除收藏
-export function delCollect(url) {
-  return new Promise(resolve => {
-    getStorageData("collect").then(res => {
-      let collect = JSON.parse(JSON.stringify(res.collect));
-      collect.forEach((item, index) => {
-        if (item.url === url) {
-          collect.splice(index, 1);
-        }
-      });
-      chrome.storage.sync.set({ collect });
-      resolve()
-    })
+export async function delCollect(url) {
+  return getStorageData("collect").then(res => {
+    let collect = JSON.parse(JSON.stringify(res.collect));
+    collect.forEach((item, index) => {
+      if (item.url === url) {
+        collect.splice(index, 1);
+      }
+    });
+    chrome.storage.sync.set({ collect });
+    return url
   })
 }
 // 添加收藏
@@ -74,13 +72,22 @@ export function updateItemDOM(ele, value) {
 export async function updateCollectStatus(isAddCollect, url) {
   let storageData = await getStorageData("collect");
   if (!isAddCollect) {
-    document.querySelector(`.icon-top[data-url='${url}']`).src =
+    document.querySelector(`.bookmark .icon-top[data-url='${url}']`).src =
       "./img/collect2.svg";
-    document.querySelector(`.icon-collect[data-url='${url}']`).src =
+    document.querySelector(`.bookmark .icon-collect[data-url='${url}']`).src =
       "./img/collect.svg";
     document
-      .querySelector(`.icon-collect[data-url='${url}']`)
+      .querySelector(`.bookmark .icon-collect[data-url='${url}']`)
       .classList.remove("icon-collect--act");
+    if (document.querySelector(`.search-result .icon-top[data-url='${url}']`)){
+      document.querySelector(`.search-result .icon-top[data-url='${url}']`).src =
+        "./img/collect2.svg";
+      document.querySelector(`.search-result .icon-collect[data-url='${url}']`).src =
+        "./img/collect.svg";
+      document
+        .querySelector(`.search-result .icon-collect[data-url='${url}']`)
+        .classList.remove("icon-collect--act");
+    }
     return;
   }
   storageData.collect.forEach((obj) => {
@@ -111,6 +118,7 @@ export function removeBookmark(id) {
 
 // 添加收藏
 function handleCollect(e) {
+  const classList = e.currentTarget.classList
   addCollect(e.target.dataset).then(() => {
     renderer.initFavorite();
     updateCollectStatus(true);
@@ -119,8 +127,9 @@ function handleCollect(e) {
 }
 // 删除收藏
 function handleDelCollect(e) {
+  const classList = e.currentTarget.classList
   const { url } = e.target.dataset;
-  delCollect(url).then(() => {
+  delCollect(url).then((url) => {
     renderer.initFavorite(); //重新渲染
     updateCollectStatus(false, url);
   });
