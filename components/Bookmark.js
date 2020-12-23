@@ -21,15 +21,19 @@ export function handleCollapse(e) {
 }
 
 // 删除收藏
-export async function delCollect(url) {
-  let res = await getStorageData("collect");
-  let collect = JSON.parse(JSON.stringify(res.collect));
-  collect.forEach((item, index) => {
-    if (item.url === url) {
-      collect.splice(index, 1);
-    }
-  });
-  chrome.storage.sync.set({ collect });
+export function delCollect(url) {
+  return new Promise(resolve => {
+    getStorageData("collect").then(res => {
+      let collect = JSON.parse(JSON.stringify(res.collect));
+      collect.forEach((item, index) => {
+        if (item.url === url) {
+          collect.splice(index, 1);
+        }
+      });
+      chrome.storage.sync.set({ collect });
+      resolve()
+    })
+  })
 }
 // 添加收藏
 export async function addCollect(data) {
@@ -121,6 +125,14 @@ function handleDelCollect(e) {
   e.stopPropagation();
 }
 
+// 移除Item的DOM
+function removeItemDOM(url) {
+  Array.from(
+    document.querySelectorAll(`.bookmark-item[data-url='${url}']`)
+  ).forEach(ele => {
+    ele.parentNode.remove()
+  })
+}
 // 卡片菜单
 function handleCardMenu(e) {
   e.target.parentNode.querySelector(".menu-box").classList.toggle("menu--open");
@@ -155,18 +167,7 @@ function handleMenuLiClick(e) {
               return removeBookmark(option.id);
             })
             .then(() => {
-              if (classList.includes("bookmark")) {
-                renderer.initFavorite();
-              }
-              if (classList.includes("search-result")) {
-                renderer.initFavorite();
-                renderer.initCollect();
-                renderer.initSearchResult();
-              }
-              if (classList.includes("collect")) {
-                renderer.initCollect();
-              }
-              ele.remove();
+              removeItemDOM(option.url);
             });
         }
       );
