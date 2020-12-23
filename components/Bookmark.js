@@ -45,16 +45,18 @@ export async function addCollect(data) {
 }
 // 更新收藏数据
 export async function updateCollectData(value) {
+  let category = '';
   let res = await getStorageData("collect");
   let collect = JSON.parse(JSON.stringify(res.collect));
   collect.forEach((item, index) => {
     if (item.id === value.id) {
-      const category = { category: item.category };
-      const result = Object.assign({}, value, category);
+      category = item.category;
+      const result = Object.assign({}, value, {category});
       collect.splice(index, 1, result);
     }
   });
   setStorageData({ collect });
+  return category;
 }
 // 更新Item的DOM
 export function updateItemDOM(ele, value) {
@@ -148,12 +150,10 @@ function handleMenuLiClick(e) {
     case "edit":
       let editBox = new EditBox(option, type, (value) => {
         const result = Object.assign({}, value, { id: option.id });
-        if (classList.includes("collect")) {
-          resetItemData(result, classList);
-        } else {
-          updateItemDOM(ele, value);
-          resetItemData(result, classList);
+        if (!classList.includes("collect")) {
+          updateItemDOM(ele, value);  // 修改自身DOM数据
         }
+        resetItemData(result, classList);
       });
       e.target.parentNode.classList.remove("menu--open");
       editBox.show();
@@ -179,12 +179,15 @@ function handleMenuLiClick(e) {
 }
 // 修改收藏数据
 function resetItemData(value, classList) {
-  updateCollectData(value).then(() => {
+  updateCollectData(value).then(category => {
     if (classList.includes("collect") || classList.includes("search-result")) {
-      renderer.initCollect();
+      // renderer.initCollect(); // 重新渲染书签
+      renderer.createBookmarkItem(value, category, true).then(html => {
+        document.querySelector(`.bookmark .bookmark-item[data-url='${value.url}']`).parentNode.innerHTML = html;
+      })
     }
-    renderer.initFavorite();
-  });
+    renderer.initFavorite();  // 重新渲染置顶
+  })
 }
 
 export const bookmarkEventDelegation = (e) => {

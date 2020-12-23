@@ -42,6 +42,47 @@ export class Render {
       <li class="menu-li" data-type="remove">删除</li>
     </ul>`;
   }
+  // 创建 booomarkeItem
+  async createBookmarkItem(data, category, isRefs = false) {
+    let html = ""
+    if (isRefs) await this.initData();
+    if (!isRefs) html += `<li class="bookmark-li flow-in-from-up">`;
+    html += `
+      <div class="bookmark-item" data-url="${data.url}">
+        <div class="bookmark-item-bg unclick"></div>
+        <img class="icon-top unclick" data-url="${data.url}" src="${
+      this.ids.indexOf(data.id) === -1
+        ? "./img/collect2.svg"
+        : "./img/collected2.svg"
+    }" />
+      ${this.itemMenuDOM({
+        id: data.id,
+        title: data.title,
+        url: data.url,
+      })}
+        <div class="bookmark-item-title unclick">
+            <img src="chrome://favicon/${data.url}" alt="" />
+            <p class="ellipsis">${data.title}</p>
+          </div>
+          <p class="bookmark-item-url ellipsis unclick">
+            ${data.url}
+          </p>
+          <div class="bookmark-info">
+            <p class="unclick">&nbsp;</p>
+            <img class="icon icon-collect ${
+              this.ids.indexOf(data.id) === -1 ? "" : "icon-collect--act"
+            }" data-id="${data.id}" data-url="${data.url}" data-title="${
+      data.title
+    }" data-category="${category}" src="${
+      this.ids.indexOf(data.id) === -1
+        ? "./img/collect.svg"
+        : "./img/collected.svg"
+    }" />
+          </div>
+        </div>`;
+    if (!isRefs) html += '</li>'
+    return html;
+  }
 
   // 获取初始化数据
   async initData() {
@@ -139,42 +180,7 @@ export class Render {
   async createCollectDom(data, category) {
     let html = "";
     if (!data.children) {
-      html += `<li class="bookmark-li flow-in-from-up">`;
-      html += `
-        <div class="bookmark-item" data-url="${data.url}">
-          <div class="bookmark-item-bg unclick"></div>
-          <img class="icon-top unclick" data-url="${data.url}" src="${
-        this.ids.indexOf(data.id) === -1
-          ? "./img/collect2.svg"
-          : "./img/collected2.svg"
-      }" />
-        ${this.itemMenuDOM({
-          id: data.id,
-          title: data.title,
-          url: data.url,
-        })}
-          <div class="bookmark-item-title unclick">
-              <img src="chrome://favicon/${data.url}" alt="" />
-              <p class="ellipsis">${data.title}</p>
-            </div>
-            <p class="bookmark-item-url ellipsis unclick">
-              ${data.url}
-            </p>
-            <div class="bookmark-info">
-              <p class="unclick">&nbsp;</p>
-              <img class="icon icon-collect ${
-                this.ids.indexOf(data.id) === -1 ? "" : "icon-collect--act"
-              }" data-id="${data.id}" data-url="${data.url}" data-title="${
-        data.title
-      }" data-category="${category}" src="${
-        this.ids.indexOf(data.id) === -1
-          ? "./img/collect.svg"
-          : "./img/collected.svg"
-      }" />
-            </div>
-          </div>
-        </li>`;
-      return html;
+      return this.createBookmarkItem(data, category)
     }
     html = `<div class="bookmark-folder">
     <div class="bookmark-header">
