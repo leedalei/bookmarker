@@ -20,6 +20,9 @@
   "stickyFolderName":{
     "message": "重要なしおり"
   },
+  "searchResultFolderName":{
+    "message": "の検索結果"
+  },
   "settingOpenFolder":{
     "message":"ブックマークを展開する"
   },

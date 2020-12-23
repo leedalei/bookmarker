@@ -18,7 +18,10 @@
     "message":"no search result, sorry"
   },
   "stickyFolderName":{
-    "message": "StickyBookmark"
+    "message": "Sticky bookmark"
+  },
+  "searchResultFolderName":{
+    "message": "Search result"
   },
   "settingOpenFolder":{
     "message":"Expand bookmarks"
