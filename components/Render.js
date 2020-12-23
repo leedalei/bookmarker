@@ -9,7 +9,6 @@ export class Render {
   }
   // 初始化
   async init() {
-    await this.initData();
     await this.initFavorite();
     await this.initCollect();
   }
@@ -57,6 +56,7 @@ export class Render {
   async initFavorite() {
     let res = await getStorageData("collect");
     if (res.collect) {
+      await this.initData();
       this.createFavoriteDom(res.collect);
     } else {
       chrome.storage.sync.set({ collect: [] });
@@ -125,7 +125,7 @@ export class Render {
         let main = document.getElementById("bookmark");
         main.innerHTML = "";
         let folderList = data[0].children;
-        console.log(this.ids, this.isOpenFolder)
+        await this.initData();
         for (let item of folderList) {
           main.innerHTML += await this.createCollectDom(item);
         }
@@ -208,6 +208,7 @@ export class Render {
 
   //注册搜索结果
   async initSearchResult(data) {
+    await this.initData();
     await this.createSearchResultDom(data);
   }
   //生成搜索结果的dom结果
