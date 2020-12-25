@@ -1,4 +1,4 @@
-import { getStorageData, setStorageData } from "../js/util";
+import { getStorageData, setStorageData } from "../../util";
 import { SearchBar } from "./SearchBar";
 let searchBar = new SearchBar();
 

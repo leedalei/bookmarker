@@ -5,6 +5,9 @@
   "appDesc": {
     "message": "The best bookmark plugin in the Eastern Hemisphere"
   },
+  "newTab":{
+    "message":"New Tab"
+  },
   "searchPlaceholder": {
     "message":"Type to search for bookmarks locally, type enter to enable search engine"
   },

@@ -1,4 +1,4 @@
-import { getStorageData, setStorageData } from "../js/util"
+import { getStorageData, setStorageData } from "../../util"
 import { Render } from "./Render"
 import { Confirm } from "./Confirm"
 import { EditBox } from "./EditBox"
@@ -72,17 +72,17 @@ export async function updateCollectStatus(isAddCollect, url) {
   let storageData = await getStorageData("collect")
   if (!isAddCollect) {
     document.querySelector(`.bookmark .icon-top[data-url='${url}']`).src =
-      "./img/collect2.svg";
+      "../src/assets/images/collect2.svg";
     document.querySelector(`.bookmark .icon-collect[data-url='${url}']`).src =
-      "./img/collect.svg";
+      "../src/assets/images/collect.svg";
     document
       .querySelector(`.bookmark .icon-collect[data-url='${url}']`)
       .classList.remove("icon-collect--act");
     if (document.querySelector(`.search-result .icon-top[data-url='${url}']`)){
       document.querySelector(`.search-result .icon-top[data-url='${url}']`).src =
-        "./img/collect2.svg";
+        "../src/assets/images/collect2.svg";
       document.querySelector(`.search-result .icon-collect[data-url='${url}']`).src =
-        "./img/collect.svg";
+        "../src/assets/images/collect.svg";
       document
         .querySelector(`.search-result .icon-collect[data-url='${url}']`)
         .classList.remove("icon-collect--act");
@@ -94,13 +94,13 @@ export async function updateCollectStatus(isAddCollect, url) {
     Array.from(
       document.querySelectorAll(`.icon-top[data-url='${obj.url}']`)
     ).forEach((ele) => {
-      ele.src = "./img/collected2.svg"
+      ele.src = "../src/assets/images/collected2.svg"
     })
     // 更新icon-collect class以及src
     Array.from(
       document.querySelectorAll(`.icon-collect[data-url='${obj.url}']`)
     ).forEach((ele) => {
-      ele.src = "./img/collected.svg"
+      ele.src = "../src/assets/images/collected.svg"
       ele.classList.add("icon-collect--act")
     })
   })

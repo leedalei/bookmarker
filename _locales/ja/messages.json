@@ -5,6 +5,9 @@
   "appDesc": {
     "message": "東半球で最高のChrome Favoritesプラグインを作る"
   },
+  "newTab":{
+    "message":"新しいタブページ"
+  },
   "searchPlaceholder": {
     "message":"ローカルでブックマークを検索するには直接入力してください， Enterキーを押して検索エンジンを有効にします。"
   },

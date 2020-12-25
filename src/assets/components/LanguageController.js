@@ -3,6 +3,7 @@ export class LanguageController {
     let i18n = chrome.i18n;
     this.languageObj = {
       searchPlaceholder: i18n.getMessage("searchPlaceholder"),
+      newTab:i18n.getMessage("newTab"),
       noStickyData: i18n.getMessage("noStickyData"),
       noData: i18n.getMessage("noData"),
       noSearchResult: i18n.getMessage("noSearchResult"),
@@ -21,6 +22,7 @@ export class LanguageController {
     this.init();
   }
   init() {
+    document.title = this.languageObj.newTab;
     document
       .querySelector("#search-input")
       .setAttribute("placeholder", this.languageObj.searchPlaceholder);
