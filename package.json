@@ -1,6 +1,6 @@
 {
   "name": "bookmarker",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "The best bookmark plugin in the Eastern Hemisphere",
   "main": "index.js",
   "scripts": {
