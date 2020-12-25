@@ -5,6 +5,9 @@
   "appDesc": {
     "message": "做东半球最好用的Chrome收藏夹插件"
   },
+  "newTab":{
+    "message":"新标签页"
+  },
   "searchPlaceholder": {
     "message":"输入即可本地搜索书签，按回车则启用搜索引擎"
   },

@@ -1,8 +1,8 @@
 module.exports = {
-  devtool: "source-map", //使用这个来防止打包后有eval，导致插件报错
-  entry: __dirname + "/js/index.js",
+  // devtool: "source-map", //开发用
+  entry: __dirname + "/src/index.js",
   output: {
-    path: __dirname + "/dist",
+    path: __dirname + "/public",
     filename: "bundle.js",
   },
   module: {
