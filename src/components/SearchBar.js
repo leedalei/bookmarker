@@ -1,7 +1,7 @@
 import { Render } from "./Render";
-import { debounce } from "../../util";
+import { debounce } from "../util";
 import { bookmarkEventDelegation } from "./Bookmark";
-import { getStorageData } from "../../util";
+import { getStorageData } from "../util";
 let renderer = new Render(false);
 
 // 显示隐藏 select
