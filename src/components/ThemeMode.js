@@ -1,4 +1,4 @@
-import { setStorageData } from "../../util";
+import { setStorageData } from "../util";
 
 export class ThemeMode {
   constructor() {

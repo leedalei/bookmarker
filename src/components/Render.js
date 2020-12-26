@@ -1,4 +1,4 @@
-import { getStorageData } from "../../util";
+import { getStorageData } from "../util";
 export class Render {
   constructor(autoInit) {
     if (autoInit) {
@@ -15,7 +15,7 @@ export class Render {
   dataError(value) {
     return `
     <li class="no-data">
-      <img src="../src/assets/images/empty.svg">
+      <img src="./assets/images/empty.svg">
       <p>${value}</p>
     </li>`;
   }
@@ -52,8 +52,8 @@ export class Render {
         <div class="bookmark-item-bg unclick"></div>
         <img class="icon-top unclick" data-url="${data.url}" src="${
       this.ids.indexOf(data.id) === -1
-        ? "../src/assets/images/collect2.svg"
-        : "../src/assets/images/collected2.svg"
+        ? "./assets/images/collect2.svg"
+        : "./assets/images/collected2.svg"
     }" />
       ${this.itemMenuDOM({
         id: data.id,
@@ -75,8 +75,8 @@ export class Render {
       data.title
     }" data-category="${category}" src="${
       this.ids.indexOf(data.id) === -1
-        ? "../src/assets/images/collect.svg"
-        : "../src/assets/images/collected.svg"
+        ? "./assets/images/collect.svg"
+        : "./assets/images/collected.svg"
     }" />
           </div>
         </div>`;
@@ -117,7 +117,7 @@ export class Render {
       <li class="bookmark-li flow-in-from-up">
         <div class="bookmark-item" data-url="${item.url}">
           <div class="bookmark-item-bg unclick"></div>
-          <img class="icon-top unclick" src="../src/assets/images/collected2.svg" />
+          <img class="icon-top unclick" src="./assets/images/collected2.svg" />
           ${this.itemMenuDOM({
             id: item.id,
             title: item.title,
@@ -134,7 +134,7 @@ export class Render {
             <p class="unclick">${item.category}</p>
             <img class="icon del-icon" data-url="${
               item.url
-            }" src="../src/assets/images/del.svg" />
+            }" src="./assets/images/del.svg" />
           </div>
         </div>
       </li>`;
