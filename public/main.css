@@ -407,6 +407,15 @@ body {
   font-size: 13px;
 }
 
+.privacy-policy{
+  height: 35px;
+  line-height: 38px;
+  text-align: center;
+  font-size: 12px;
+}
+.privacy-policy a{
+  color: #999;
+}
 @media (max-width: 1280px) {
   #bookmark, #collect, #search-result {
     width: 90%;
