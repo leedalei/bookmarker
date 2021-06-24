@@ -52,7 +52,7 @@ export class SearchBar {
   initSearchOutside() {
     document
       .querySelector("#search-input")
-      .addEventListener("keyup", this.searchOutside);
+      .addEventListener("keydown", this.searchOutside);
   }
   //搜索外部实际逻辑
   async searchOutside(e) {
