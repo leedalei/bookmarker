@@ -26,3 +26,6 @@ npm run build
 - [x] 书签删除
 - [x] 用户配置
 - [x] 多语言
+
+## 谷歌商店直接下载使用
+[谷歌商店插件地址](https://chrome.google.com/webstore/detail/bookmarker/jblilhiaoipblnepleimgaamphkfhdla)
