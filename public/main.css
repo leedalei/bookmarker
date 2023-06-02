@@ -429,12 +429,13 @@ body {
   display: inline-block;
   position: relative;
   user-select: none;
+  cursor: pointer;
 }
 .select-container .select-value {
   position: relative;
+  padding: 6px 0;
   color: var(--header-font);
   font-size: 14px;
-  cursor: default;
   display: flex;
   align-items: center;
 }
