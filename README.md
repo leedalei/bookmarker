@@ -1,3 +1,5 @@
+*Read this in [English](README_en.md).*
+
 ## 一个书签展示器
 致力于打造东半球最好的谷歌浏览器收藏夹插件
 
